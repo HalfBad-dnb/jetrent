@@ -1,6 +1,40 @@
-# Getting Started with Create React App
+# Jet Adventures - Jet Ski Rental Website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern, responsive website for a jet ski rental service built with React, styled-components, and framer-motion for smooth animations.
+
+## Features
+
+- Beautiful hero section with animated text effects
+- Modern, gradient background with animated waves
+- Interactive jet ski fleet display with hover effects
+- Responsive design that works on all devices
+- Animated customer testimonials section
+- Contact form with validation
+- Smooth scrolling and element transitions
+
+## Technologies Used
+
+- React
+- styled-components for CSS-in-JS styling
+- framer-motion for animations
+- react-icons for icons
+
+## Getting Started
+
+To run this project locally:
+
+```bash
+# Navigate to the project directory
+cd jetrent
+
+# Install dependencies
+npm install
+
+# Start the development server
+npm start
+```
+
+The app will be available at [http://localhost:3000](http://localhost:3000).
 
 ## Available Scripts
 
