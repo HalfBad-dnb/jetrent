@@ -9,6 +9,14 @@ const TestimonialsSection = styled.section`
   position: relative;
   overflow: hidden;
   color: white;
+  
+  @media (max-width: 768px) {
+    padding: 4rem 1.5rem;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 3rem 1rem;
+  }
 `;
 
 const Wave = styled.div`
@@ -21,6 +29,14 @@ const Wave = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   z-index: 1;
+  
+  @media (max-width: 768px) {
+    height: 100px;
+  }
+  
+  @media (max-width: 480px) {
+    height: 70px;
+  }
 `;
 
 const Content = styled.div`
@@ -33,12 +49,14 @@ const Content = styled.div`
 const SectionTitle = styled(motion.h2)`
   font-size: 3rem;
   text-align: center;
-  margin-bottom: 1.5rem;
+  margin: 0 auto 1.5rem;
   color: #fff;
   position: relative;
-  display: inline-block;
-  left: 50%;
-  transform: translateX(-50%);
+  display: block;
+  width: 100%;
+  max-width: 90%;
+  transform: none;
+  left: auto;
   
   &::after {
     content: '';
@@ -53,7 +71,20 @@ const SectionTitle = styled(motion.h2)`
   }
 
   @media (max-width: 768px) {
-    font-size: 2.5rem;
+    font-size: 2.25rem;
+    margin-bottom: 2rem;
+    max-width: 100%;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+    padding: 0 10px;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+    box-sizing: border-box;
   }
 `;
 
@@ -62,6 +93,18 @@ const TestimonialsGrid = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
   margin-top: 3rem;
+  
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+  
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin-top: 2rem;
+  }
 `;
 
 const TestimonialCard = styled(motion.div)`
@@ -72,6 +115,14 @@ const TestimonialCard = styled(motion.div)`
   position: relative;
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  
+  @media (max-width: 768px) {
+    padding: 1.75rem;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 1.5rem;
+  }
 `;
 
 const QuoteIcon = styled(FaQuoteLeft)`
@@ -80,6 +131,16 @@ const QuoteIcon = styled(FaQuoteLeft)`
   position: absolute;
   top: 20px;
   right: 20px;
+  
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 2rem;
+    top: 15px;
+    right: 15px;
+  }
 `;
 
 const TestimonialText = styled.p`
@@ -87,6 +148,19 @@ const TestimonialText = styled.p`
   font-size: 1.1rem;
   line-height: 1.6;
   margin-bottom: 1.5rem;
+  
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 0.9rem;
+    margin-bottom: 1.25rem;
+    line-height: 1.4;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
 `;
 
 const CustomerInfo = styled.div`
@@ -102,6 +176,12 @@ const CustomerImage = styled.div`
   background-size: cover;
   background-position: center;
   border: 3px solid #FF9500;
+  
+  @media (max-width: 480px) {
+    width: 50px;
+    height: 50px;
+    border: 2px solid #FF9500;
+  }
 `;
 
 const CustomerDetails = styled.div`
@@ -118,6 +198,10 @@ const CustomerLocation = styled.p`
   color: rgba(255, 255, 255, 0.7);
   font-size: 0.9rem;
   margin: 0;
+  
+  @media (max-width: 480px) {
+    font-size: 0.8rem;
+  }
 `;
 
 const RatingStars = styled.div`

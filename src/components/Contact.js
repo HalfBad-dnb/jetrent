@@ -24,13 +24,15 @@ const Container = styled.div`
 const SectionTitle = styled(motion.h2)`
   font-size: 3rem;
   text-align: center;
-  margin-bottom: 3rem;
+  margin: 0 auto 3rem;
   color: #ffffff;
   position: relative;
-  display: inline-block;
-  left: 50%;
-  transform: translateX(-50%);
   text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  width: 100%;
+  max-width: 90%;
+  display: block;
+  left: auto;
+  transform: none;
   
   &::after {
     content: '';
@@ -45,7 +47,19 @@ const SectionTitle = styled(motion.h2)`
   }
 
   @media (max-width: 768px) {
-    font-size: 2.5rem;
+    font-size: 2.25rem;
+    margin-bottom: 2.5rem;
+    max-width: 100%;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    padding: 0 10px;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    box-sizing: border-box;
   }
 `;
 
@@ -74,6 +88,15 @@ const ContactInfoTitle = styled.h3`
   font-size: 1.8rem;
   margin-bottom: 1.5rem;
   position: relative;
+  
+  @media (max-width: 768px) {
+    font-size: 1.6rem;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
 `;
 
 const ContactInfoText = styled.p`
@@ -81,6 +104,17 @@ const ContactInfoText = styled.p`
   line-height: 1.6;
   margin-bottom: 2rem;
   position: relative;
+  
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.4;
+  }
 `;
 
 const ContactDetails = styled.div`
@@ -97,10 +131,29 @@ const ContactItem = styled.div`
     margin-right: 1rem;
     color: #FF9500;
   }
+  
+  @media (max-width: 480px) {
+    margin-bottom: 1.25rem;
+    
+    svg {
+      font-size: 1.3rem;
+      margin-right: 0.75rem;
+      flex-shrink: 0;
+    }
+  }
 `;
 
 const ContactItemText = styled.span`
   font-size: 1.1rem;
+  
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 0.9rem;
+    word-break: break-word;
+  }
 `;
 
 const SocialLinks = styled.div`

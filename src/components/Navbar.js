@@ -17,6 +17,14 @@ const Nav = styled(motion.nav)`
   background-color: ${({ scrolled }) => scrolled ? 'rgba(3, 150, 255, 0.95)' : 'transparent'};
   box-shadow: ${({ scrolled }) => scrolled ? '0 4px 20px rgba(0, 0, 0, 0.1)' : 'none'};
   backdrop-filter: ${({ scrolled }) => scrolled ? 'blur(10px)' : 'none'};
+  
+  @media (max-width: 768px) {
+    padding: 1.25rem 1.5rem;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 1rem 1rem;
+  }
 `;
 
 const Logo = styled.div`
@@ -30,6 +38,23 @@ const Logo = styled.div`
   svg {
     margin-right: 10px;
     font-size: 1.8rem;
+  }
+  
+  @media (max-width: 768px) {
+    font-size: 1.3rem;
+    
+    svg {
+      font-size: 1.6rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 1.1rem;
+    
+    svg {
+      font-size: 1.4rem;
+      margin-right: 8px;
+    }
   }
 `;
 
@@ -76,6 +101,11 @@ const MobileMenuButton = styled.div`
     width: 30px;
     height: 21px;
   }
+  
+  @media (max-width: 480px) {
+    width: 26px;
+    height: 18px;
+  }
 `;
 
 const MenuLine = styled(motion.div)`
@@ -95,9 +125,16 @@ const MobileMenu = styled(motion.div)`
     top: 80px;
     left: 0;
     right: 0;
+    z-index: 99;
     background-color: #0396FF;
     padding: 1rem 0;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+  
+  @media (max-width: 480px) {
+    top: 65px;
+    padding: 0.75rem 0;
   }
 `;
 
@@ -111,6 +148,11 @@ const MobileMenuItem = styled(motion.a)`
   
   &:last-child {
     border-bottom: none;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 0.85rem 1.5rem;
+    font-size: 0.95rem;
   }
 `;
 
@@ -173,12 +215,14 @@ const Navbar = () => {
   };
   
   const mobileMenuVariants = {
-    hidden: { opacity: 0, height: 0 },
+    hidden: { opacity: 0, y: -20, height: 0 },
     visible: { 
       opacity: 1, 
+      y: 0,
       height: 'auto',
       transition: { 
-        duration: 0.3
+        duration: 0.3,
+        ease: 'easeOut'
       } 
     }
   };
@@ -230,12 +274,10 @@ const Navbar = () => {
         </MobileMenuButton>
       </Nav>
       
-      {mobileMenuOpen && (
-        <MobileMenu
+      <MobileMenu
           variants={mobileMenuVariants}
           initial="hidden"
-          animate="visible"
-          exit="hidden"
+          animate={mobileMenuOpen ? "visible" : "hidden"}
         >
           {menuItems.map((item, index) => (
             <MobileMenuItem 
@@ -262,7 +304,6 @@ const Navbar = () => {
             Book Now
           </MobileMenuItem>
         </MobileMenu>
-      )}
     </>
   );
 };

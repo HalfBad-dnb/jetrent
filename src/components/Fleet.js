@@ -9,18 +9,28 @@ const FleetSection = styled.section`
   position: relative;
   overflow: hidden;
   color: white;
+  
+  @media (max-width: 768px) {
+    padding: 4rem 1.5rem;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 3rem 1rem;
+  }
 `;
 
 const SectionTitle = styled(motion.h2)`
   font-size: 3rem;
   text-align: center;
-  margin-bottom: 1.5rem;
+  margin: 0 auto 1.5rem;
   color: #ffffff;
   position: relative;
-  display: inline-block;
-  left: 50%;
-  transform: translateX(-50%);
+  display: block;
   text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  width: 100%;
+  max-width: 90%;
+  transform: none;
+  left: auto;
   
   &::after {
     content: '';
@@ -35,7 +45,18 @@ const SectionTitle = styled(motion.h2)`
   }
 
   @media (max-width: 768px) {
-    font-size: 2.5rem;
+    font-size: 2.25rem;
+    max-width: 100%;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 1.75rem;
+    margin-bottom: 1.25rem;
+    padding: 0 10px;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    box-sizing: border-box;
   }
 `;
 
@@ -46,6 +67,21 @@ const FleetDescription = styled(motion.p)`
   font-size: 1.2rem;
   color: #e0e0e0;
   line-height: 1.6;
+  padding: 0 1rem;
+  
+  @media (max-width: 768px) {
+    font-size: 1.1rem;
+    margin: 0 auto 2.5rem;
+    max-width: 90%;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 0.95rem;
+    margin: 0 auto 2rem;
+    line-height: 1.5;
+    max-width: 100%;
+    padding: 0 0.5rem;
+  }
 `;
 
 const JetSkiGrid = styled.div`
@@ -54,6 +90,16 @@ const JetSkiGrid = styled.div`
   gap: 2rem;
   max-width: 1200px;
   margin: 0 auto;
+  
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
 `;
 
 const JetSkiCard = styled(motion.div)`
@@ -80,10 +126,18 @@ const JetSkiImage = styled.div`
     height: 50%;
     background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
   }
+  
+  @media (max-width: 480px) {
+    height: 220px; /* Slightly taller on mobile for better visibility */
+  }
 `;
 
 const JetSkiInfo = styled.div`
   padding: 1.5rem;
+  
+  @media (max-width: 480px) {
+    padding: 1.25rem;
+  }
 `;
 
 const JetSkiName = styled.h3`
@@ -148,6 +202,15 @@ const NavButtons = styled.div`
   justify-content: center;
   margin-top: 3rem;
   gap: 1rem;
+  
+  @media (max-width: 768px) {
+    margin-top: 2.5rem;
+  }
+  
+  @media (max-width: 480px) {
+    margin-top: 2rem;
+    gap: 0.75rem;
+  }
 `;
 
 const NavButton = styled(motion.button)`
@@ -165,6 +228,12 @@ const NavButton = styled(motion.button)`
   
   &:hover {
     background-color: ${props => props.active ? '#0D47A1' : '#ccc'};
+  }
+  
+  @media (max-width: 480px) {
+    width: 36px;
+    height: 36px;
+    font-size: 0.9rem;
   }
 `;
 

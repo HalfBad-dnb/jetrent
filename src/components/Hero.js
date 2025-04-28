@@ -13,6 +13,11 @@ const HeroSection = styled.section`
   position: relative;
   z-index: 1;
   overflow: hidden;
+  
+  @media (max-width: 768px) {
+    padding: 0 1rem;
+    height: 100svh; /* Use small viewport height for mobile */
+  }
 `;
 
 const HeroOverlay = styled.div`
@@ -45,6 +50,10 @@ const WaveEffect = styled.div`
   background: url('/wave.svg');
   background-size: cover;
   z-index: 0;
+  
+  @media (max-width: 768px) {
+    height: 100px; /* Smaller wave effect on mobile */
+  }
 `;
 
 const HeroContent = styled.div`
@@ -52,16 +61,42 @@ const HeroContent = styled.div`
   text-align: center;
   max-width: 1000px;
   z-index: 1;
+  padding: 0 1rem;
+  width: 100%;
+  
+  @media (max-width: 768px) {
+    max-width: 100%;
+    padding: 0 10px;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 0 5px;
+  }
 `;
 
 const Title = styled(motion.h1)`
   font-size: 5rem;
-  margin-bottom: 1rem;
+  margin: 0 auto 1rem;
   font-weight: 800;
   text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  text-align: center;
   
   @media (max-width: 768px) {
     font-size: 3rem;
+    max-width: 95%;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 2.25rem;
+    margin-bottom: 0.75rem;
+    max-width: 100%;
+    padding: 0;
+    line-height: 1.2;
+  }
+  
+  @media (max-width: 350px) {
+    font-size: 2rem;
   }
 `;
 
@@ -70,9 +105,20 @@ const Subtitle = styled(motion.p)`
   margin-bottom: 2rem;
   max-width: 700px;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  padding: 0 1rem;
   
   @media (max-width: 768px) {
     font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    max-width: 90%;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 0.95rem;
+    margin-bottom: 1.25rem;
+    max-width: 100%;
+    line-height: 1.4;
+    padding: 0 10px;
   }
 `;
 
@@ -94,6 +140,17 @@ const Button = styled(motion.button)`
     transform: translateY(-5px);
     box-shadow: 0 15px 25px rgba(255, 149, 0, 0.4);
   }
+  
+  @media (max-width: 768px) {
+    padding: 0.9rem 2rem;
+    font-size: 1.1rem;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 0.8rem 1.75rem;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+  }
 `;
 
 const ScrollDownIndicator = styled(motion.div)`
@@ -111,12 +168,42 @@ const ScrollDownIndicator = styled(motion.div)`
     margin-top: 10px;
     font-size: 1.5rem;
   }
+  
+  @media (max-width: 768px) {
+    bottom: 25px;
+    font-size: 0.9rem;
+    
+    svg {
+      margin-top: 8px;
+      font-size: 1.2rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    bottom: 20px;
+    font-size: 0.8rem;
+    
+    svg {
+      margin-top: 6px;
+      font-size: 1rem;
+    }
+  }
 `;
 
 const WaterIcon = styled(FaWater)`
   font-size: 2.5rem;
   margin-bottom: 1rem;
   color: #BBDEFB;
+  
+  @media (max-width: 768px) {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+  }
 `;
 
 const Hero = () => {
