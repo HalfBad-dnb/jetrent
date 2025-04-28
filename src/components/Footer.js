@@ -260,11 +260,11 @@ const Footer = () => {
         >
           <FooterTitle>Services</FooterTitle>
           <FooterLinks>
-            <FooterLink><a href="#">Jet Ski Rentals</a></FooterLink>
-            <FooterLink><a href="#">Guided Tours</a></FooterLink>
-            <FooterLink><a href="#">Group Events</a></FooterLink>
-            <FooterLink><a href="#">Training Sessions</a></FooterLink>
-            <FooterLink><a href="#">Corporate Packages</a></FooterLink>
+            <FooterLink><a href="/services/rentals">Jet Ski Rentals</a></FooterLink>
+            <FooterLink><a href="/services/tours">Guided Tours</a></FooterLink>
+            <FooterLink><a href="/services/events">Group Events</a></FooterLink>
+            <FooterLink><a href="/services/training">Training Sessions</a></FooterLink>
+            <FooterLink><a href="/services/corporate">Corporate Packages</a></FooterLink>
           </FooterLinks>
         </FooterColumn>
         
