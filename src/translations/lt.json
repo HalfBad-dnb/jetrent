@@ -1,0 +1,75 @@
+{
+  "hero": {
+    "title": "VANDENS NUOTYKIAI",
+    "subtitle": "Patirkite nepakartojamą jaudulį skriejant bangomis su mūsų aukščiausios kokybės vandens motociklų nuoma. Puikiai tinka tiek pradedantiesiems, tiek adrenalino mėgėjams.",
+    "button": "Rezervuoti Dabar",
+    "scrollDown": "Slinkite Žemyn"
+  },
+  "navbar": {
+    "home": "Pradžia",
+    "fleet": "Mūsų Flotilė",
+    "testimonials": "Atsiliepimai",
+    "contact": "Kontaktai"
+  },
+  "fleet": {
+    "title": "Mūsų Flotilė",
+    "subtitle": "Rinkitės iš mūsų aukštos kokybės vandens motociklų, kurių kiekvienas siūlo unikalią patirtį ant vandens. Visa mūsų įranga yra reguliariai prižiūrima ir turi naujausias saugos funkcijas."
+  },
+  "jetskis": {
+    "jetski1": {
+      "description": "Puikiai tinka pradedantiesiems, 'Wave Runner X1' siūlo stabilią ir smagią važiavimo patirtį su pakankama galia, kad patenkintų adrenalino mėgėjus."
+    },
+    "jetski2": {
+      "description": "Šeimoms draugiškas pasirinkimas su papildomomis sėdėjimo vietomis ir geru našumo bei stabilumo balansu visų lygių vairuotojams."
+    },
+    "jetski3": {
+      "description": "Mūsų aukščiausios klasės modelis su pranašesne galia ir prabangos funkcijomis tiems, kurie ieško aukščiausios kokybės vandens motociklo patirties."
+    }
+  },
+  "testimonials": {
+    "title": "Klientų Atsiliepimai",
+    "subtitle": "Tikros istorijos iš tikrų nuotykių ieškotojų",
+    "testimonial1": {
+      "text": "Vandens motociklų nuomos patirtis buvo nuostabi! Personalas buvo draugiškas ir pagelbėjo, užtikrinant, kad jausčiausi patogiai prieš išplaukiant į vandenį. Būtinai sugrįšiu!",
+      "name": "Sarah Johnson",
+      "location": "Majamis, FL"
+    },
+    "testimonial2": {
+      "text": "Aukščiausios klasės įranga ir aptarnavimas! Išsinuomavau 'Yamaha FX Cruiser' ir jis buvo tobulos būklės. Komanda pateikė puikias saugos instrukcijas ir patarimus.",
+      "name": "Mark Davis",
+      "location": "Los Andželas, CA"
+    },
+    "testimonial3": {
+      "text": "Puiki patirtis šeimai! Išsinuomavome du vandens motociklus dienai ir puikiai praleidome laiką. Kainos buvo prieinamos, o rezervavimo procesas sklandus. Labai rekomenduoju!",
+      "name": "Jennifer Williams",
+      "location": "San Diegas, CA"
+    }
+  },
+  "contact": {
+    "title": "Susisiekite Su Mumis",
+    "subtitle": "Turite klausimų ar norite rezervuoti? Susisiekite!",
+    "name": "Jūsų Vardas",
+    "email": "Jūsų El. Paštas",
+    "message": "Jūsų Žinutė",
+    "submit": "Siųsti Žinutę"
+  },
+  "footer": {
+    "rights": "Visos Teisės Saugomos",
+    "terms": "Taisyklės ir Sąlygos",
+    "privacy": "Privatumo Politika",
+    "faq": "DUK",
+    "companyDescription": "Patirkite nepakartojamą jaudulį vandenyje su mūsų aukščiausios kokybės vandens motociklų nuoma. Įkurti 2010 metais, mes teikiame nepamirštamus vandens nuotykius.",
+    "quickLinks": "Greitos Nuorodos",
+    "pricing": "Kainos",
+    "services": "Paslaugos",
+    "contactInfo": "Kontaktinė Informacija",
+    "openingHours": "Darbo Laikas",
+    "weekdayHours": "Pirm-Penkt: 9:00 - 18:00",
+    "weekendHours": "Savaitgaliais: 8:00 - 20:00",
+    "cookies": "Slapukų Politika"
+  },
+  "language": {
+    "en": "Anglų",
+    "lt": "Lietuvių"
+  }
+}

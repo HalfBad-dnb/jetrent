@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaPaperPlane } from 'react-icons/fa';
@@ -259,6 +260,7 @@ const FormSuccess = styled(motion.div)`
 `;
 
 const Contact = () => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -323,7 +325,7 @@ const Contact = () => {
         whileInView="visible"
         viewport={{ once: true, amount: 0.1 }}
       >
-        Contact Us
+        {t('contact.title')}
       </SectionTitle>
       
       <Container>
@@ -338,13 +340,13 @@ const Contact = () => {
             as={motion.h3}
             variants={itemVariants}
           >
-            Let's Get In Touch
+            {t('contact.subtitle')}
           </ContactInfoTitle>
           <ContactInfoText
             as={motion.p}
             variants={itemVariants}
           >
-            Ready for an unforgettable experience on the water? Contact us to book your jet ski adventure or learn more about our services.
+            {t('contact.description', 'Ready for an unforgettable experience on the water? Contact us to book your jet ski adventure or learn more about our services.')}
           </ContactInfoText>
           
           <ContactDetails
@@ -427,7 +429,7 @@ const Contact = () => {
               as={motion.div}
               variants={itemVariants}
             >
-              <Label htmlFor="name">Your Name</Label>
+              <Label htmlFor="name">{t('contact.name')}</Label>
               <Input 
                 type="text" 
                 id="name" 
@@ -443,7 +445,7 @@ const Contact = () => {
               as={motion.div}
               variants={itemVariants}
             >
-              <Label htmlFor="email">Email Address</Label>
+              <Label htmlFor="email">{t('contact.email')}</Label>
               <Input 
                 type="email" 
                 id="email" 
@@ -474,7 +476,7 @@ const Contact = () => {
               as={motion.div}
               variants={itemVariants}
             >
-              <Label htmlFor="message">Message</Label>
+              <Label htmlFor="message">{t('contact.message')}</Label>
               <TextArea 
                 id="message" 
                 name="message" 
@@ -491,7 +493,7 @@ const Contact = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <FaPaperPlane /> Send Message
+              <FaPaperPlane /> {t('contact.submit')}
             </SubmitButton>
             
             {formSubmitted && (
@@ -500,7 +502,7 @@ const Contact = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
               >
-                Thank you! Your message has been sent successfully.
+                {t('contact.success', 'Thank you! Your message has been sent successfully.')}
               </FormSuccess>
             )}
           </Form>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { IMAGES } from '../styles';
@@ -237,40 +238,52 @@ const NavButton = styled(motion.button)`
   }
 `;
 
-const jetSkis = [
+const getJetSkis = (t) => [
   {
     id: 1,
-    name: 'Wave Runner X1',
+    name: 'Yamaha waverruner vx 1100 cruiser',
     image: IMAGES.jetski1,
     horsepower: '160 HP',
     capacity: '2 Person',
     speed: '65 mph',
-    description: 'Perfect for beginners, the Wave Runner X1 offers a stable and fun riding experience with enough power to satisfy thrill-seekers.',
+    description: t('jetskis.jetski1.description', 'Perfect for beginners, the Wave Runner X1 offers a stable and fun riding experience with enough power to satisfy thrill-seekers.'),
     price: '$90/hr'
   },
   {
     id: 2,
-    name: 'Sea-Doo Spark',
+    name: 'Yamaha waverruner gp 1800 svho',
     image: IMAGES.jetski2,
     horsepower: '130 HP',
     capacity: '3 Person',
     speed: '55 mph',
-    description: 'A family-friendly option with extra seating capacity and good balance of performance and stability for all skill levels.',
+    description: t('jetskis.jetski2.description', 'A family-friendly option with extra seating capacity and good balance of performance and stability for all skill levels.'),
     price: '$110/hr'
   },
   {
     id: 3,
-    name: 'Yamaha FX Cruiser',
+    name: 'Yamaha waverruner fz 1800 svho',
     image: IMAGES.jetski3,
     horsepower: '250 HP',
     capacity: '3 Person',
     speed: '70 mph',
-    description: 'Our premium model with superior power and luxury features for those seeking the ultimate jet ski experience.',
+    description: t('jetskis.jetski3.description', 'Our premium model with superior power and luxury features for those seeking the ultimate jet ski experience.'),
+    price: '$150/hr'
+  },
+  {
+    id: 4,
+    name: 'Kawasaki 310R Ultra 1500',
+    image: IMAGES.jetski4,
+    horsepower: '250 HP',
+    capacity: '3 Person',
+    speed: '70 mph',
+    description: t('jetskis.jetski3.description', 'Our premium model with superior power and luxury features for those seeking the ultimate jet ski experience.'),
     price: '$150/hr'
   }
 ];
 
 const Fleet = () => {
+  const { t } = useTranslation();
+  const jetSkis = getJetSkis(t);
   const cardVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: custom => ({
@@ -303,7 +316,7 @@ const Fleet = () => {
         whileInView="visible"
         viewport={{ once: true, amount: 0.1 }}
       >
-        Our Fleet
+        {t('fleet.title')}
       </SectionTitle>
       
       <FleetDescription
@@ -312,8 +325,7 @@ const Fleet = () => {
         transition={{ delay: 0.2, duration: 0.7 }}
         viewport={{ once: true, amount: 0.1 }}
       >
-        Choose from our selection of high-performance jet skis, each offering a unique experience on the water.
-        All our equipment is regularly maintained and includes the latest safety features.
+        {t('fleet.subtitle')}
       </FleetDescription>
       
       <JetSkiGrid>
@@ -342,7 +354,7 @@ const Fleet = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  Book Now
+                  {t('hero.button')}
                 </BookButton>
               </JetSkiPrice>
             </JetSkiInfo>

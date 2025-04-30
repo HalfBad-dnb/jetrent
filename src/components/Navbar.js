@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { FaWater } from 'react-icons/fa';
+import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from './LanguageSwitcher';
 
 const Nav = styled(motion.nav)`
   display: flex;
@@ -27,36 +28,19 @@ const Nav = styled(motion.nav)`
   }
 `;
 
-const Logo = styled.div`
+const NavbarContainer = styled.div`
   display: flex;
   align-items: center;
-  color: white;
-  font-weight: 800;
-  font-size: 1.5rem;
-  cursor: pointer;
-  
-  svg {
-    margin-right: 10px;
-    font-size: 1.8rem;
-  }
+  gap: 1rem;
   
   @media (max-width: 768px) {
-    font-size: 1.3rem;
-    
-    svg {
-      font-size: 1.6rem;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    font-size: 1.1rem;
-    
-    svg {
-      font-size: 1.4rem;
-      margin-right: 8px;
-    }
+    gap: 0.5rem;
   }
 `;
+
+// Logo container removed
+
+// LogoImage component removed as we're using SVG logo now
 
 const MenuItems = styled.div`
   display: flex;
@@ -145,6 +129,9 @@ const MobileMenuItem = styled(motion.a)`
   font-weight: 600;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   cursor: pointer;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
   
   &:last-child {
     border-bottom: none;
@@ -175,6 +162,7 @@ const BookNowButton = styled(motion.button)`
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { t } = useTranslation();
   
   useEffect(() => {
     const handleScroll = () => {
@@ -197,10 +185,10 @@ const Navbar = () => {
   };
   
   const menuItems = [
-    { name: 'Home', link: '#' },
-    { name: 'Fleet', link: '#fleet' },
-    { name: 'Testimonials', link: '#testimonials' },
-    { name: 'Contact', link: '#contact' }
+    { name: t('navbar.home'), link: '#' },
+    { name: t('navbar.fleet'), link: '#fleet' },
+    { name: t('navbar.testimonials'), link: '#testimonials' },
+    { name: t('navbar.contact'), link: '#contact' }
   ];
 
   const navVariants = {
@@ -235,10 +223,7 @@ const Navbar = () => {
         initial="hidden"
         animate="visible"
       >
-        <Logo>
-          <FaWater />
-          JET ADVENTURES
-        </Logo>
+        {/* Logo removed */}
         
         <MenuItems>
           {menuItems.map((item, index) => (
@@ -263,15 +248,18 @@ const Navbar = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            Book Now
+            {t('hero.button')}
           </BookNowButton>
         </MenuItems>
         
-        <MobileMenuButton onClick={toggleMobileMenu}>
+        <NavbarContainer>
+          <LanguageSwitcher />
+          <MobileMenuButton onClick={toggleMobileMenu}>
           <MenuLine animate={{ rotate: mobileMenuOpen ? 45 : 0, y: mobileMenuOpen ? 9 : 0 }} />
           <MenuLine animate={{ opacity: mobileMenuOpen ? 0 : 1 }} />
           <MenuLine animate={{ rotate: mobileMenuOpen ? -45 : 0, y: mobileMenuOpen ? -9 : 0 }} />
-        </MobileMenuButton>
+          </MobileMenuButton>
+        </NavbarContainer>
       </Nav>
       
       <MobileMenu
@@ -282,12 +270,17 @@ const Navbar = () => {
           {menuItems.map((item, index) => (
             <MobileMenuItem 
               key={index}
-              href={item.link}
+              as="div"
               whileHover={{ backgroundColor: 'rgba(255, 255, 255, 0.1)' }}
               onClick={(e) => {
+                e.preventDefault();
                 if (item.link === '#') {
-                  e.preventDefault();
                   window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else {
+                  const element = document.querySelector(item.link);
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                  }
                 }
                 setMobileMenuOpen(false);
               }}
@@ -296,12 +289,18 @@ const Navbar = () => {
             </MobileMenuItem>
           ))}
           <MobileMenuItem 
-            href="#contact"
+            as="div"
             whileHover={{ backgroundColor: 'rgba(255, 255, 255, 0.1)' }}
             style={{ fontWeight: '700', color: '#FF9500' }}
-            onClick={() => setMobileMenuOpen(false)}
+            onClick={() => {
+              const contactSection = document.querySelector('#contact');
+              if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth' });
+              }
+              setMobileMenuOpen(false);
+            }}
           >
-            Book Now
+            {t('hero.button')}
           </MobileMenuItem>
         </MobileMenu>
     </>

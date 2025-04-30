@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube, FaWater, FaPhone, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
@@ -170,6 +171,7 @@ const FooterNav = styled.div`
 `;
 
 const Footer = () => {
+  const { t } = useTranslation();
   const currentYear = new Date().getFullYear();
   
   const variants = {
@@ -196,11 +198,10 @@ const Footer = () => {
         >
           <Logo>
             <FaWater />
-            <span>JET ADVENTURES</span>
+            <span>{t('hero.title')}</span>
           </Logo>
           <FooterText>
-            Experience the ultimate thrill on the water with our premium jet ski rentals. 
-            Established in 2010, we've been providing unforgettable water adventures.
+            {t('footer.companyDescription', 'Experience the ultimate thrill on the water with our premium jet ski rentals. Established in 2010, we\'ve been providing unforgettable water adventures.')}
           </FooterText>
           <SocialLinks>
             <SocialLink 
@@ -241,13 +242,13 @@ const Footer = () => {
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
         >
-          <FooterTitle>Quick Links</FooterTitle>
+          <FooterTitle>{t('footer.quickLinks', 'Quick Links')}</FooterTitle>
           <FooterLinks>
-            <FooterLink><a href="/">Home</a></FooterLink>
-            <FooterLink><a href="#fleet">Our Fleet</a></FooterLink>
-            <FooterLink><a href="#pricing">Pricing</a></FooterLink>
-            <FooterLink><a href="#testimonials">Testimonials</a></FooterLink>
-            <FooterLink><a href="#contact">Contact Us</a></FooterLink>
+            <FooterLink><a href="/">{t('navbar.home')}</a></FooterLink>
+            <FooterLink><a href="#fleet">{t('navbar.fleet')}</a></FooterLink>
+            <FooterLink><a href="#pricing">{t('footer.pricing', 'Pricing')}</a></FooterLink>
+            <FooterLink><a href="#testimonials">{t('navbar.testimonials')}</a></FooterLink>
+            <FooterLink><a href="#contact">{t('navbar.contact')}</a></FooterLink>
           </FooterLinks>
         </FooterColumn>
         
@@ -258,7 +259,7 @@ const Footer = () => {
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
         >
-          <FooterTitle>Services</FooterTitle>
+          <FooterTitle>{t('footer.services', 'Services')}</FooterTitle>
           <FooterLinks>
             <FooterLink><a href="/services/rentals">Jet Ski Rentals</a></FooterLink>
             <FooterLink><a href="/services/tours">Guided Tours</a></FooterLink>
@@ -275,7 +276,7 @@ const Footer = () => {
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
         >
-          <FooterTitle>Contact Info</FooterTitle>
+          <FooterTitle>{t('footer.contactInfo', 'Contact Info')}</FooterTitle>
           <ContactInfo>
             <ContactItem>
               <FaMapMarkerAlt />
@@ -291,23 +292,23 @@ const Footer = () => {
             </ContactItem>
           </ContactInfo>
           <FooterText>
-            <strong>Opening Hours:</strong><br />
-            Mon-Fri: 9:00 AM - 6:00 PM<br />
-            Weekends: 8:00 AM - 8:00 PM
+            <strong>{t('footer.openingHours', 'Opening Hours')}:</strong><br />
+            {t('footer.weekdayHours', 'Mon-Fri: 9:00 AM - 6:00 PM')}<br />
+            {t('footer.weekendHours', 'Weekends: 8:00 AM - 8:00 PM')}
           </FooterText>
         </FooterColumn>
       </FooterTop>
       
       <FooterBottom>
         <Copyright>
-          © {currentYear} Jet Adventures. All rights reserved.
+          © {currentYear} Jet Adventures. {t('footer.rights')}
         </Copyright>
         
         <FooterNav>
-          <a href="/privacy">Privacy Policy</a>
-          <a href="/terms">Terms of Service</a>
-          <a href="/cookies">Cookie Policy</a>
-          <a href="/faq">FAQ</a>
+          <a href="/privacy">{t('footer.privacy')}</a>
+          <a href="/terms">{t('footer.terms')}</a>
+          <a href="/cookies">{t('footer.cookies', 'Cookie Policy')}</a>
+          <a href="/faq">{t('footer.faq')}</a>
         </FooterNav>
       </FooterBottom>
     </FooterContainer>

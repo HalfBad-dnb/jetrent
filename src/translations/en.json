@@ -1,0 +1,75 @@
+{
+  "hero": {
+    "title": "JET ADVENTURES",
+    "subtitle": "Experience the ultimate thrill of riding the waves with our premium jet ski rentals. Perfect for beginners and adrenaline junkies alike.",
+    "button": "Book Now",
+    "scrollDown": "Scroll Down"
+  },
+  "navbar": {
+    "home": "Home",
+    "fleet": "Our Fleet",
+    "testimonials": "Testimonials",
+    "contact": "Contact"
+  },
+  "fleet": {
+    "title": "Our Fleet",
+    "subtitle": "Choose from our selection of high-performance jet skis, each offering a unique experience on the water. All our equipment is regularly maintained and includes the latest safety features."
+  },
+  "jetskis": {
+    "jetski1": {
+      "description": "Perfect for beginners, the Wave Runner X1 offers a stable and fun riding experience with enough power to satisfy thrill-seekers."
+    },
+    "jetski2": {
+      "description": "A family-friendly option with extra seating capacity and good balance of performance and stability for all skill levels."
+    },
+    "jetski3": {
+      "description": "Our premium model with superior power and luxury features for those seeking the ultimate jet ski experience."
+    }
+  },
+  "testimonials": {
+    "title": "Customer Stories",
+    "subtitle": "Real experiences from real adventurers",
+    "testimonial1": {
+      "text": "The jet ski rental experience was amazing! The staff was friendly and helpful, making sure I was comfortable before heading out on the water. Will definitely come back!",
+      "name": "Sarah Johnson",
+      "location": "Miami, FL"
+    },
+    "testimonial2": {
+      "text": "Top-notch equipment and service! I rented the Yamaha FX Cruiser and it was in perfect condition. The team provided excellent safety instructions and tips.",
+      "name": "Mark Davis",
+      "location": "Los Angeles, CA"
+    },
+    "testimonial3": {
+      "text": "Great family experience! We rented two jet skis for the day and had a blast. The pricing was reasonable and the booking process was smooth. Highly recommend!",
+      "name": "Jennifer Williams",
+      "location": "San Diego, CA"
+    }
+  },
+  "contact": {
+    "title": "Get In Touch",
+    "subtitle": "Have questions or ready to book? Reach out to us!",
+    "name": "Your Name",
+    "email": "Your Email",
+    "message": "Your Message",
+    "submit": "Send Message"
+  },
+  "footer": {
+    "rights": "All Rights Reserved",
+    "terms": "Terms & Conditions",
+    "privacy": "Privacy Policy",
+    "faq": "FAQ",
+    "companyDescription": "Experience the ultimate thrill on the water with our premium jet ski rentals. Established in 2010, we've been providing unforgettable water adventures.",
+    "quickLinks": "Quick Links",
+    "pricing": "Pricing",
+    "services": "Services",
+    "contactInfo": "Contact Info",
+    "openingHours": "Opening Hours",
+    "weekdayHours": "Mon-Fri: 9:00 AM - 6:00 PM",
+    "weekendHours": "Weekends: 8:00 AM - 8:00 PM",
+    "cookies": "Cookie Policy"
+  },
+  "language": {
+    "en": "English",
+    "lt": "Lithuanian"
+  }
+}

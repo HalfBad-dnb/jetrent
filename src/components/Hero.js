@@ -1,7 +1,7 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { FaWater, FaArrowDown } from 'react-icons/fa';
 
 const HeroSection = styled.section`
   height: 100vh;
@@ -63,6 +63,9 @@ const HeroContent = styled.div`
   z-index: 1;
   padding: 0 1rem;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   
   @media (max-width: 768px) {
     max-width: 100%;
@@ -81,6 +84,7 @@ const Title = styled(motion.h1)`
   text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   width: 100%;
   text-align: center;
+  display: block;
   
   @media (max-width: 768px) {
     font-size: 3rem;
@@ -102,10 +106,11 @@ const Title = styled(motion.h1)`
 
 const Subtitle = styled(motion.p)`
   font-size: 1.5rem;
-  margin-bottom: 2rem;
+  margin: 0 auto 2rem;
   max-width: 700px;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   padding: 0 1rem;
+  text-align: center;
   
   @media (max-width: 768px) {
     font-size: 1.2rem;
@@ -153,66 +158,11 @@ const Button = styled(motion.button)`
   }
 `;
 
-const ScrollDownIndicator = styled(motion.div)`
-  position: absolute;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-  color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  cursor: pointer;
-  
-  svg {
-    margin-top: 10px;
-    font-size: 1.5rem;
-  }
-  
-  @media (max-width: 768px) {
-    bottom: 25px;
-    font-size: 0.9rem;
-    
-    svg {
-      margin-top: 8px;
-      font-size: 1.2rem;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    bottom: 20px;
-    font-size: 0.8rem;
-    
-    svg {
-      margin-top: 6px;
-      font-size: 1rem;
-    }
-  }
-`;
-
-const WaterIcon = styled(FaWater)`
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  color: #BBDEFB;
-  
-  @media (max-width: 768px) {
-    font-size: 2rem;
-    margin-bottom: 0.75rem;
-  }
-  
-  @media (max-width: 480px) {
-    font-size: 1.75rem;
-    margin-bottom: 0.5rem;
-  }
-`;
+// Scroll down indicator and logo wrapper removed
 
 const Hero = () => {
-  const scrollDown = () => {
-    window.scrollTo({
-      top: window.innerHeight,
-      behavior: 'smooth'
-    });
-  };
+  const { t } = useTranslation();
+  // Scroll down function removed
 
   const titleVariants = {
     hidden: { opacity: 0, y: -50 },
@@ -260,38 +210,27 @@ const Hero = () => {
     }
   };
 
-  const scrollVariants = {
-    initial: { opacity: 0, y: -10 },
-    animate: { 
-      opacity: 1, 
-      y: 0,
-      transition: {
-        duration: 1,
-        repeat: Infinity,
-        repeatType: "reverse"
-      }
-    }
-  };
+  // Scroll variants removed
 
   return (
     <HeroSection id="home">
       <HeroOverlay />
       <WaveEffect />
       <HeroContent>
-        <WaterIcon />
+        {/* Logo removed */}
         <Title 
           variants={titleVariants}
           initial="hidden"
           animate="visible"
         >
-          JET ADVENTURES
+          {t('hero.title')}
         </Title>
         <Subtitle
           variants={subtitleVariants}
           initial="hidden"
           animate="visible"
         >
-          Experience the ultimate thrill of riding the waves with our premium jet ski rentals. Perfect for beginners and adrenaline junkies alike.
+          {t('hero.subtitle')}
         </Subtitle>
         <Button
           variants={buttonVariants}
@@ -300,18 +239,10 @@ const Hero = () => {
           whileHover="hover"
           whileTap="tap"
         >
-          Book Now
+          {t('hero.button')}
         </Button>
       </HeroContent>
-      <ScrollDownIndicator 
-        onClick={scrollDown}
-        variants={scrollVariants}
-        initial="initial"
-        animate="animate"
-      >
-        Scroll Down
-        <FaArrowDown />
-      </ScrollDownIndicator>
+      {/* Scroll down indicator removed */}
     </HeroSection>
   );
 };

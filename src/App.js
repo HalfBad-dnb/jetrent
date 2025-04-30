@@ -1,4 +1,5 @@
 import React from 'react';
+import './i18n';
 import styled from 'styled-components';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';

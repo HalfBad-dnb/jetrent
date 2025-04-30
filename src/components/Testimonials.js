@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { IMAGES } from '../styles';
@@ -214,34 +215,36 @@ const RatingStars = styled.div`
   }
 `;
 
-const testimonials = [
+const getTestimonials = (t) => [
   {
     id: 1,
-    text: "The jet ski rental experience was amazing! The staff was friendly and helpful, making sure I was comfortable before heading out on the water. Will definitely come back!",
-    name: "Sarah Johnson",
-    location: "Miami, FL",
+    text: t('testimonials.testimonial1.text'),
+    name: t('testimonials.testimonial1.name'),
+    location: t('testimonials.testimonial1.location'),
     image: IMAGES.customer1,
     rating: 5
   },
   {
     id: 2,
-    text: "Top-notch equipment and service! I rented the Yamaha FX Cruiser and it was in perfect condition. The team provided excellent safety instructions and tips.",
-    name: "Mark Davis",
-    location: "Los Angeles, CA",
+    text: t('testimonials.testimonial2.text'),
+    name: t('testimonials.testimonial2.name'),
+    location: t('testimonials.testimonial2.location'),
     image: IMAGES.customer2,
     rating: 5
   },
   {
     id: 3,
-    text: "Great family experience! We rented two jet skis for the day and had a blast. The pricing was reasonable and the booking process was smooth. Highly recommend!",
-    name: "Jennifer Williams",
-    location: "San Diego, CA",
+    text: t('testimonials.testimonial3.text'),
+    name: t('testimonials.testimonial3.name'),
+    location: t('testimonials.testimonial3.location'),
     image: IMAGES.customer3,
     rating: 4
   }
 ];
 
 const Testimonials = () => {
+  const { t } = useTranslation();
+  const testimonials = getTestimonials(t);
   const titleVariants = {
     hidden: { opacity: 0, y: -20 },
     visible: { 
@@ -276,7 +279,7 @@ const Testimonials = () => {
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
         >
-          Customer Stories
+          {t('testimonials.title')}
         </SectionTitle>
         
         <TestimonialsGrid>
