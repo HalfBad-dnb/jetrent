@@ -158,11 +158,9 @@ const Button = styled(motion.button)`
   }
 `;
 
-// Scroll down indicator and logo wrapper removed
 
 const Hero = () => {
   const { t } = useTranslation();
-  // Scroll down function removed
 
   const titleVariants = {
     hidden: { opacity: 0, y: -50 },
@@ -210,14 +208,12 @@ const Hero = () => {
     }
   };
 
-  // Scroll variants removed
 
   return (
     <HeroSection id="home">
       <HeroOverlay />
       <WaveEffect />
       <HeroContent>
-        {/* Logo removed */}
         <Title 
           variants={titleVariants}
           initial="hidden"
@@ -242,7 +238,6 @@ const Hero = () => {
           {t('hero.button')}
         </Button>
       </HeroContent>
-      {/* Scroll down indicator removed */}
     </HeroSection>
   );
 };

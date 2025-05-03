@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from './LanguageSwitcher';
+import { FaInstagram, FaFacebookF } from 'react-icons/fa';
 
 const Nav = styled(motion.nav)`
   display: flex;
@@ -31,16 +32,38 @@ const Nav = styled(motion.nav)`
 const NavbarContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 1rem;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  height: 100%;
+  gap: 0.5rem;
   
   @media (max-width: 768px) {
-    gap: 0.5rem;
+    justify-content: flex-start;
   }
 `;
 
-// Logo container removed
+const SocialIcons = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  
+  @media (max-width: 768px) {
+    display: flex;
+    order: 3;
+    margin-left: auto;
+  }
+`;
 
-// LogoImage component removed as we're using SVG logo now
+const LanguageSwitcherWrapper = styled.div`
+  margin-left: auto;
+  
+  @media (max-width: 768px) {
+    order: 2;
+  }
+`;
 
 const MenuItems = styled.div`
   display: flex;
@@ -84,6 +107,7 @@ const MobileMenuButton = styled.div`
     justify-content: space-between;
     width: 30px;
     height: 21px;
+    margin-left: auto;
   }
   
   @media (max-width: 480px) {
@@ -96,7 +120,11 @@ const MenuLine = styled(motion.div)`
   width: 100%;
   height: 3px;
   background-color: white;
-  border-radius: 5px;
+  transition: all 0.3s ease;
+  
+  @media (prefers-color-scheme: dark) {
+    background-color: rgba(255, 255, 255, 0.9);
+  }
 `;
 
 const MobileMenu = styled(motion.div)`
@@ -143,21 +171,6 @@ const MobileMenuItem = styled(motion.a)`
   }
 `;
 
-const BookNowButton = styled(motion.button)`
-  background-color: #FF9500;
-  color: white;
-  border: none;
-  padding: 0.5rem 1.5rem;
-  border-radius: 50px;
-  font-weight: 600;
-  cursor: pointer;
-  margin-left: 2rem;
-  box-shadow: 0 5px 15px rgba(255, 149, 0, 0.3);
-  
-  @media (max-width: 768px) {
-    display: none;
-  }
-`;
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -242,24 +255,37 @@ const Navbar = () => {
               {item.name}
             </MenuItem>
           ))}
-          <BookNowButton
-            as="a"
-            href="#contact"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            {t('hero.button')}
-          </BookNowButton>
+
         </MenuItems>
         
         <NavbarContainer>
-          <LanguageSwitcher />
+          <LanguageSwitcherWrapper>
+            <LanguageSwitcher />
+          </LanguageSwitcherWrapper>
+          <SocialIcons>
+            <a 
+              href="https://facebook.com/tadas.rudzinskis" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              aria-label="Facebook"
+            >
+              <FaFacebookF style={{ color: 'white', fontSize: '1.2rem' }} />
+            </a>
+            <a 
+              href="https://instagram.com/tadas_greitai/?locale=en%2F" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              aria-label="Instagram"
+            >
+              <FaInstagram style={{ color: 'white', fontSize: '1.2rem' }} />
+            </a>
+          </SocialIcons>
           <MobileMenuButton onClick={toggleMobileMenu}>
-          <MenuLine animate={{ rotate: mobileMenuOpen ? 45 : 0, y: mobileMenuOpen ? 9 : 0 }} />
-          <MenuLine animate={{ opacity: mobileMenuOpen ? 0 : 1 }} />
-          <MenuLine animate={{ rotate: mobileMenuOpen ? -45 : 0, y: mobileMenuOpen ? -9 : 0 }} />
-          </MobileMenuButton>
-        </NavbarContainer>
+    <MenuLine animate={{ rotate: mobileMenuOpen ? 45 : 0, y: mobileMenuOpen ? 9 : 0 }} />
+    <MenuLine animate={{ opacity: mobileMenuOpen ? 0 : 1 }} />
+    <MenuLine animate={{ rotate: mobileMenuOpen ? -45 : 0, y: mobileMenuOpen ? -9 : 0 }} />
+  </MobileMenuButton>
+</NavbarContainer>
       </Nav>
       
       <MobileMenu
