@@ -7,8 +7,6 @@ import { FaQuoteLeft, FaStar } from 'react-icons/fa';
 
 const TestimonialsSection = styled.section`
   padding: 5rem 2rem;
-  position: relative;
-  overflow: hidden;
   color: white;
   
   @media (max-width: 768px) {
@@ -20,29 +18,7 @@ const TestimonialsSection = styled.section`
   }
 `;
 
-const Wave = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 150px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23001220' fill-opacity='0.5' d='M0,192L48,202.7C96,213,192,235,288,224C384,213,480,171,576,165.3C672,160,768,192,864,213.3C960,235,1056,245,1152,234.7C1248,224,1344,192,1392,176L1440,160L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z'%3E%3C/path%3E%3C/svg%3E");
-  background-size: cover;
-  background-repeat: no-repeat;
-  z-index: 1;
-  
-  @media (max-width: 768px) {
-    height: 100px;
-  }
-  
-  @media (max-width: 480px) {
-    height: 70px;
-  }
-`;
-
 const Content = styled.div`
-  position: relative;
-  z-index: 2;
   max-width: 1200px;
   margin: 0 auto;
 `;
@@ -271,7 +247,6 @@ const Testimonials = () => {
   
   return (
     <TestimonialsSection id="testimonials">
-      <Wave />
       <Content>
         <SectionTitle
           variants={titleVariants}

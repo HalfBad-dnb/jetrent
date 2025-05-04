@@ -2,7 +2,6 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import Video from './Video';
 
 const HeroSection = styled.section`
   min-height: 100vh;
@@ -114,10 +113,6 @@ const Hero = () => {
 
   return (
     <HeroSection id="hero">
-      <Video
-        videoSrc="/assets/video/t.jet.v.3.maxquality.mp4"
-        enableOnMobile={true}
-      />
       <WaveEffect />
       <HeroContent>
         <motion.h1

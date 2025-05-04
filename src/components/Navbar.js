@@ -222,9 +222,27 @@ const MobileMenuItem = styled(m.div)`
 `;
 
 const scrollToSection = (sectionId) => {
-  const element = document.querySelector(`#${sectionId}`);
+  // Log the sectionId for debugging
+  console.log('Scrolling to section:', sectionId);
+  
+  // Validate the sectionId
+  if (!sectionId || typeof sectionId !== 'string') {
+    console.warn('Invalid sectionId:', sectionId);
+    return;
+  }
+  
+  // Clean up the sectionId
+  const cleanSectionId = sectionId.trim().toLowerCase();
+  
+  // Try to find the element
+  const element = document.querySelector(`#${cleanSectionId}`);
+  
   if (element) {
     element.scrollIntoView({ behavior: 'smooth' });
+  } else {
+    console.warn(`Element with ID '#${cleanSectionId}' not found`);
+    // Fallback to scrolling to top if no section is found
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 };
 
@@ -362,22 +380,12 @@ const Navbar = () => {
               className="hover"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={(e) => {
-                e.preventDefault();
-                if (item.link === '#') {
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                } else {
-                  const element = document.querySelector(item.link);
-                  if (element) {
-                    element.scrollIntoView({ behavior: 'smooth' });
-                  }
-                }
+              onClick={() => {
+                scrollToSection(item.link.replace('#', ''));
                 setMobileMenuOpen(false);
               }}
             >
-              <a href={item.link} style={{ color: 'inherit', textDecoration: 'none' }}>
                 {item.name}
-              </a>
             </MobileMenuItem>
           ))}
           <MobileMenuItem 
@@ -386,16 +394,11 @@ const Navbar = () => {
             whileTap={{ scale: 0.95 }}
             style={{ fontWeight: '700', color: '#FF9500' }}
             onClick={() => {
-              const contactSection = document.querySelector('#contact');
-              if (contactSection) {
-                contactSection.scrollIntoView({ behavior: 'smooth' });
-              }
+              scrollToSection('contact');
               setMobileMenuOpen(false);
             }}
           >
-            <a href="#contact" style={{ color: 'inherit', textDecoration: 'none' }}>
               {t('hero.button')}
-            </a>
           </MobileMenuItem>
         </MobileMenu>
     </>

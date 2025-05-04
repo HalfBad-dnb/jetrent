@@ -1,8 +1,47 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import Video from '../components/Video';
+
+const VideoContainer = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: -1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  @media (max-width: 768px) {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+  }
+`;
+
+const BackgroundVideo = styled.video`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+  
+  @media (max-width: 768px) {
+    height: 100vh;
+    width: 100vw;
+    object-fit: cover;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+`;
 
 const HeroSection = styled.section`
   min-height: 100vh;
@@ -95,58 +134,116 @@ const HeroContent = styled.div`
 
 const Hero = () => {
   const { t } = useTranslation();
+  const videoRef = useRef(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [hasError, setHasError] = useState(false);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      const video = videoRef.current;
+      
+      video.addEventListener('loadeddata', () => {
+        setIsLoading(false);
+      });
+
+      video.addEventListener('error', (error) => {
+        setIsLoading(false);
+        setHasError(true);
+        console.error('Video error:', error);
+      });
+
+      // Try to play the video
+      const playPromise = video.play();
+      
+      if (playPromise !== undefined) {
+        playPromise
+          .catch(error => {
+            console.log('Autoplay prevented:', error);
+            // For iOS, try to play on first user interaction
+            if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+              const playVideoOnce = () => {
+                video.play()
+                  .catch(e => console.log('iOS play error:', e));
+                
+                document.removeEventListener('touchstart', playVideoOnce);
+              };
+              
+              document.addEventListener('touchstart', playVideoOnce, { once: true });
+            }
+          });
+      }
+    }
+  }, []);
+
   return (
     <HeroSection id="hero">
-      <Video
-        videoSrc="/assets/video/t.jet.v.3.maxquality.mp4"
-        onLoadStart={() => console.log('Video loaded')}
-        onError={(error) => console.error('Video error:', error)}
-        preload="auto"
-        autoPlay
-        muted
-        loop
-        playsInline
-        enableOnMobile={true}
-      />
+      <VideoContainer>
+        {isLoading && (
+          <div style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            zIndex: 1,
+            background: 'rgba(0, 0, 0, 0.8)',
+            padding: '20px',
+            borderRadius: '8px',
+            color: 'white'
+          }}>
+            Loading video...
+          </div>
+        )}
+        {hasError && (
+          <div style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            zIndex: 1,
+            background: 'rgba(0, 0, 0, 0.8)',
+            padding: '20px',
+            borderRadius: '8px',
+            color: 'white'
+          }}>
+            Error loading video
+          </div>
+        )}
+        <BackgroundVideo
+          ref={videoRef}
+          preload="auto"
+          autoPlay
+          muted
+          loop
+          playsInline
+        >
+          <source src="/assets/video/optimized/t.jet.v.4.web.optimized.small.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </BackgroundVideo>
+      </VideoContainer>
       <WaveEffect />
       <HeroContent>
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8 }}
         >
           {t('hero.title')}
         </motion.h1>
-        
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
         >
           {t('hero.subtitle')}
         </motion.p>
-
         <motion.button
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="primary-button"
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
         >
           {t('hero.button')}
         </motion.button>
-        
-        <ScrollDown
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
-        >
-          <ScrollDownIcon />
-          <span>{t('hero.scrollDown')}</span>
-        </ScrollDown>
       </HeroContent>
     </HeroSection>
   );
