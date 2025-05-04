@@ -26,7 +26,6 @@ const GlobalStyle = createGlobalStyle`
   body {
     color: #ffffff;
     overflow-x: hidden;
-    background-color: #001220;
   }
   
   section {
