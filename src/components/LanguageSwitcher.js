@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 const SwitcherContainer = styled.div`
   display: flex;
-  gap: 10px;
+  gap: 6px;
   align-items: center;
 `;
 
@@ -13,11 +13,12 @@ const LanguageButton = styled.button.attrs({
 })`
   background: ${props => props.$active ? '#FF9500' : 'transparent'};
   color: ${props => props.$active ? 'white' : '#ccc'};
-  border: ${props => props.$active ? 'none' : '1px solid #ccc'};
-  padding: 5px 10px;
-  border-radius: 20px;
+  border: ${props => props.$active ? '2px solid #FF9500' : '1px solid #ccc'};
+  padding: 2px 6px;
+  border-radius: 15px;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
+  font-weight: ${props => props.$active ? '600' : 'normal'};
   transition: all 0.3s ease;
   
   &:hover {
@@ -26,8 +27,9 @@ const LanguageButton = styled.button.attrs({
   }
   
   @media (max-width: 768px) {
-    font-size: 0.8rem;
-    padding: 4px 8px;
+    font-size: 0.6rem;
+    padding: 2px 4px;
+    border-radius: 12px;
   }
 `;
 

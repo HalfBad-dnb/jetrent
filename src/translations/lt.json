@@ -9,7 +9,7 @@
     "keliones_su_gidu_description": "Prisijunkite prie mūsų vadovaujamų kelionių, kad išsiaiškintumėte geriausias vandens maršrutus ir paslėptas liūdes."
   },
   "hero": {
-    "title": "VANDENS NUOTYKIAI",
+    "title": "T-Jet-Rent",
     "subtitle": "Patirkite nepakartojamą jaudulį skriejant bangomis su mūsų aukščiausios kokybės vandens motociklų nuoma. Puikiai tinka tiek pradedantiesiems, tiek adrenalino mėgėjams.",
     "button": "Rezervuoti Dabar",
     "scrollDown": "Slinkite Žemyn"
@@ -17,6 +17,7 @@
   "navbar": {
     "home": "Pradžia",
     "fleet": "Mūsų Flotilė",
+    "map": "Mus rasite",
     "testimonials": "Atsiliepimai",
     "contact": "Kontaktai"
   },
@@ -55,7 +56,7 @@
     }
   },
   "map": {
-    "title": "Mūsų vieta",
+    "title": "Mus rasite",
     "location": "Kuršių marios, Kuršmarės, seniau vadintos Prūsų jūra"
   },
   "contact": {
@@ -84,7 +85,7 @@
     "cookies": "Slapukų Politika"
   },
   "language": {
-    "en": "Anglų",
-    "lt": "Lietuvių"
+    "en": "En",
+    "lt": "Lt"
   }
 }

@@ -1,6 +1,6 @@
 {
   "services": {
-    "title": "Our Services",
+    "title": "Services",
     "vandens_pramogos": "Water Activities",
     "vandens_pramogos_description": "Experience the thrill of water sports and activities with our professional instructors.",
     "vandens_motociklu_nuoma": "Water Motorcycle Rental",
@@ -9,7 +9,7 @@
     "keliones_su_gidu_description": "Join our guided tours to explore the best water routes and hidden gems."
   },
   "hero": {
-    "title": "JET ADVENTURES",
+    "title": "T-Jet-Rent",
     "subtitle": "Experience the ultimate thrill of riding the waves with our premium jet ski rentals. Perfect for beginners and adrenaline junkies alike.",
     "button": "Book Now",
     "scrollDown": "Scroll Down"
@@ -17,6 +17,7 @@
   "navbar": {
     "home": "Home",
     "fleet": "Fleet",
+    "map": "Find Us",
     "testimonials": "Testimonials",
     "contact": "Contact"
   },
@@ -84,7 +85,7 @@
     "cookies": "Cookie Policy"
   },
   "language": {
-    "en": "English",
-    "lt": "Lithuanian"
+    "en": "En",
+    "lt": "Lt"
   }
 }

@@ -9,7 +9,7 @@ const Nav = styled(m.nav)`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 2rem;
+  padding: 1.5rem 1.5rem;
   position: fixed;
   top: 0;
   left: 0;
@@ -21,7 +21,7 @@ const Nav = styled(m.nav)`
   backdrop-filter: ${({ isScrolled }) => isScrolled ? 'blur(10px)' : 'none'};
   
   @media (max-width: 768px) {
-    padding: 1.25rem 1.5rem;
+    padding: 1.25rem 1.25rem;
   }
   
   @media (max-width: 480px) {
@@ -36,12 +36,14 @@ const NavbarContainer = styled.div`
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1rem;
   height: 100%;
   gap: 0.5rem;
   
   @media (max-width: 768px) {
     justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 0.75rem;
   }
 `;
 
@@ -150,14 +152,15 @@ const MobileMenuButton = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 30px;
-    height: 21px;
-    margin-left: auto;
+    width: 40px;
+    height: 30px;
+    margin-left: 1.25rem;
   }
   
   @media (max-width: 480px) {
-    width: 26px;
-    height: 18px;
+    width: 35px;
+    height: 25px;
+    margin-left: 1rem;
   }
 `;
 
@@ -168,7 +171,11 @@ const MenuLine = styled(m.div)`
   transition: all 0.3s ease;
   
   @media (prefers-color-scheme: dark) {
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.95);
+    
+    &:hover {
+      background-color: rgba(255, 255, 255, 1);
+    }
   }
 `;
 
@@ -188,11 +195,14 @@ const MobileMenu = styled(m.div)`
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     backdrop-filter: blur(10px);
+    width: 100%;
+    max-width: 100%;
+    padding: 0.75rem 1rem;
   }
   
   @media (max-width: 480px) {
     top: 65px;
-    padding: 0.75rem 0;
+    padding: 0.75rem 0.75rem;
   }
 `;
 
@@ -359,7 +369,7 @@ const Navbar = () => {
             cursor="pointer"
           >
             <LocationIcon />
-            <LocationText>{t('location')}</LocationText>
+            <LocationText>{t('Klaipėda')}</LocationText>
           </LocationIndicator>
           <MobileMenuButton onClick={toggleMobileMenu}>
             <MenuLine animate={{ rotate: mobileMenuOpen ? 45 : 0, y: mobileMenuOpen ? 9 : 0 }} />
