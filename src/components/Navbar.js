@@ -56,7 +56,7 @@ const NavbarContainer = styled.div`
 const SocialIcons = styled.div`
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 2rem;
 
   a {
     color: white;
@@ -71,6 +71,7 @@ const SocialIcons = styled.div`
     display: flex;
     order: 3;
     margin-left: auto;
+    gap: 1.25rem;
   }
 `;
 
@@ -80,9 +81,9 @@ const PhoneNumber = styled.a`
   color: white;
   font-weight: 500;
   text-decoration: none;
-  margin-left: 0.75rem;
+  margin-left: 1rem;
   transition: color 0.3s ease;
-  gap: 0.4rem;
+  gap: 0.5rem;
 
   &:hover {
     color: #FF9500;
@@ -109,7 +110,11 @@ const LocationIndicator = styled.div`
 `;
 
 const LocationIcon = styled(FaMapMarkerAlt)`
-  font-size: 1.2rem;
+  font-size: 1.5rem;
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
 `;
 
 const LanguageSwitcherWrapper = styled.div`
@@ -325,14 +330,13 @@ const Navbar = () => {
 
           <SocialIcons>
             <a href="https://facebook.com/tadas.rudzinskis" target="_blank" rel="noopener noreferrer" style={{ color: '#1877F2' }}>
-              <FaFacebookF size={20} />
+              <FaFacebookF size={24} />
             </a>
             <a href="https://instagram.com/tadas_greitai/?locale=en%2F" target="_blank" rel="noopener noreferrer" style={{ color: '#E1306C' }}>
-              <FaInstagram size={20} />
+              <FaInstagram size={24} />
             </a>
-            <PhoneNumber href="tel:+37060000000">
-              <FaPhoneAlt size={14} />
-              +37061470086
+            <PhoneNumber href="tel:+37061470086">
+              <FaPhoneAlt size={20} />
             </PhoneNumber>
           </SocialIcons>
 
