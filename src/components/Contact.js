@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaInstagram, FaFacebook } from 'react-icons/fa';
+import { FaPhone, FaEnvelope, FaInstagram, FaFacebook } from 'react-icons/fa';
 
 const ContactSection = styled.section`
   padding: 5rem 2rem;
@@ -219,16 +219,8 @@ const Contact = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <FaMapMarkerAlt />
-                  <ContactItemText>Kuršių marios, Kuršmarės, seniau vadintos Prūsų jūra</ContactItemText>
-                </ContactItem>
-                
-                <ContactItem
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
                   <FaPhone />
-                  <ContactItemText>+370 600 00000</ContactItemText>
+                  <ContactItemText>+37061470086</ContactItemText>
                 </ContactItem>
                 
                 <ContactItem
@@ -242,7 +234,7 @@ const Contact = () => {
               
               <SocialLinks>
                 <SocialLink
-                  href="https://facebook.com"
+                  href="https://facebook.com/tadas.rudzinskis"
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.05 }}
@@ -252,7 +244,7 @@ const Contact = () => {
                 </SocialLink>
                 
                 <SocialLink
-                  href="https://instagram.com"
+                  href="https://instagram.com/tadas_greitai?locale=en%2F"
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.05 }}

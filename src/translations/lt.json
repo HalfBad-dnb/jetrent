@@ -59,10 +59,10 @@
     "title": "Mus rasite",
     "location": "Kuršių marios, Kuršmarės, seniau vadintos Prūsų jūra"
   },
-  "contact": {
-    "title": "Susisiekite Su Mumis",
-    "subtitle": "Turite klausimų ar norite rezervuoti? Susisiekite!",
-    "description": "Pasiekite mus per telefoną, el. paštą ar socialinius tinklus. Mes visada pasiruošę atsakyti į jūsų klausimus.",
+  "contact":{
+    "title": "Kontaktai",
+    "infoTitle": "Susisiekite Su Mumis",
+    "infoText": "Turite klausimų ar norite rezervuoti? Susisiekite  telefonu, el. paštu ar socialiniais tinklais. Mes visada pasiruošę atsakyti į jūsų klausimus.",
     "phone": "+370 600 00000",
     "email": "info@jetrent.lt",
     "location": "Kuršių marios, Kuršmarės, seniau vadintos Prūsų jūra",

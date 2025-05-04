@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { motion as m } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from './LanguageSwitcher';
-import { FaInstagram, FaFacebookF, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaInstagram, FaFacebookF, FaMapMarkerAlt, FaPhoneAlt } from 'react-icons/fa';
 
 const Nav = styled(m.nav)`
   display: flex;
@@ -16,14 +16,20 @@ const Nav = styled(m.nav)`
   right: 0;
   z-index: 100;
   transition: all 0.3s ease;
-  background-color: ${({ isScrolled }) => isScrolled ? 'rgba(3, 150, 255, 0.95)' : 'transparent'};
-  box-shadow: ${({ isScrolled }) => isScrolled ? '0 4px 20px rgba(0, 0, 0, 0.1)' : 'none'};
-  backdrop-filter: ${({ isScrolled }) => isScrolled ? 'blur(10px)' : 'none'};
-  
+
+  background-color: ${({ isScrolled }) =>
+    isScrolled ? 'rgba(3, 150, 255, 0.5)' : 'transparent'};
+
+  backdrop-filter: ${({ isScrolled }) => (isScrolled ? 'blur(10px)' : 'none')};
+  -webkit-backdrop-filter: ${({ isScrolled }) => (isScrolled ? 'blur(10px)' : 'none')};
+
+  box-shadow: ${({ isScrolled }) =>
+    isScrolled ? '0 4px 20px rgba(0, 0, 0, 0.1)' : 'none'};
+
   @media (max-width: 768px) {
     padding: 1.25rem 1.25rem;
   }
-  
+
   @media (max-width: 480px) {
     padding: 1rem 1rem;
   }
@@ -39,7 +45,7 @@ const NavbarContainer = styled.div`
   padding: 0 1rem;
   height: 100%;
   gap: 0.5rem;
-  
+
   @media (max-width: 768px) {
     justify-content: flex-start;
     flex-wrap: wrap;
@@ -51,20 +57,35 @@ const SocialIcons = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  
+
   a {
     color: white;
     transition: color 0.3s ease;
-    
+
     &:hover {
       color: #FF9500;
     }
   }
-  
+
   @media (max-width: 768px) {
     display: flex;
     order: 3;
     margin-left: auto;
+  }
+`;
+
+const PhoneNumber = styled.a`
+  display: flex;
+  align-items: center;
+  color: white;
+  font-weight: 500;
+  text-decoration: none;
+  margin-left: 0.75rem;
+  transition: color 0.3s ease;
+  gap: 0.4rem;
+
+  &:hover {
+    color: #FF9500;
   }
 `;
 
@@ -81,7 +102,7 @@ const LocationIndicator = styled.div`
   font-weight: 500;
   cursor: pointer;
   transition: color 0.3s ease;
-  
+
   &:hover {
     color: #FF9500;
   }
@@ -93,7 +114,7 @@ const LocationIcon = styled(FaMapMarkerAlt)`
 
 const LanguageSwitcherWrapper = styled.div`
   margin-left: auto;
-  
+
   @media (max-width: 768px) {
     order: 2;
   }
@@ -101,7 +122,7 @@ const LanguageSwitcherWrapper = styled.div`
 
 const MenuItems = styled.div`
   display: flex;
-  
+
   @media (max-width: 768px) {
     display: none;
   }
@@ -115,7 +136,7 @@ const MenuItem = styled(m.div)`
   position: relative;
   cursor: pointer;
   transition: all 0.3s ease;
-  
+
   &::after {
     content: '';
     position: absolute;
@@ -126,7 +147,7 @@ const MenuItem = styled(m.div)`
     background-color: white;
     transition: width 0.3s ease;
   }
-  
+
   &:hover::after {
     width: 100%;
   }
@@ -147,7 +168,7 @@ const MenuItem = styled(m.div)`
 const MobileMenuButton = styled.div`
   display: none;
   cursor: pointer;
-  
+
   @media (max-width: 768px) {
     display: flex;
     flex-direction: column;
@@ -156,7 +177,7 @@ const MobileMenuButton = styled.div`
     height: 30px;
     margin-left: 1.25rem;
   }
-  
+
   @media (max-width: 480px) {
     width: 35px;
     height: 25px;
@@ -169,10 +190,10 @@ const MenuLine = styled(m.div)`
   height: 3px;
   background-color: white;
   transition: all 0.3s ease;
-  
+
   @media (prefers-color-scheme: dark) {
     background-color: rgba(255, 255, 255, 0.95);
-    
+
     &:hover {
       background-color: rgba(255, 255, 255, 1);
     }
@@ -181,7 +202,7 @@ const MenuLine = styled(m.div)`
 
 const MobileMenu = styled(m.div)`
   display: none;
-  
+
   @media (max-width: 768px) {
     display: flex;
     flex-direction: column;
@@ -191,7 +212,6 @@ const MobileMenu = styled(m.div)`
     right: 0;
     z-index: 99;
     background-color: #0396FF;
-    padding: 1rem 0;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     backdrop-filter: blur(10px);
@@ -199,7 +219,7 @@ const MobileMenu = styled(m.div)`
     max-width: 100%;
     padding: 0.75rem 1rem;
   }
-  
+
   @media (max-width: 480px) {
     top: 65px;
     padding: 0.75rem 0.75rem;
@@ -232,26 +252,12 @@ const MobileMenuItem = styled(m.div)`
 `;
 
 const scrollToSection = (sectionId) => {
-  // Log the sectionId for debugging
-  console.log('Scrolling to section:', sectionId);
-  
-  // Validate the sectionId
-  if (!sectionId || typeof sectionId !== 'string') {
-    console.warn('Invalid sectionId:', sectionId);
-    return;
-  }
-  
-  // Clean up the sectionId
+  if (!sectionId || typeof sectionId !== 'string') return;
   const cleanSectionId = sectionId.trim().toLowerCase();
-  
-  // Try to find the element
   const element = document.querySelector(`#${cleanSectionId}`);
-  
   if (element) {
     element.scrollIntoView({ behavior: 'smooth' });
   } else {
-    console.warn(`Element with ID '#${cleanSectionId}' not found`);
-    // Fallback to scrolling to top if no section is found
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 };
@@ -263,18 +269,10 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 50);
     };
-
     window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const toggleMobileMenu = () => {
@@ -291,31 +289,17 @@ const Navbar = () => {
 
   const navVariants = {
     hidden: { opacity: 0, y: -20 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { 
-        duration: 0.5
-      } 
-    }
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
   };
 
   const mobileMenuVariants = {
     hidden: { opacity: 0, y: -20, height: 0 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      height: 'auto',
-      transition: { 
-        duration: 0.3,
-        ease: 'easeOut'
-      } 
-    }
+    visible: { opacity: 1, y: 0, height: 'auto', transition: { duration: 0.3, ease: 'easeOut' } }
   };
 
   return (
     <>
-      <Nav 
+      <Nav
         className={isScrolled ? 'scrolled' : ''}
         variants={navVariants}
         initial="hidden"
@@ -323,38 +307,22 @@ const Navbar = () => {
       >
         <NavbarContainer>
           <MenuItems>
-            <MenuItem
-              whileHover="hover"
-              whileTap="tap"
-              onClick={() => scrollToSection('hero')}
-            >
-              {t('navbar.home')}
-            </MenuItem>
-            <MenuItem
-              whileHover="hover"
-              whileTap="tap"
-              onClick={() => scrollToSection('fleet')}
-            >
-              {t('navbar.fleet')}
-            </MenuItem>
-            <MenuItem
-              whileHover="hover"
-              whileTap="tap"
-              onClick={() => scrollToSection('testimonials')}
-            >
-              {t('navbar.testimonials')}
-            </MenuItem>
-            <MenuItem
-              whileHover="hover"
-              whileTap="tap"
-              onClick={() => scrollToSection('contact')}
-            >
-              {t('navbar.contact')}
-            </MenuItem>
+            {menuItems.map((item, i) => (
+              <MenuItem
+                key={i}
+                whileHover="hover"
+                whileTap="tap"
+                onClick={() => scrollToSection(item.link.replace('#', ''))}
+              >
+                {item.name}
+              </MenuItem>
+            ))}
           </MenuItems>
+
           <LanguageSwitcherWrapper>
             <LanguageSwitcher />
           </LanguageSwitcherWrapper>
+
           <SocialIcons>
             <a href="https://facebook.com/tadas.rudzinskis" target="_blank" rel="noopener noreferrer" style={{ color: '#1877F2' }}>
               <FaFacebookF size={20} />
@@ -362,15 +330,17 @@ const Navbar = () => {
             <a href="https://instagram.com/tadas_greitai/?locale=en%2F" target="_blank" rel="noopener noreferrer" style={{ color: '#E1306C' }}>
               <FaInstagram size={20} />
             </a>
+            <PhoneNumber href="tel:+37060000000">
+              <FaPhoneAlt size={14} />
+              +37061470086
+            </PhoneNumber>
           </SocialIcons>
-          <LocationIndicator 
-            style={{ order: 4 }}
-            onClick={() => scrollToSection('map')}
-            cursor="pointer"
-          >
+
+          <LocationIndicator onClick={() => scrollToSection('map')} style={{ order: 4 }}>
             <LocationIcon />
             <LocationText>{t('Klaipėda')}</LocationText>
           </LocationIndicator>
+
           <MobileMenuButton onClick={toggleMobileMenu}>
             <MenuLine animate={{ rotate: mobileMenuOpen ? 45 : 0, y: mobileMenuOpen ? 9 : 0 }} />
             <MenuLine animate={{ opacity: mobileMenuOpen ? 0 : 1 }} />
@@ -378,39 +348,39 @@ const Navbar = () => {
           </MobileMenuButton>
         </NavbarContainer>
       </Nav>
-      
+
       <MobileMenu
-          variants={mobileMenuVariants}
-          initial="hidden"
-          animate={mobileMenuOpen ? "visible" : "hidden"}
-        >
-          {menuItems.map((item, index) => (
-            <MobileMenuItem 
-              key={index}
-              className="hover"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => {
-                scrollToSection(item.link.replace('#', ''));
-                setMobileMenuOpen(false);
-              }}
-            >
-                {item.name}
-            </MobileMenuItem>
-          ))}
-          <MobileMenuItem 
+        variants={mobileMenuVariants}
+        initial="hidden"
+        animate={mobileMenuOpen ? 'visible' : 'hidden'}
+      >
+        {menuItems.map((item, index) => (
+          <MobileMenuItem
+            key={index}
             className="hover"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            style={{ fontWeight: '700', color: '#FF9500' }}
             onClick={() => {
-              scrollToSection('contact');
+              scrollToSection(item.link.replace('#', ''));
               setMobileMenuOpen(false);
             }}
           >
-              {t('hero.button')}
+            {item.name}
           </MobileMenuItem>
-        </MobileMenu>
+        ))}
+        <MobileMenuItem
+          className="hover"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          style={{ fontWeight: '700', color: '#FF9500' }}
+          onClick={() => {
+            scrollToSection('contact');
+            setMobileMenuOpen(false);
+          }}
+        >
+          {t('hero.button')}
+        </MobileMenuItem>
+      </MobileMenu>
     </>
   );
 };

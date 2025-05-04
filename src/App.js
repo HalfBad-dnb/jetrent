@@ -45,6 +45,11 @@ const VideoOverlay = styled.div`
   z-index: -1;
 `;
 
+const FallbackWrapper = styled.div`
+  background: url(${(props) => props.bgImage}) center/cover no-repeat;
+  height: 100%;
+`;
+
 const AppContainer = styled.div`
   position: relative;
   overflow-x: hidden;
@@ -78,6 +83,7 @@ function App() {
       {!videoError && (
         <VideoWrapper>
           <VideoBackground
+            preload="auto"
             autoPlay
             loop
             muted
@@ -96,23 +102,30 @@ function App() {
 
       <VideoOverlay />
 
-      <AppContainer
-        style={
-          videoError
-            ? {
-                background: `black url(${fallbackImagePath}) center/cover no-repeat`,
-              }
-            : {}
-        }
-      >
-        <Navbar />
-        <Hero />
-        <Services />
-        <Fleet />
-        <Testimonials />
-        <Map />
-        <Contact />
-        <Footer />
+      <AppContainer>
+        {videoError ? (
+          <FallbackWrapper bgImage={fallbackImagePath}>
+            <Navbar />
+            <Hero />
+            <Services />
+            <Fleet />
+            <Testimonials />
+            <Map />
+            <Contact />
+            <Footer />
+          </FallbackWrapper>
+        ) : (
+          <>
+            <Navbar />
+            <Hero />
+            <Services />
+            <Fleet />
+            <Testimonials />
+            <Map />
+            <Contact />
+            <Footer />
+          </>
+        )}
       </AppContainer>
     </>
   );

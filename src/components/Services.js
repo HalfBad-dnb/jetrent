@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { FaWater, FaMotorcycle, FaMap } from 'react-icons/fa';
+import { FaWater, FaMap } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
+const jetsky1 = '/jetsky1.1.png';
 
 const ServicesSection = styled.section`
   padding: 5rem 2rem;
@@ -79,17 +80,35 @@ const ServiceDescription = styled.p`
 
 const services = [
   {
-    icon: <FaWater size={40} />,
+    icon: <FaWater size={40} color="#FFA500" />,
     title: 'vandens_pramogos',
     description: 'vandens_pramogos_description'
   },
   {
-    icon: <FaMotorcycle size={40} />,
+    icon: (
+      <svg width={60} height={60} viewBox="0 0 60 60" style={{ margin: '-10px' }}>
+        <defs>
+          <filter id="orangeFilter" colorInterpolationFilters="sRGB">
+            <feColorMatrix type="matrix" values="0 0 0 0 1
+                                               0 0 0 0 0.65
+                                               0 0 0 0 0
+                                               0 0 0 1 0"/>
+          </filter>
+        </defs>
+        <image 
+          href={jetsky1} 
+          width="100%" 
+          height="100%" 
+          filter="url(#orangeFilter)"
+          preserveAspectRatio="xMidYMid meet"
+        />
+      </svg>
+    ),
     title: 'vandens_motociklu_nuoma',
     description: 'vandens_motociklu_nuoma_description'
   },
   {
-    icon: <FaMap size={40} />,
+    icon: <FaMap size={40} color="#FFA500" />,
     title: 'keliones_su_gidu',
     description: 'keliones_su_gidu_description'
   }
