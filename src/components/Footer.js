@@ -9,6 +9,8 @@ const FooterContainer = styled.footer`
   color: white;
   padding: 4rem 2rem 2rem;
   position: relative;
+  margin-top: 5rem;
+  z-index: 1;
 `;
 
 const FooterTop = styled.div`
@@ -127,20 +129,31 @@ const SocialLinks = styled.div`
   gap: 0.8rem;
 `;
 
-const SocialLink = styled(motion.a)`
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.1);
+const SocialIcon = styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
-  text-decoration: none;
-  transition: background-color 0.3s;
-  
-  &:hover {
-    background-color: #FF9500;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin: 0 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &.facebook:hover {
+    background-color: #3b5998;
+  }
+
+  &.twitter:hover {
+    background-color: #1da1f2;
+  }
+
+  &.instagram:hover {
+    background-color: #e1306c;
+  }
+
+  &.youtube:hover {
+    background-color: #ff0000;
   }
 `;
 
@@ -204,34 +217,18 @@ const Footer = () => {
             {t('footer.companyDescription', 'Experience the ultimate thrill on the water with our premium jet ski rentals. Established in 2010, we\'ve been providing unforgettable water adventures.')}
           </FooterText>
           <SocialLinks>
-            <SocialLink 
-              href="https://facebook.com" 
-              whileHover={{ scale: 1.1, backgroundColor: '#3b5998' }}
-              whileTap={{ scale: 0.9 }}
-            >
+            <SocialIcon className="facebook" whileTap={{ scale: 0.9 }}>
               <FaFacebookF />
-            </SocialLink>
-            <SocialLink 
-              href="https://twitter.com" 
-              whileHover={{ scale: 1.1, backgroundColor: '#1da1f2' }}
-              whileTap={{ scale: 0.9 }}
-            >
+            </SocialIcon>
+            <SocialIcon className="twitter" whileTap={{ scale: 0.9 }}>
               <FaTwitter />
-            </SocialLink>
-            <SocialLink 
-              href="https://instagram.com" 
-              whileHover={{ scale: 1.1, backgroundColor: '#e1306c' }}
-              whileTap={{ scale: 0.9 }}
-            >
+            </SocialIcon>
+            <SocialIcon className="instagram" whileTap={{ scale: 0.9 }}>
               <FaInstagram />
-            </SocialLink>
-            <SocialLink 
-              href="https://youtube.com" 
-              whileHover={{ scale: 1.1, backgroundColor: '#ff0000' }}
-              whileTap={{ scale: 0.9 }}
-            >
+            </SocialIcon>
+            <SocialIcon className="youtube" whileTap={{ scale: 0.9 }}>
               <FaYoutube />
-            </SocialLink>
+            </SocialIcon>
           </SocialLinks>
         </FooterColumn>
         
@@ -280,15 +277,15 @@ const Footer = () => {
           <ContactInfo>
             <ContactItem>
               <FaMapMarkerAlt />
-              <span>123 Beach Front, Coastal City, CA 94111</span>
+              <span>Kuršių marios, Kuršmarės, seniau vadintos Prūsų jūra</span>
             </ContactItem>
             <ContactItem>
               <FaPhone />
-              <span>(555) 123-4567</span>
+              <span>+370 600 00000</span>
             </ContactItem>
             <ContactItem>
               <FaEnvelope />
-              <span>info@jetadventures.com</span>
+              <span>info@jetrent.lt</span>
             </ContactItem>
           </ContactInfo>
           <FooterText>
@@ -301,7 +298,7 @@ const Footer = () => {
       
       <FooterBottom>
         <Copyright>
-          © {currentYear} Jet Adventures. {t('footer.rights')}
+          &copy; {currentYear} Jet Adventures. {t('footer.rights')}
         </Copyright>
         
         <FooterNav>

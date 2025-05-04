@@ -2,9 +2,10 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import Video from './Video';
 
 const HeroSection = styled.section`
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -16,28 +17,7 @@ const HeroSection = styled.section`
   
   @media (max-width: 768px) {
     padding: 0 1rem;
-    height: 100svh; /* Use small viewport height for mobile */
-  }
-`;
-
-const HeroOverlay = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  background: rgba(0, 0, 0, 0.3);
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('/wave-pattern.png');
-    opacity: 0.05;
+    min-height: 100svh;
   }
 `;
 
@@ -56,6 +36,41 @@ const WaveEffect = styled.div`
   }
 `;
 
+const ScrollDown = styled(motion.div)`
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: white;
+  font-size: 1.1rem;
+  cursor: pointer;
+  
+  &:hover {
+    color: #FF9500;
+  }
+`;
+
+const ScrollDownIcon = styled.div`
+  width: 20px;
+  height: 20px;
+  border: 2px solid white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  &:before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: white;
+    border-radius: 50%;
+  }
+`;
+
 const HeroContent = styled.div`
   color: #fff;
   text-align: center;
@@ -66,6 +81,7 @@ const HeroContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 1.5rem;
   
   @media (max-width: 768px) {
     max-width: 100%;
@@ -77,166 +93,183 @@ const HeroContent = styled.div`
   }
 `;
 
-const Title = styled(motion.h1)`
-  font-size: 5rem;
-  margin: 0 auto 1rem;
-  font-weight: 800;
-  text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  width: 100%;
-  text-align: center;
-  display: block;
-  
-  @media (max-width: 768px) {
-    font-size: 3rem;
-    max-width: 95%;
-  }
-  
-  @media (max-width: 480px) {
-    font-size: 2.25rem;
-    margin-bottom: 0.75rem;
-    max-width: 100%;
-    padding: 0;
-    line-height: 1.2;
-  }
-  
-  @media (max-width: 350px) {
-    font-size: 2rem;
-  }
-`;
-
-const Subtitle = styled(motion.p)`
-  font-size: 1.5rem;
-  margin: 0 auto 2rem;
-  max-width: 700px;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-  padding: 0 1rem;
-  text-align: center;
-  
-  @media (max-width: 768px) {
-    font-size: 1.2rem;
-    margin-bottom: 1.5rem;
-    max-width: 90%;
-  }
-  
-  @media (max-width: 480px) {
-    font-size: 0.95rem;
-    margin-bottom: 1.25rem;
-    max-width: 100%;
-    line-height: 1.4;
-    padding: 0 10px;
-  }
-`;
-
-const Button = styled(motion.button)`
-  background: #FF9500;
-  color: white;
-  border: none;
-  padding: 1rem 2.5rem;
-  font-size: 1.2rem;
-  font-weight: 600;
-  border-radius: 50px;
-  cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.3s;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  box-shadow: 0 10px 20px rgba(255, 149, 0, 0.3);
-  
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 25px rgba(255, 149, 0, 0.4);
-  }
-  
-  @media (max-width: 768px) {
-    padding: 0.9rem 2rem;
-    font-size: 1.1rem;
-  }
-  
-  @media (max-width: 480px) {
-    padding: 0.8rem 1.75rem;
-    font-size: 1rem;
-    letter-spacing: 0.5px;
-  }
-`;
-
-
 const Hero = () => {
   const { t } = useTranslation();
 
-  const titleVariants = {
-    hidden: { opacity: 0, y: -50 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { 
-        duration: 0.8, 
-        ease: "easeOut",
-      } 
+  // Function to scroll to the next section
+  const scrollToNextSection = () => {
+    // Try to find the next section
+    const nextSection = document.querySelector('#hero').nextElementSibling;
+    
+    if (nextSection) {
+      nextSection.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      // Fallback to a reasonable scroll distance if no next section found
+      window.scrollTo({ 
+        top: window.innerHeight, 
+        behavior: 'smooth' 
+      });
     }
   };
-
-  const subtitleVariants = {
-    hidden: { opacity: 0, y: -20 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { 
-        duration: 0.8, 
-        delay: 0.3,
-        ease: "easeOut" 
-      } 
-    }
-  };
-
-  const buttonVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: { 
-      opacity: 1, 
-      scale: 1,
-      transition: { 
-        duration: 0.5, 
-        delay: 0.6,
-        ease: "easeOut" 
-      } 
-    },
-    hover: {
-      scale: 1.05,
-      transition: { duration: 0.3 }
-    },
-    tap: {
-      scale: 0.95,
-      transition: { duration: 0.1 }
-    }
-  };
-
 
   return (
-    <HeroSection id="home">
-      <HeroOverlay />
+    <HeroSection id="hero">
+      <Video
+        videoSrc="/assets/video/t.jet.v.3.maxquality.mp4"
+        enableOnMobile={true}
+      />
       <WaveEffect />
       <HeroContent>
-        <Title 
-          variants={titleVariants}
-          initial="hidden"
-          animate="visible"
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          style={{
+            fontSize: '4rem',
+            lineHeight: '1.2',
+            fontWeight: '800',
+            color: '#FF9500',
+            textShadow: '0 2px 4px rgba(0, 0, 0, 0.2)',
+            marginBottom: '1rem',
+            position: 'relative',
+            willChange: 'transform, opacity'
+          }}
         >
-          {t('hero.title')}
-        </Title>
-        <Subtitle
-          variants={subtitleVariants}
-          initial="hidden"
-          animate="visible"
+          <motion.span
+            initial={{
+              opacity: 0,
+              y: 20
+            }}
+            animate={{
+              opacity: 1,
+              y: 0
+            }}
+            transition={{
+              duration: 0.6,
+              delay: 0.2,
+              ease: 'easeOut'
+            }}
+            style={{
+              willChange: 'transform, opacity'
+            }}
+          >
+            {t('hero.title')}
+          </motion.span>
+          <motion.div
+            style={{
+              position: 'absolute',
+              bottom: -10,
+              left: 0,
+              width: '100%',
+              height: '2px',
+              background: 'linear-gradient(90deg, #FF9500, #FFD700)',
+              transform: 'translateX(-100%)',
+              willChange: 'transform'
+            }}
+            animate={{
+              transform: 'translateX(0)'
+            }}
+            transition={{
+              duration: 0.5,
+              ease: 'easeOut'
+            }}
+          />
+        </motion.h1>
+        
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '1rem'
+          }}
         >
-          {t('hero.subtitle')}
-        </Subtitle>
-        <Button
-          variants={buttonVariants}
-          initial="hidden"
-          animate="visible"
-          whileHover="hover"
-          whileTap="tap"
+          <motion.p
+            style={{
+              fontSize: '1.5rem',
+              lineHeight: '1.6',
+              color: 'white',
+              textShadow: '0 1px 2px rgba(0, 0, 0, 0.15)',
+              maxWidth: '800px',
+              textAlign: 'center'
+            }}
+          >
+            {t('hero.subtitle')}
+          </motion.p>
+          <motion.div
+            style={{
+              width: '100px',
+              height: '2px',
+              background: 'linear-gradient(90deg, #FF9500, #FFD700)',
+              marginBottom: '1rem'
+            }}
+          />
+        </motion.div>
+
+        <motion.button
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          whileHover={{
+            scale: 1.05,
+            boxShadow: '0 0 20px rgba(255, 149, 0, 0.3)'
+          }}
+          whileTap={{ scale: 0.95 }}
+          className="primary-button"
+          onClick={scrollToNextSection}
+          style={{
+            background: 'linear-gradient(90deg, #FF9500, #FFD700)',
+            color: 'white',
+            padding: '1rem 2.5rem',
+            borderRadius: '30px',
+            border: 'none',
+            fontSize: '1.1rem',
+            fontWeight: '600',
+            cursor: 'pointer',
+            position: 'relative',
+            overflow: 'hidden',
+            transition: 'all 0.3s ease'
+          }}
         >
-          {t('hero.button')}
-        </Button>
+          <span style={{
+            position: 'relative',
+            zIndex: 1
+          }}>
+            {t('hero.button')}
+          </span>
+          <motion.div
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent)',
+              transform: 'translateX(-100%)',
+              transition: 'transform 0.5s ease'
+            }}
+            animate={{
+              transform: 'translateX(100%)'
+            }}
+            transition={{
+              duration: 0.5,
+              ease: 'easeInOut'
+            }}
+          />
+        </motion.button>
+        
+        <ScrollDown
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          onClick={scrollToNextSection}
+        >
+          <ScrollDownIcon />
+          <span>{t('hero.scrollDown')}</span>
+        </ScrollDown>
       </HeroContent>
     </HeroSection>
   );

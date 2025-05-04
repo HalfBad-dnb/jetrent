@@ -173,7 +173,7 @@ const CustomerImage = styled.div`
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background-image: url(${props => props.image});
+  background-image: url(${props => props.$image});
   background-size: cover;
   background-position: center;
   border: 3px solid #FF9500;
@@ -300,7 +300,7 @@ const Testimonials = () => {
               <QuoteIcon />
               <TestimonialText>{testimonial.text}</TestimonialText>
               <CustomerInfo>
-                <CustomerImage image={testimonial.image} />
+                <CustomerImage $image={testimonial.image} />
                 <CustomerDetails>
                   <CustomerName>{testimonial.name}</CustomerName>
                   <CustomerLocation>{testimonial.location}</CustomerLocation>

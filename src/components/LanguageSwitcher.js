@@ -8,10 +8,12 @@ const SwitcherContainer = styled.div`
   align-items: center;
 `;
 
-const LanguageButton = styled.button`
-  background: ${props => props.isActive ? '#FF9500' : 'transparent'};
-  color: ${props => props.isActive ? 'white' : '#ccc'};
-  border: ${props => props.isActive ? 'none' : '1px solid #ccc'};
+const LanguageButton = styled.button.attrs({
+  '$active': props => props.active
+})`
+  background: ${props => props.$active ? '#FF9500' : 'transparent'};
+  color: ${props => props.$active ? 'white' : '#ccc'};
+  border: ${props => props.$active ? 'none' : '1px solid #ccc'};
   padding: 5px 10px;
   border-radius: 20px;
   cursor: pointer;
@@ -19,7 +21,7 @@ const LanguageButton = styled.button`
   transition: all 0.3s ease;
   
   &:hover {
-    background: ${props => props.isActive ? '#FF9500' : 'rgba(255, 149, 0, 0.2)'};
+    background: ${props => props.$active ? '#FF9500' : 'rgba(255, 149, 0, 0.2)'};
     transform: translateY(-2px);
   }
   
@@ -39,13 +41,13 @@ const LanguageSwitcher = () => {
   return (
     <SwitcherContainer>
       <LanguageButton 
-        isActive={i18n.language === 'en'} 
+        $active={i18n.language === 'en' ? 'true' : undefined} 
         onClick={() => changeLanguage('en')}
       >
         {t('language.en')}
       </LanguageButton>
       <LanguageButton 
-        isActive={i18n.language === 'lt'} 
+        $active={i18n.language === 'lt' ? 'true' : undefined} 
         onClick={() => changeLanguage('lt')}
       >
         {t('language.lt')}

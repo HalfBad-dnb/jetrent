@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
+import { motion as m } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from './LanguageSwitcher';
-import { FaInstagram, FaFacebookF } from 'react-icons/fa';
+import { FaInstagram, FaFacebookF, FaMapMarkerAlt } from 'react-icons/fa';
 
-const Nav = styled(motion.nav)`
+const Nav = styled(m.nav)`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -15,10 +15,10 @@ const Nav = styled(motion.nav)`
   left: 0;
   right: 0;
   z-index: 100;
-  transition: background-color 0.3s, box-shadow 0.3s;
-  background-color: ${({ scrolled }) => scrolled ? 'rgba(3, 150, 255, 0.95)' : 'transparent'};
-  box-shadow: ${({ scrolled }) => scrolled ? '0 4px 20px rgba(0, 0, 0, 0.1)' : 'none'};
-  backdrop-filter: ${({ scrolled }) => scrolled ? 'blur(10px)' : 'none'};
+  transition: all 0.3s ease;
+  background-color: ${({ isScrolled }) => isScrolled ? 'rgba(3, 150, 255, 0.95)' : 'transparent'};
+  box-shadow: ${({ isScrolled }) => isScrolled ? '0 4px 20px rgba(0, 0, 0, 0.1)' : 'none'};
+  backdrop-filter: ${({ isScrolled }) => isScrolled ? 'blur(10px)' : 'none'};
   
   @media (max-width: 768px) {
     padding: 1.25rem 1.5rem;
@@ -50,11 +50,43 @@ const SocialIcons = styled.div`
   align-items: center;
   gap: 0.5rem;
   
+  a {
+    color: white;
+    transition: color 0.3s ease;
+    
+    &:hover {
+      color: #FF9500;
+    }
+  }
+  
   @media (max-width: 768px) {
     display: flex;
     order: 3;
     margin-left: auto;
   }
+`;
+
+const LocationText = styled.span`
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+`;
+
+const LocationIndicator = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  
+  &:hover {
+    color: #FF9500;
+  }
+`;
+
+const LocationIcon = styled(FaMapMarkerAlt)`
+  font-size: 1.2rem;
 `;
 
 const LanguageSwitcherWrapper = styled.div`
@@ -73,13 +105,14 @@ const MenuItems = styled.div`
   }
 `;
 
-const MenuItem = styled(motion.a)`
+const MenuItem = styled(m.div)`
   color: white;
   margin-left: 2rem;
   text-decoration: none;
   font-weight: 600;
   position: relative;
   cursor: pointer;
+  transition: all 0.3s ease;
   
   &::after {
     content: '';
@@ -89,11 +122,23 @@ const MenuItem = styled(motion.a)`
     width: 0;
     height: 2px;
     background-color: white;
-    transition: width 0.3s;
+    transition: width 0.3s ease;
   }
   
   &:hover::after {
     width: 100%;
+  }
+
+  &.hover {
+    scale: 1.05;
+  }
+
+  &.tap {
+    scale: 0.95;
+  }
+
+  @media (max-width: 768px) {
+    margin-left: 1rem;
   }
 `;
 
@@ -116,7 +161,7 @@ const MobileMenuButton = styled.div`
   }
 `;
 
-const MenuLine = styled(motion.div)`
+const MenuLine = styled(m.div)`
   width: 100%;
   height: 3px;
   background-color: white;
@@ -127,7 +172,7 @@ const MenuLine = styled(motion.div)`
   }
 `;
 
-const MobileMenu = styled(motion.div)`
+const MobileMenu = styled(m.div)`
   display: none;
   
   @media (max-width: 768px) {
@@ -142,6 +187,7 @@ const MobileMenu = styled(motion.div)`
     padding: 1rem 0;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     overflow: hidden;
+    backdrop-filter: blur(10px);
   }
   
   @media (max-width: 480px) {
@@ -150,7 +196,7 @@ const MobileMenu = styled(motion.div)`
   }
 `;
 
-const MobileMenuItem = styled(motion.a)`
+const MobileMenuItem = styled(m.div)`
   color: white;
   padding: 1rem 2rem;
   text-decoration: none;
@@ -160,46 +206,57 @@ const MobileMenuItem = styled(motion.a)`
   display: block;
   width: 100%;
   box-sizing: border-box;
-  
+
   &:last-child {
     border-bottom: none;
   }
-  
+
+  &.hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
   @media (max-width: 480px) {
     padding: 0.85rem 1.5rem;
     font-size: 0.95rem;
   }
 `;
 
+const scrollToSection = (sectionId) => {
+  const element = document.querySelector(`#${sectionId}`);
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth' });
+  }
+};
 
 const Navbar = () => {
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { t } = useTranslation();
-  
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {
-        setScrolled(true);
+        setIsScrolled(true);
       } else {
-        setScrolled(false);
+        setIsScrolled(false);
       }
     };
-    
+
     window.addEventListener('scroll', handleScroll);
-    
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-  
+
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
-  
+
   const menuItems = [
     { name: t('navbar.home'), link: '#' },
     { name: t('navbar.fleet'), link: '#fleet' },
+    { name: t('navbar.map'), link: '#map' },
     { name: t('navbar.testimonials'), link: '#testimonials' },
     { name: t('navbar.contact'), link: '#contact' }
   ];
@@ -214,7 +271,7 @@ const Navbar = () => {
       } 
     }
   };
-  
+
   const mobileMenuVariants = {
     hidden: { opacity: 0, y: -20, height: 0 },
     visible: { 
@@ -231,61 +288,67 @@ const Navbar = () => {
   return (
     <>
       <Nav 
-        scrolled={scrolled}
+        className={isScrolled ? 'scrolled' : ''}
         variants={navVariants}
         initial="hidden"
         animate="visible"
       >
-        {/* Logo removed */}
-        
-        <MenuItems>
-          {menuItems.map((item, index) => (
-            <MenuItem 
-              key={index}
-              href={item.link}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={(e) => {
-                if (item.link === '#') {
-                  e.preventDefault();
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                }
-              }}
-            >
-              {item.name}
-            </MenuItem>
-          ))}
-
-        </MenuItems>
-        
         <NavbarContainer>
+          <MenuItems>
+            <MenuItem
+              whileHover="hover"
+              whileTap="tap"
+              onClick={() => scrollToSection('hero')}
+            >
+              {t('navbar.home')}
+            </MenuItem>
+            <MenuItem
+              whileHover="hover"
+              whileTap="tap"
+              onClick={() => scrollToSection('fleet')}
+            >
+              {t('navbar.fleet')}
+            </MenuItem>
+            <MenuItem
+              whileHover="hover"
+              whileTap="tap"
+              onClick={() => scrollToSection('testimonials')}
+            >
+              {t('navbar.testimonials')}
+            </MenuItem>
+            <MenuItem
+              whileHover="hover"
+              whileTap="tap"
+              onClick={() => scrollToSection('contact')}
+            >
+              {t('navbar.contact')}
+            </MenuItem>
+          </MenuItems>
           <LanguageSwitcherWrapper>
             <LanguageSwitcher />
           </LanguageSwitcherWrapper>
           <SocialIcons>
-            <a 
-              href="https://facebook.com/tadas.rudzinskis" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              aria-label="Facebook"
-            >
-              <FaFacebookF style={{ color: 'white', fontSize: '1.2rem' }} />
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" style={{ color: '#1877F2' }}>
+              <FaFacebookF size={20} />
             </a>
-            <a 
-              href="https://instagram.com/tadas_greitai/?locale=en%2F" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              aria-label="Instagram"
-            >
-              <FaInstagram style={{ color: 'white', fontSize: '1.2rem' }} />
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" style={{ color: '#E1306C' }}>
+              <FaInstagram size={20} />
             </a>
           </SocialIcons>
+          <LocationIndicator 
+            style={{ order: 4 }}
+            onClick={() => scrollToSection('map')}
+            cursor="pointer"
+          >
+            <LocationIcon />
+            <LocationText>{t('location')}</LocationText>
+          </LocationIndicator>
           <MobileMenuButton onClick={toggleMobileMenu}>
-    <MenuLine animate={{ rotate: mobileMenuOpen ? 45 : 0, y: mobileMenuOpen ? 9 : 0 }} />
-    <MenuLine animate={{ opacity: mobileMenuOpen ? 0 : 1 }} />
-    <MenuLine animate={{ rotate: mobileMenuOpen ? -45 : 0, y: mobileMenuOpen ? -9 : 0 }} />
-  </MobileMenuButton>
-</NavbarContainer>
+            <MenuLine animate={{ rotate: mobileMenuOpen ? 45 : 0, y: mobileMenuOpen ? 9 : 0 }} />
+            <MenuLine animate={{ opacity: mobileMenuOpen ? 0 : 1 }} />
+            <MenuLine animate={{ rotate: mobileMenuOpen ? -45 : 0, y: mobileMenuOpen ? -9 : 0 }} />
+          </MobileMenuButton>
+        </NavbarContainer>
       </Nav>
       
       <MobileMenu
@@ -296,8 +359,9 @@ const Navbar = () => {
           {menuItems.map((item, index) => (
             <MobileMenuItem 
               key={index}
-              as="div"
-              whileHover={{ backgroundColor: 'rgba(255, 255, 255, 0.1)' }}
+              className="hover"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               onClick={(e) => {
                 e.preventDefault();
                 if (item.link === '#') {
@@ -311,12 +375,15 @@ const Navbar = () => {
                 setMobileMenuOpen(false);
               }}
             >
-              {item.name}
+              <a href={item.link} style={{ color: 'inherit', textDecoration: 'none' }}>
+                {item.name}
+              </a>
             </MobileMenuItem>
           ))}
           <MobileMenuItem 
-            as="div"
-            whileHover={{ backgroundColor: 'rgba(255, 255, 255, 0.1)' }}
+            className="hover"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             style={{ fontWeight: '700', color: '#FF9500' }}
             onClick={() => {
               const contactSection = document.querySelector('#contact');
@@ -326,7 +393,9 @@ const Navbar = () => {
               setMobileMenuOpen(false);
             }}
           >
-            {t('hero.button')}
+            <a href="#contact" style={{ color: 'inherit', textDecoration: 'none' }}>
+              {t('hero.button')}
+            </a>
           </MobileMenuItem>
         </MobileMenu>
     </>

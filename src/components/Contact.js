@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaPaperPlane } from 'react-icons/fa';
+import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaInstagram, FaFacebook } from 'react-icons/fa';
 
 const ContactSection = styled.section`
   padding: 5rem 2rem;
@@ -13,13 +13,9 @@ const ContactSection = styled.section`
 const Container = styled.div`
   max-width: 1200px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-  }
+  display: flex;
+  justify-content: center;
+  padding: 0 2rem;
 `;
 
 const SectionTitle = styled(motion.h2)`
@@ -122,25 +118,19 @@ const ContactDetails = styled.div`
   position: relative;
 `;
 
-const ContactItem = styled.div`
+const ContactItem = styled(motion.div)`
   display: flex;
   align-items: center;
-  margin-bottom: 1.5rem;
-  
-  svg {
-    font-size: 1.5rem;
-    margin-right: 1rem;
-    color: #FF9500;
-  }
-  
-  @media (max-width: 480px) {
-    margin-bottom: 1.25rem;
-    
-    svg {
-      font-size: 1.3rem;
-      margin-right: 0.75rem;
-      flex-shrink: 0;
-    }
+  gap: 1rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  margin-bottom: 1rem;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-3px);
   }
 `;
 
@@ -181,334 +171,101 @@ const SocialLink = styled(motion.a)`
   }
 `;
 
-const FormContainer = styled.div`
-  padding: 2rem;
-  background-color: white;
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-`;
-
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-`;
-
-const InputGroup = styled.div`
-  margin-bottom: 1.5rem;
-`;
-
-const Label = styled.label`
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-  color: #333;
-`;
-
-const Input = styled(motion.input)`
-  width: 100%;
-  padding: 0.8rem;
-  border: 2px solid #e9ecef;
-  border-radius: 8px;
-  font-size: 1rem;
-  transition: border-color 0.3s;
-  
-  &:focus {
-    outline: none;
-    border-color: #0396FF;
-  }
-`;
-
-const TextArea = styled(motion.textarea)`
-  width: 100%;
-  padding: 0.8rem;
-  border: 2px solid #e9ecef;
-  border-radius: 8px;
-  font-size: 1rem;
-  min-height: 150px;
-  resize: vertical;
-  transition: border-color 0.3s;
-  
-  &:focus {
-    outline: none;
-    border-color: #0396FF;
-  }
-`;
-
-const SubmitButton = styled(motion.button)`
-  background: linear-gradient(90deg, #0396FF, #0D47A1);
-  color: white;
-  border: none;
-  padding: 1rem;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-`;
-
-const FormSuccess = styled(motion.div)`
-  margin-top: 1rem;
-  padding: 1rem;
-  background-color: rgba(25, 135, 84, 0.1);
-  border: 1px solid #198754;
-  border-radius: 8px;
-  color: #198754;
-  text-align: center;
-`;
-
-const Contact = () => {
-  const { t } = useTranslation();
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    message: ''
-  });
-  
-  const [formSubmitted, setFormSubmitted] = useState(false);
-  
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
-      [name]: value
-    }));
-  };
-  
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-    setFormSubmitted(true);
-  };
-  
-  const titleVariants = {
-    hidden: { opacity: 0, y: -20 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { 
-        duration: 0.7,
-      } 
-    }
-  };
-  
-  const containerVariants = {
+const variants = {
+  container: {
     hidden: { opacity: 0 },
     visible: { 
       opacity: 1,
-      transition: { 
-        duration: 0.5,
-        staggerChildren: 0.2
-      } 
+      transition: { duration: 0.5 }
     }
-  };
-  
-  const itemVariants = {
+  },
+  item: {
     hidden: { opacity: 0, y: 20 },
     visible: { 
       opacity: 1, 
       y: 0,
       transition: { 
-        duration: 0.5
+        duration: 0.5,
+        delay: 0.2
       } 
     }
-  };
-  
+  }
+};
+
+const ContactContainer = styled.div`
+  position: relative;
+`;
+
+const Contact = () => {
+  const { t } = useTranslation();
+
   return (
-    <ContactSection id="contact">
-      <SectionTitle
-        variants={titleVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.1 }}
-      >
-        {t('contact.title')}
-      </SectionTitle>
-      
-      <Container>
-        <ContactInfo
-          as={motion.div}
-          variants={containerVariants}
+    <ContactContainer id="contact">
+      <ContactSection>
+        <motion.div 
+          variants={variants.container}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
+          animate="visible"
         >
-          <ContactInfoTitle
-            as={motion.h3}
-            variants={itemVariants}
-          >
-            {t('contact.subtitle')}
-          </ContactInfoTitle>
-          <ContactInfoText
-            as={motion.p}
-            variants={itemVariants}
-          >
-            {t('contact.description', 'Ready for an unforgettable experience on the water? Contact us to book your jet ski adventure or learn more about our services.')}
-          </ContactInfoText>
+          <SectionTitle>{t('contact.title', 'Contact Us')}</SectionTitle>
           
-          <ContactDetails
-            as={motion.div}
-            variants={containerVariants}
-          >
-            <ContactItem
-              as={motion.div}
-              variants={itemVariants}
-            >
-              <FaPhone />
-              <ContactItemText>(555) 123-4567</ContactItemText>
-            </ContactItem>
-            
-            <ContactItem
-              as={motion.div}
-              variants={itemVariants}
-            >
-              <FaEnvelope />
-              <ContactItemText>info@jetadventures.com</ContactItemText>
-            </ContactItem>
-            
-            <ContactItem
-              as={motion.div}
-              variants={itemVariants}
-            >
-              <FaMapMarkerAlt />
-              <ContactItemText>123 Beach Front, Coastal City, CA 94111</ContactItemText>
-            </ContactItem>
-          </ContactDetails>
-          
-          <SocialLinks
-            as={motion.div}
-            variants={containerVariants}
-          >
-            <SocialLink 
-              href="#" 
-              variants={itemVariants}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <i className="fab fa-facebook-f"></i>
-            </SocialLink>
-            <SocialLink 
-              href="#" 
-              variants={itemVariants}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <i className="fab fa-instagram"></i>
-            </SocialLink>
-            <SocialLink 
-              href="#" 
-              variants={itemVariants}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <i className="fab fa-twitter"></i>
-            </SocialLink>
-            <SocialLink 
-              href="#" 
-              variants={itemVariants}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <i className="fab fa-youtube"></i>
-            </SocialLink>
-          </SocialLinks>
-        </ContactInfo>
-        
-        <FormContainer
-          as={motion.div}
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-        >
-          <Form onSubmit={handleSubmit}>
-            <InputGroup
-              as={motion.div}
-              variants={itemVariants}
-            >
-              <Label htmlFor="name">{t('contact.name')}</Label>
-              <Input 
-                type="text" 
-                id="name" 
-                name="name" 
-                required 
-                value={formData.name}
-                onChange={handleChange}
-                whileFocus={{ scale: 1.01 }}
-              />
-            </InputGroup>
-            
-            <InputGroup
-              as={motion.div}
-              variants={itemVariants}
-            >
-              <Label htmlFor="email">{t('contact.email')}</Label>
-              <Input 
-                type="email" 
-                id="email" 
-                name="email" 
-                required 
-                value={formData.email}
-                onChange={handleChange}
-                whileFocus={{ scale: 1.01 }}
-              />
-            </InputGroup>
-            
-            <InputGroup
-              as={motion.div}
-              variants={itemVariants}
-            >
-              <Label htmlFor="phone">Phone Number</Label>
-              <Input 
-                type="tel" 
-                id="phone" 
-                name="phone" 
-                value={formData.phone}
-                onChange={handleChange}
-                whileFocus={{ scale: 1.01 }}
-              />
-            </InputGroup>
-            
-            <InputGroup
-              as={motion.div}
-              variants={itemVariants}
-            >
-              <Label htmlFor="message">{t('contact.message')}</Label>
-              <TextArea 
-                id="message" 
-                name="message" 
-                required 
-                value={formData.message}
-                onChange={handleChange}
-                whileFocus={{ scale: 1.01 }}
-              />
-            </InputGroup>
-            
-            <SubmitButton
-              type="submit"
-              variants={itemVariants}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <FaPaperPlane /> {t('contact.submit')}
-            </SubmitButton>
-            
-            {formSubmitted && (
-              <FormSuccess
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-              >
-                {t('contact.success', 'Thank you! Your message has been sent successfully.')}
-              </FormSuccess>
-            )}
-          </Form>
-        </FormContainer>
-      </Container>
-    </ContactSection>
+          <Container>
+            <ContactInfo>
+              <ContactInfoTitle>{t('contact.infoTitle', 'Get in Touch')}</ContactInfoTitle>
+              <ContactInfoText>{t('contact.infoText', 'We would love to hear from you! Whether you have questions about our services, want to make a reservation, or just want to say hello, please feel free to contact us.')}</ContactInfoText>
+              
+              <ContactDetails>
+                <ContactItem
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <FaMapMarkerAlt />
+                  <ContactItemText>Kuršių marios, Kuršmarės, seniau vadintos Prūsų jūra</ContactItemText>
+                </ContactItem>
+                
+                <ContactItem
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <FaPhone />
+                  <ContactItemText>+370 600 00000</ContactItemText>
+                </ContactItem>
+                
+                <ContactItem
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <FaEnvelope />
+                  <ContactItemText>info@jetrent.lt</ContactItemText>
+                </ContactItem>
+              </ContactDetails>
+              
+              <SocialLinks>
+                <SocialLink
+                  href="https://facebook.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <FaFacebook />
+                </SocialLink>
+                
+                <SocialLink
+                  href="https://instagram.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <FaInstagram />
+                </SocialLink>
+              </SocialLinks>
+            </ContactInfo>
+          </Container>
+        </motion.div>
+      </ContactSection>
+    </ContactContainer>
   );
 };
 

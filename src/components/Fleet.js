@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { IMAGES } from '../styles';
-import { FaChevronRight, FaChevronLeft } from 'react-icons/fa';
+// Removed unused imports
 
 const FleetSection = styled.section`
   padding: 5rem 2rem;
@@ -113,10 +113,17 @@ const JetSkiCard = styled(motion.div)`
 
 const JetSkiImage = styled.div`
   height: 200px;
-  background-image: url(${props => props.image});
-  background-size: cover;
-  background-position: center;
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    margin: auto;
+  }
   
   &::after {
     content: '';
@@ -128,8 +135,16 @@ const JetSkiImage = styled.div`
     background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
   }
   
+  @media (max-width: 1024px) {
+    height: 220px;
+  }
+  
+  @media (max-width: 768px) {
+    height: 240px;
+  }
+  
   @media (max-width: 480px) {
-    height: 220px; /* Slightly taller on mobile for better visibility */
+    height: 260px;
   }
 `;
 
@@ -195,46 +210,6 @@ const BookButton = styled(motion.button)`
   
   &:hover {
     background-color: #0D47A1;
-  }
-`;
-
-const NavButtons = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-top: 3rem;
-  gap: 1rem;
-  
-  @media (max-width: 768px) {
-    margin-top: 2.5rem;
-  }
-  
-  @media (max-width: 480px) {
-    margin-top: 2rem;
-    gap: 0.75rem;
-  }
-`;
-
-const NavButton = styled(motion.button)`
-  background-color: ${props => props.active ? '#0396FF' : '#ddd'};
-  color: ${props => props.active ? 'white' : '#555'};
-  border: none;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  
-  &:hover {
-    background-color: ${props => props.active ? '#0D47A1' : '#ccc'};
-  }
-  
-  @media (max-width: 480px) {
-    width: 36px;
-    height: 36px;
-    font-size: 0.9rem;
   }
 `;
 
@@ -339,7 +314,9 @@ const Fleet = () => {
             viewport={{ once: true, amount: 0.1 }}
             whileHover={{ y: -10, boxShadow: '0 15px 30px rgba(0, 0, 0, 0.15)' }}
           >
-            <JetSkiImage image={jetSki.image} />
+            <JetSkiImage>
+              <img src={jetSki.image} alt={jetSki.name} />
+            </JetSkiImage>
             <JetSkiInfo>
               <JetSkiName>{jetSki.name}</JetSkiName>
               <JetSkiSpecs>
@@ -362,33 +339,7 @@ const Fleet = () => {
         ))}
       </JetSkiGrid>
       
-      <NavButtons>
-        <NavButton
-          active={true}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-        >
-          <FaChevronLeft />
-        </NavButton>
-        <NavButton
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-        >
-          1
-        </NavButton>
-        <NavButton
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-        >
-          2
-        </NavButton>
-        <NavButton
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-        >
-          <FaChevronRight />
-        </NavButton>
-      </NavButtons>
+
     </FleetSection>
   );
 };

@@ -1,4 +1,13 @@
 {
+  "services": {
+    "title": "Our Services",
+    "vandens_pramogos": "Water Activities",
+    "vandens_pramogos_description": "Experience the thrill of water sports and activities with our professional instructors.",
+    "vandens_motociklu_nuoma": "Water Motorcycle Rental",
+    "vandens_motociklu_nuoma_description": "Rent high-quality water motorcycles for an unforgettable experience on the water.",
+    "keliones_su_gidu": "Guided Tours",
+    "keliones_su_gidu_description": "Join our guided tours to explore the best water routes and hidden gems."
+  },
   "hero": {
     "title": "JET ADVENTURES",
     "subtitle": "Experience the ultimate thrill of riding the waves with our premium jet ski rentals. Perfect for beginners and adrenaline junkies alike.",
@@ -7,7 +16,7 @@
   },
   "navbar": {
     "home": "Home",
-    "fleet": "Our Fleet",
+    "fleet": "Fleet",
     "testimonials": "Testimonials",
     "contact": "Contact"
   },
@@ -45,13 +54,19 @@
       "location": "San Diego, CA"
     }
   },
+  "map": {
+    "title": "Our Location",
+    "location": "Curonian Lagoon, Kuršmarės, formerly known as Prussian Sea"
+  },
   "contact": {
     "title": "Get In Touch",
     "subtitle": "Have questions or ready to book? Reach out to us!",
-    "name": "Your Name",
-    "email": "Your Email",
-    "message": "Your Message",
-    "submit": "Send Message"
+    "description": "Reach us by phone, email, or social media. We're always ready to answer your questions.",
+    "phone": "+370 600 00000",
+    "email": "info@jetrent.lt",
+    "location": "Curonian Lagoon, Kuršmarės, formerly known as Prussian Sea",
+    "instagram": "Instagram",
+    "facebook": "Facebook"
   },
   "footer": {
     "rights": "All Rights Reserved",

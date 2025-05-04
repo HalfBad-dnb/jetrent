@@ -6,10 +6,12 @@ import Hero from './components/Hero';
 import Fleet from './components/Fleet';
 import Testimonials from './components/Testimonials';
 import Contact from './components/Contact';
+import Map from './components/Map';
 import Footer from './components/Footer';
-import AnimatedBackground from './components/AnimatedBackground';
+import Services from './components/Services';
+
 import GlobalStyle from './styles';
-import './App.css';
+
 
 const AppContainer = styled.div`
   position: relative;
@@ -20,12 +22,13 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <AnimatedBackground />
       <AppContainer>
         <Navbar />
         <Hero />
+        <Services />
         <Fleet />
         <Testimonials />
+        <Map />
         <Contact />
         <Footer />
       </AppContainer>

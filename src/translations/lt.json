@@ -1,4 +1,13 @@
 {
+  "services": {
+    "title": "Mūsų Paslaugos",
+    "vandens_pramogos": "Vandens Pramogos",
+    "vandens_pramogos_description": "Patirti vandens sporto ir pramogų jaudulį su mūsų profesionaliais instruktoriais.",
+    "vandens_motociklu_nuoma": "Vandens Motociklų Nuoma",
+    "vandens_motociklu_nuoma_description": "Nuomokite aukščiausios kokybės vandens motociklus nebijodami patirti nepakartojamų jausmų ant vandens.",
+    "keliones_su_gidu": "Kelionės su Gidu",
+    "keliones_su_gidu_description": "Prisijunkite prie mūsų vadovaujamų kelionių, kad išsiaiškintumėte geriausias vandens maršrutus ir paslėptas liūdes."
+  },
   "hero": {
     "title": "VANDENS NUOTYKIAI",
     "subtitle": "Patirkite nepakartojamą jaudulį skriejant bangomis su mūsų aukščiausios kokybės vandens motociklų nuoma. Puikiai tinka tiek pradedantiesiems, tiek adrenalino mėgėjams.",
@@ -45,13 +54,19 @@
       "location": "San Diegas, CA"
     }
   },
+  "map": {
+    "title": "Mūsų vieta",
+    "location": "Kuršių marios, Kuršmarės, seniau vadintos Prūsų jūra"
+  },
   "contact": {
     "title": "Susisiekite Su Mumis",
     "subtitle": "Turite klausimų ar norite rezervuoti? Susisiekite!",
-    "name": "Jūsų Vardas",
-    "email": "Jūsų El. Paštas",
-    "message": "Jūsų Žinutė",
-    "submit": "Siųsti Žinutę"
+    "description": "Pasiekite mus per telefoną, el. paštą ar socialinius tinklus. Mes visada pasiruošę atsakyti į jūsų klausimus.",
+    "phone": "+370 600 00000",
+    "email": "info@jetrent.lt",
+    "location": "Kuršių marios, Kuršmarės, seniau vadintos Prūsų jūra",
+    "instagram": "Instagram",
+    "facebook": "Facebook"
   },
   "footer": {
     "rights": "Visos Teisės Saugomos",
