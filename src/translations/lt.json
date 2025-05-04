@@ -1,6 +1,19 @@
 {
+  "navbar": {
+    "home": "Pradžia",
+    "fleet": "Vandens motociklai",
+    "map": "Mus rasite",
+    "testimonials": "Atsiliepimai",
+    "contact": "Kontaktai"
+},
+"hero": {
+  "title": "T-Jet-Rent",
+  "subtitle": "Patirkite nepakartojamą jaudulį skriejant bangomis su mūsų aukščiausios kokybės vandens motociklų nuoma. Puikiai tinka tiek pradedantiesiems, tiek adrenalino mėgėjams.",
+  "button": "Rezervuoti Dabar",
+  "scrollDown": "Slinkite Žemyn"
+},
   "services": {
-    "title": "Mūsų Paslaugos",
+    "title": "Paslaugos",
     "vandens_pramogos": "Vandens Pramogos",
     "vandens_pramogos_description": "Patirti vandens sporto ir pramogų jaudulį su mūsų profesionaliais instruktoriais.",
     "vandens_motociklu_nuoma": "Vandens Motociklų Nuoma",
@@ -8,21 +21,10 @@
     "keliones_su_gidu": "Kelionės su Gidu",
     "keliones_su_gidu_description": "Prisijunkite prie mūsų vadovaujamų kelionių, kad išsiaiškintumėte geriausias vandens maršrutus ir paslėptas liūdes."
   },
-  "hero": {
-    "title": "T-Jet-Rent",
-    "subtitle": "Patirkite nepakartojamą jaudulį skriejant bangomis su mūsų aukščiausios kokybės vandens motociklų nuoma. Puikiai tinka tiek pradedantiesiems, tiek adrenalino mėgėjams.",
-    "button": "Rezervuoti Dabar",
-    "scrollDown": "Slinkite Žemyn"
-  },
-  "navbar": {
-    "home": "Pradžia",
-    "fleet": "Mūsų Flotilė",
-    "map": "Mus rasite",
-    "testimonials": "Atsiliepimai",
-    "contact": "Kontaktai"
-  },
+
+ 
   "fleet": {
-    "title": "Mūsų Flotilė",
+    "title": "Vandens motociklai",
     "subtitle": "Rinkitės iš mūsų aukštos kokybės vandens motociklų, kurių kiekvienas siūlo unikalią patirtį ant vandens. Visa mūsų įranga yra reguliariai prižiūrima ir turi naujausias saugos funkcijas."
   },
   "jetskis": {
