@@ -356,10 +356,10 @@ const Navbar = () => {
             <LanguageSwitcher />
           </LanguageSwitcherWrapper>
           <SocialIcons>
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" style={{ color: '#1877F2' }}>
+            <a href="https://facebook.com/tadas.rudzinskis" target="_blank" rel="noopener noreferrer" style={{ color: '#1877F2' }}>
               <FaFacebookF size={20} />
             </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" style={{ color: '#E1306C' }}>
+            <a href="https://instagram.com/tadas_greitai/?locale=en%2F" target="_blank" rel="noopener noreferrer" style={{ color: '#E1306C' }}>
               <FaInstagram size={20} />
             </a>
           </SocialIcons>
