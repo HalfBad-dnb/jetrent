@@ -9,29 +9,29 @@ const Nav = styled(m.nav)`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 1.5rem;
+  padding: max(1rem, env(safe-area-inset-top)) max(1.5rem, env(safe-area-inset-right)) max(1rem, env(safe-area-inset-bottom)) max(1.5rem, env(safe-area-inset-left));
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 100;
-  transition: all 0.3s ease;
-
-  background-color: ${({ isScrolled }) =>
-    isScrolled ? 'rgba(3, 150, 255, 0.5)' : 'transparent'};
-
-  backdrop-filter: ${({ isScrolled }) => (isScrolled ? 'blur(10px)' : 'none')};
-  -webkit-backdrop-filter: ${({ isScrolled }) => (isScrolled ? 'blur(10px)' : 'none')};
-
-  box-shadow: ${({ isScrolled }) =>
-    isScrolled ? '0 4px 20px rgba(0, 0, 0, 0.1)' : 'none'};
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(0);
+  transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), background-color 0.3s ease;
+  min-height: 60px;
 
   @media (max-width: 768px) {
-    padding: 1.25rem 1.25rem;
+    padding: max(0.75rem, env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right)) max(0.75rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
   }
 
   @media (max-width: 480px) {
-    padding: 1rem 1rem;
+    padding: max(0.5rem, env(safe-area-inset-top)) max(0.75rem, env(safe-area-inset-right)) max(0.5rem, env(safe-area-inset-bottom)) max(0.75rem, env(safe-area-inset-left));
+  }
+
+  &.hide {
+    transform: translateY(-100%);
   }
 `;
 
@@ -173,20 +173,16 @@ const MenuItem = styled(m.div)`
 const MobileMenuButton = styled.div`
   display: none;
   cursor: pointer;
+  touch-action: manipulation;
+  padding: 10px;
 
   @media (max-width: 768px) {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 40px;
-    height: 30px;
-    margin-left: 1.25rem;
-  }
-
-  @media (max-width: 480px) {
-    width: 35px;
-    height: 25px;
-    margin-left: 1rem;
+    width: 44px;
+    height: 44px;
+    margin-left: 0.5rem;
   }
 `;
 
@@ -194,51 +190,44 @@ const MenuLine = styled(m.div)`
   width: 100%;
   height: 3px;
   background-color: white;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+  will-change: transform;
 
-  @media (prefers-color-scheme: dark) {
-    background-color: rgba(255, 255, 255, 0.95);
-
-    &:hover {
-      background-color: rgba(255, 255, 255, 1);
-    }
+  @media (max-width: 768px) {
+    height: 4px;
   }
 `;
 
 const MobileMenu = styled(m.div)`
-  display: none;
+  display: ${({ visible }) => visible === 'true' ? 'flex' : 'none'};
+  touch-action: manipulation;
 
   @media (max-width: 768px) {
-    display: flex;
     flex-direction: column;
     position: fixed;
-    top: 80px;
+    top: calc(60px + env(safe-area-inset-top));
     left: 0;
     right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.15);
     z-index: 99;
-    background-color: #0396FF;
+    padding: 1rem 0;
+    overflow-y: auto;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
     backdrop-filter: blur(10px);
-    width: 100%;
-    max-width: 100%;
-    padding: 0.75rem 1rem;
-  }
-
-  @media (max-width: 480px) {
-    top: 65px;
-    padding: 0.75rem 0.75rem;
+    transform: translateY(${({ visible }) => visible === 'true' ? '0' : '-100%'});
+    transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
   }
 `;
 
 const MobileMenuItem = styled(m.div)`
+  padding: 1rem 1.5rem;
   color: white;
-  padding: 1rem 2rem;
   text-decoration: none;
   font-weight: 600;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   cursor: pointer;
-  display: block;
+  transition: all 0.2s ease;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   width: 100%;
   box-sizing: border-box;
 
@@ -246,7 +235,7 @@ const MobileMenuItem = styled(m.div)`
     border-bottom: none;
   }
 
-  &.hover {
+  &:hover {
     background-color: rgba(255, 255, 255, 0.1);
   }
 
@@ -257,59 +246,56 @@ const MobileMenuItem = styled(m.div)`
 `;
 
 const scrollToSection = (sectionId) => {
-  if (!sectionId || typeof sectionId !== 'string') return;
-  const cleanSectionId = sectionId.trim().toLowerCase();
-  const element = document.querySelector(`#${cleanSectionId}`);
-  if (element) {
-    element.scrollIntoView({ behavior: 'smooth' });
-  } else {
+  if (sectionId === 'home' || !sectionId) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   }
 };
 
 const Navbar = () => {
   const { t } = useTranslation();
-  const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [showNav, setShowNav] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      if (mobileMenuOpen) return; // Don't hide navbar if mobile menu is open
+      
+      const currentScrollY = window.scrollY;
+      
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setShowNav(false);
+      } else if (currentScrollY < lastScrollY) {
+        setShowNav(true);
+      }
+      
+      setLastScrollY(currentScrollY);
     };
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [lastScrollY, mobileMenuOpen]);
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
 
   const menuItems = [
-    { name: t('navbar.home'), link: '#' },
+    { name: t('navbar.home'), link: '#home' },
     { name: t('navbar.fleet'), link: '#fleet' },
     { name: t('navbar.map'), link: '#map' },
     { name: t('navbar.testimonials'), link: '#testimonials' },
     { name: t('navbar.contact'), link: '#contact' }
   ];
 
-  const navVariants = {
-    hidden: { opacity: 0, y: -20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
-  };
-
-  const mobileMenuVariants = {
-    hidden: { opacity: 0, y: -20, height: 0 },
-    visible: { opacity: 1, y: 0, height: 'auto', transition: { duration: 0.3, ease: 'easeOut' } }
-  };
-
   return (
     <>
-      <Nav
-        className={isScrolled ? 'scrolled' : ''}
-        variants={navVariants}
-        initial="hidden"
-        animate="visible"
-      >
+      <Nav className={showNav || mobileMenuOpen ? '' : 'hide'}>
         <NavbarContainer>
           <MenuItems>
             {menuItems.map((item, i) => (
@@ -353,10 +339,8 @@ const Navbar = () => {
         </NavbarContainer>
       </Nav>
 
-      <MobileMenu
-        variants={mobileMenuVariants}
-        initial="hidden"
-        animate={mobileMenuOpen ? 'visible' : 'hidden'}
+      <MobileMenu 
+        visible={mobileMenuOpen.toString()}
       >
         {menuItems.map((item, index) => (
           <MobileMenuItem

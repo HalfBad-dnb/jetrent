@@ -20,7 +20,6 @@ const MapSection = styled.section`
   padding: 5rem 2rem;
   position: relative;
   color: white;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.5) 100%);
   overflow: hidden;
 `;
 
@@ -169,7 +168,8 @@ const LocationInfo = styled.div`
   align-items: center;
   gap: 1.5rem;
   padding: 2rem;
-  background: rgba(3, 150, 255, 0.95);
+  background: transparent;
+  backdrop-filter: blur(10px);
   border-radius: 15px;
   transition: all 0.3s ease;
   

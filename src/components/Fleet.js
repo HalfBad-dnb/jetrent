@@ -104,11 +104,18 @@ const JetSkiGrid = styled.div`
 `;
 
 const JetSkiCard = styled(motion.div)`
-  background-color: white;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s, box-shadow 0.3s;
+
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.15);
+  }
 `;
 
 const JetSkiImage = styled.div`
@@ -166,13 +173,14 @@ const JetSkiSpecs = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 1rem;
-  color: #555;
+  color: white;
   font-size: 0.9rem;
 `;
 
 const JetSkiSpec = styled.span`
   display: flex;
   align-items: center;
+  color: white;
   
   svg {
     margin-right: 5px;
@@ -180,7 +188,7 @@ const JetSkiSpec = styled.span`
 `;
 
 const JetSkiDescription = styled.p`
-  color: #666;
+  color: white;
   font-size: 0.95rem;
   line-height: 1.5;
   margin-bottom: 1.5rem;
@@ -195,7 +203,7 @@ const JetSkiPrice = styled.div`
 const Price = styled.span`
   font-size: 1.3rem;
   font-weight: 700;
-  color: #FF9500;
+  color: white;
 `;
 
 const BookButton = styled(motion.button)`

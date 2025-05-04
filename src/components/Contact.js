@@ -62,12 +62,13 @@ const SectionTitle = styled(motion.h2)`
 
 const ContactInfo = styled.div`
   padding: 2rem;
-  background: linear-gradient(135deg, #0396FF 0%, #0D47A1 100%);
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 15px;
   color: white;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(13, 71, 161, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
   
   &::before {
     content: '';

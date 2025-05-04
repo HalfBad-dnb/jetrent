@@ -7,7 +7,6 @@ const jetsky1 = '/jetsky1.1.png';
 
 const ServicesSection = styled.section`
   padding: 5rem 2rem;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.5) 100%);
   color: white;
   position: relative;
   overflow: hidden;
