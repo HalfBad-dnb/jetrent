@@ -75,6 +75,32 @@ const ServiceTitle = styled.h3`
 const ServiceDescription = styled.p`
   color: rgba(255, 255, 255, 0.8);
   line-height: 1.6;
+  margin-bottom: 1.5rem;
+`;
+
+const BookNowButton = styled.button`
+  background: #FF9500;
+  color: white;
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  
+  &:hover {
+    background: #FF7B00;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
 `;
 
 const services = [
@@ -144,6 +170,9 @@ const Services = () => {
               <ServiceDescription>
                 {t(`services.${service.description}`)}
               </ServiceDescription>
+              <BookNowButton>
+                {t('services.book_now')}
+              </BookNowButton>
             </ServiceCard>
           ))}
         </Grid>

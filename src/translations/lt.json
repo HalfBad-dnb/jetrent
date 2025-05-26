@@ -19,7 +19,8 @@
     "vandens_motociklu_nuoma": "Vandens Motociklų Nuoma",
     "vandens_motociklu_nuoma_description": "Nuomokite aukščiausios kokybės vandens motociklus nebijodami patirti nepakartojamų jausmų ant vandens.",
     "keliones_su_gidu": "Kelionės su Gidu",
-    "keliones_su_gidu_description": "Prisijunkite prie mūsų vadovaujamų kelionių, kad išsiaiškintumėte geriausias vandens maršrutus ir paslėptas liūdes."
+    "keliones_su_gidu_description": "Prisijunkite prie mūsų vadovaujamų kelionių, kad išsiaiškintumėte geriausias vandens maršrutus ir paslėptas liūdes.",
+    "book_now": "Rezervuoti Dabar"
   },
 
  
@@ -85,6 +86,29 @@
     "weekdayHours": "Pirm-Penkt: 9:00 - 18:00",
     "weekendHours": "Savaitgaliais: 8:00 - 20:00",
     "cookies": "Slapukų Politika"
+  },
+  "activities": {
+    "title": "Vandens Pramogos",
+    "jet_ski_rental": "Vandens Motociklų Nuoma",
+    "jet_ski_rental_desc": "Patirkite nepakartojamą jausmą važiuojant bangomis mūsų galingais vandens motociklais. Puikiai tinka adrenalino ir ekstremalaus sporto mėgėjams.",
+    "banana_boat": "Banano Valtis",
+    "banana_boat_desc": "Linksmos banano valties pasivažinėjimai grupių. Laikykitės tvirtai, laukia įkvepianti kelionė su draugais ir šeima!",
+    "fishing_trips": "Žvejybos Išvykos",
+    "fishing_trips_desc": "Mėgaukitės atpalaiduojančia žvejyba mūsų gražiuose vandenyse. Visas įrankiai ir gidas suteikiami.",
+    "beach_relaxation": "Poilsis Paplūdimyje",
+    "beach_relaxation_desc": "Atsipalaiduokite mūsų privatausiame paplūdimyje su patogiais gulteliais ir puikiu aptarnavimu.",
+    "feature_high_speed": "Didelio greičio nuotykis",
+    "feature_guided_tours": "Vadovaujamos ekskursijos",
+    "feature_safety_gear": "Aukštos kokybės apsaugos įranga",
+    "feature_group_fun": "Puikiai tinka grupėms",
+    "feature_family_friendly": "Tinka šeimoms",
+    "feature_life_jackets": "Pateikiami gelbėjimosi liemenės",
+    "feature_equipment_included": "Visa įranga įskaičiuota",
+    "feature_experienced_guides": "Patyrę gidai",
+    "feature_catch_release": "Pagavus paleidžiame atgal",
+    "feature_private_beach": "Prieiga prie privataus paplūdimio",
+    "feature_comfort_zones": "Komforto zonos su gulteliais",
+    "feature_services": "Aptarnavimas paplūdimyje"
   },
   "language": {
     "en": "En",

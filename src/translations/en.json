@@ -6,7 +6,8 @@
     "vandens_motociklu_nuoma": "Water Motorcycle Rental",
     "vandens_motociklu_nuoma_description": "Rent high-quality water motorcycles for an unforgettable experience on the water.",
     "keliones_su_gidu": "Guided Tours",
-    "keliones_su_gidu_description": "Join our guided tours to explore the best water routes and hidden gems."
+    "keliones_su_gidu_description": "Join our guided tours to explore the best water routes and hidden gems.",
+    "book_now": "Book Now"
   },
   "hero": {
     "title": "T-Jet-Rent",
@@ -83,6 +84,29 @@
     "weekdayHours": "Mon-Fri: 9:00 AM - 6:00 PM",
     "weekendHours": "Weekends: 8:00 AM - 8:00 PM",
     "cookies": "Cookie Policy"
+  },
+  "activities": {
+    "title": "Water Activities",
+    "jet_ski_rental": "Jet Ski Rental",
+    "jet_ski_rental_desc": "Experience the thrill of riding the waves on our powerful jet skis. Perfect for adrenaline seekers and water sports enthusiasts.",
+    "banana_boat": "Banana Boat Rides",
+    "banana_boat_desc": "Fun-filled banana boat rides for groups. Hold on tight for an exciting ride with friends and family!",
+    "fishing_trips": "Fishing Trips",
+    "fishing_trips_desc": "Enjoy a relaxing day of fishing in our beautiful waters. All equipment and guidance provided.",
+    "beach_relaxation": "Beach Relaxation",
+    "beach_relaxation_desc": "Unwind on our private beach with comfortable loungers and excellent service.",
+    "feature_high_speed": "High-speed adventure",
+    "feature_guided_tours": "Guided tours available",
+    "feature_safety_gear": "Top-quality safety gear",
+    "feature_group_fun": "Perfect for groups",
+    "feature_family_friendly": "Family friendly",
+    "feature_life_jackets": "Life jackets provided",
+    "feature_equipment_included": "All equipment included",
+    "feature_experienced_guides": "Experienced guides",
+    "feature_catch_release": "Catch and release",
+    "feature_private_beach": "Private beach access",
+    "feature_comfort_zones": "Comfort zones with sunbeds",
+    "feature_services": "Beachside service available"
   },
   "language": {
     "en": "En",
