@@ -59,21 +59,34 @@ const AppContainer = styled.div`
 
 function App() {
   const [videoError, setVideoError] = useState(false);
-  const videoPath = "/assets/VideoBackround/t2.mov";
+  const videoPath = "/assets/VideoBackround/compressed/t2-mobile.mp4";
   const fallbackImagePath = "/assets/VideoBackground/fallback.jpg";
 
   useEffect(() => {
     // Preload the video
-    const videoElement = document.querySelector("video");
-    if (videoElement) {
-      videoElement.addEventListener("error", (e) => {
-        console.error("Video failed to load:", e);
-        setVideoError(true);
-      });
-      videoElement.addEventListener("loadeddata", () => {
-        console.log("Video loaded successfully");
-      });
-    }
+    const videoElement = document.createElement('video');
+    videoElement.src = videoPath;
+    videoElement.preload = 'auto';
+    
+    const handleLoad = () => {
+      console.log("Video loaded successfully");
+      setVideoError(false);
+    };
+    
+    const handleError = () => {
+      console.error("Video failed to load");
+      setVideoError(true);
+    };
+    
+    videoElement.addEventListener('loadeddata', handleLoad);
+    videoElement.addEventListener('error', handleError);
+    
+    return () => {
+      // Cleanup
+      videoElement.removeEventListener('loadeddata', handleLoad);
+      videoElement.removeEventListener('error', handleError);
+      videoElement.src = '';
+    };
   }, []);
 
   return (
