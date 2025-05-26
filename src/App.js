@@ -59,7 +59,7 @@ const AppContainer = styled.div`
 
 function App() {
   const [videoError, setVideoError] = useState(false);
-  const videoPath = "/assets/VideoBackround/compressed/t2-mobile.mp4";
+  const videoPath = "/assets/VideoBackround/compressed/t3-mobile.mp4";
   const fallbackImagePath = "/assets/VideoBackground/fallback.jpg";
 
   useEffect(() => {
