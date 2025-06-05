@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { FaWater, FaMap } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 const jetsky1 = '/jetsky1.1.png';
 
 const ServicesSection = styled.section`
@@ -19,19 +20,19 @@ const Container = styled.div`
 `;
 
 const SectionTitle = styled(motion.h2)`
-  font-size: 3.5rem;
-  text-align: center;
+  font-size: 3rem;
   margin: 0 auto 3rem;
-  color: #ffffff;
+  text-align: center;
+  color: #FF9500;
   position: relative;
-  text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
   width: 100%;
-  max-width: 90%;
-  display: block;
-  left: auto;
-  transform: none;
   font-weight: 700;
   letter-spacing: -0.5px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 `;
 
 const Grid = styled.div`
@@ -49,14 +50,34 @@ const Grid = styled.div`
 
 const ServiceCard = styled(motion.div)`
   background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-radius: 15px;
   padding: 2rem;
   text-align: center;
   transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: -1;
+    border-radius: 15px;
+  }
   
   &:hover {
     transform: translateY(-10px);
     background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
   }
 `;
 
@@ -68,8 +89,9 @@ const ServiceIcon = styled.div`
 
 const ServiceTitle = styled.h3`
   font-size: 1.5rem;
-  margin-bottom: 1rem;
-  color: white;
+  margin: 1.5rem 0 1rem;
+  color: #FF9500;
+  font-weight: 600;
 `;
 
 const ServiceDescription = styled.p`
@@ -141,6 +163,20 @@ const services = [
 
 const Services = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+
+  const handleBookNow = (e, serviceTitle) => {
+    e.preventDefault();
+    // Map service titles to their respective routes
+    const serviceRoutes = {
+      'vandens_pramogos': '/activities',
+      'vandens_motociklu_nuoma': '/rent',
+      'keliones_su_gidu': '/travel'
+    };
+    
+    const route = serviceRoutes[serviceTitle] || '/';
+    navigate(route);
+  };
 
   return (
     <ServicesSection id="services">
@@ -150,7 +186,7 @@ const Services = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          {t('services.title')}
+          {t('services.title').toUpperCase()}
         </SectionTitle>
         
         <Grid>
@@ -170,7 +206,7 @@ const Services = () => {
               <ServiceDescription>
                 {t(`services.${service.description}`)}
               </ServiceDescription>
-              <BookNowButton>
+              <BookNowButton onClick={(e) => handleBookNow(e, service.title)}>
                 {t('services.book_now')}
               </BookNowButton>
             </ServiceCard>

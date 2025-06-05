@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { motion as m } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
@@ -133,40 +134,52 @@ const MenuItems = styled.div`
   }
 `;
 
-const MenuItem = styled(m.div)`
+const MenuItem = styled(m(Link))`
   color: white;
-  margin-left: 2rem;
   text-decoration: none;
-  font-weight: 600;
-  position: relative;
-  cursor: pointer;
+  font-weight: 500;
+  font-size: 1.1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
   transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  ${props => props.active === 'true' ? 'color: #FF9500;' : ''}
+
+  &:hover {
+    color: #FF9500;
+  }
 
   &::after {
     content: '';
     position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 0;
+    width: ${props => props.active === 'true' ? '70%' : '0'};
     height: 2px;
-    background-color: white;
-    transition: width 0.3s ease;
+    bottom: 0;
+    left: 50%;
+    background-color: #FF9500;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
   }
 
   &:hover::after {
-    width: 100%;
-  }
-
-  &.hover {
-    scale: 1.05;
-  }
-
-  &.tap {
-    scale: 0.95;
+    width: 70%;
   }
 
   @media (max-width: 768px) {
-    margin-left: 1rem;
+    padding: 0.75rem 1rem;
+    width: 100%;
+    text-align: center;
+    border-radius: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    ${props => props.active === 'true' ? 'background-color: rgba(255, 149, 0, 0.1);' : ''}
+
+    &::after {
+      display: none;
+    }
   }
 `;
 
@@ -245,19 +258,36 @@ const MobileMenuItem = styled(m.div)`
   }
 `;
 
-const scrollToSection = (sectionId) => {
-  if (sectionId === 'home' || !sectionId) {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+const scrollToSection = (sectionId, navigate) => {
+  if (window.location.pathname !== '/') {
+    navigate('/');
+    // Small delay to allow the home page to load
+    setTimeout(() => {
+      if (sectionId === 'home') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    }, 100);
   } else {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    if (sectionId === 'home') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   }
 };
 
 const Navbar = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [showNav, setShowNav] = useState(true);
@@ -286,11 +316,11 @@ const Navbar = () => {
   };
 
   const menuItems = [
-    { name: t('navbar.home'), link: '#home' },
-    { name: t('navbar.fleet'), link: '#fleet' },
-    { name: t('navbar.map'), link: '#map' },
-    { name: t('navbar.testimonials'), link: '#testimonials' },
-    { name: t('navbar.contact'), link: '#contact' }
+    { name: t('navbar.home'), link: 'home' },
+    { name: t('navbar.fleet'), link: 'fleet' },
+    { name: t('navbar.map'), link: 'map' },
+    { name: t('navbar.contact'), link: 'contact' },
+    { name: t('navbar.activities'), link: 'activities', isRoute: true }
   ];
 
   return (
@@ -299,14 +329,35 @@ const Navbar = () => {
         <NavbarContainer>
           <MenuItems>
             {menuItems.map((item, i) => (
-              <MenuItem
-                key={i}
-                whileHover="hover"
-                whileTap="tap"
-                onClick={() => scrollToSection(item.link.replace('#', ''))}
-              >
-                {item.name}
-              </MenuItem>
+              item.isRoute ? (
+                <MenuItem
+                  key={i}
+                  as={Link}
+                  to={`/${item.link}`}
+                  active={location.pathname === `/${item.link}` ? 'true' : 'false'}
+                  whileHover="hover"
+                  whileTap="tap"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {item.name}
+                </MenuItem>
+              ) : (
+                <MenuItem
+                  key={i}
+                  as={Link}
+                  to="/"
+                  active={location.pathname === '/' ? 'true' : 'false'}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection(item.link, navigate);
+                    setMobileMenuOpen(false);
+                  }}
+                  whileHover="hover"
+                  whileTap="tap"
+                >
+                  {item.name}
+                </MenuItem>
+              )
             ))}
           </MenuItems>
 
@@ -346,10 +397,16 @@ const Navbar = () => {
           <MobileMenuItem
             key={index}
             className="hover"
+            as={item.isRoute ? Link : 'div'}
+            to={item.isRoute ? `/${item.link}` : '#'}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => {
-              scrollToSection(item.link.replace('#', ''));
+              if (item.isRoute) {
+                navigate(`/${item.link}`);
+              } else {
+                scrollToSection(item.link, navigate);
+              }
               setMobileMenuOpen(false);
             }}
           >

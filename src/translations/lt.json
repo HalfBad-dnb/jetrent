@@ -4,11 +4,12 @@
     "fleet": "Vandens motociklai",
     "map": "Mus rasite",
     "testimonials": "Atsiliepimai",
-    "contact": "Kontaktai"
+    "contact": "Kontaktai",
+    "activities": "Pramogos"
 },
 "hero": {
   "title": "T-Jet-Rent",
-  "subtitle": "Patirkite nepakartojamą jaudulį skriejant bangomis su mūsų aukščiausios kokybės vandens motociklų nuoma. Puikiai tinka tiek pradedantiesiems, tiek adrenalino mėgėjams.",
+  "subtitle": "Patirkite nepakartojamą jaudulį skriejant bangomis su mūsų aukščiausios kokybės vandens motociklais.",
   "button": "Rezervuoti Dabar",
   "scrollDown": "Slinkite Žemyn"
 },
@@ -113,5 +114,66 @@
   "language": {
     "en": "En",
     "lt": "Lt"
+  },
+  "rental": {
+    "title": "Vandens Motociklų Nuomos Pasiūlymai",
+    "subtitle": "Pasirinkite tinkamiausią vandens pramogų paketą. Visi mūsų vandens motociklai yra puikios būklės ir siūlomi su visu reikiamu saugos įranga bei instruktažu.",
+    "hour": "valandai",
+    "book_now": "Rezervuoti Dabar",
+    "standard": {
+      "title": "Standartinis Vandens Motociklas",
+      "description": "Puikus pasirinkimas pradedantiesiems ir atsitikitiniams vartotojams. Patirkite vandens motociklo važiavimo jaudulį su mūsų patikimu standartiniu modeliu."
+    },
+    "premium": {
+      "title": "Premium Vandens Motociklas",
+      "description": "Tiems, kurie ieško daugiau galios ir didesnio greičio. Mūsų aukščiausios klasės modeliai siūlo patobulintas charakteristikas ir galimybes."
+    },
+    "group": {
+      "title": "Grupinis Paketas",
+      "description": "Ypatingas pasiūlymas grupėms. Išsinuomokite kelis vandens motociklus ir mėgaukitės vandens pramogomis su draugais ar šeima."
+    },
+    "features": {
+      "standard1": "Tinka pradedantiesiems",
+      "standard2": "Pagrindinis saugos instruktažas",
+      "standard3": "Gelbėjamis liemenė įskaičiuota",
+      "premium1": "Aukšto našumo modelis",
+      "premium2": "Pažangios saugos sistemos",
+      "premium3": "Įskaičiuota 30 min. mokymas",
+      "group1": "3+ vandens motociklai",
+      "group2": "10% nuolaida grupei",
+      "group3": "Asmeninis instruktorius"
+    }
+  },
+  "travel": {
+    "title": "Vadovaujami Turistiniai Maršrutai",
+    "subtitle": "Atraskite mūsų pakrantės grožį su patyrusių gidų. Puikus pasirinkimas nuotykių ieškotojams ir gamtos mylėtojams.",
+    "book_now": "Rezervuoti Kelionę",
+    "per_person": "už asmenį",
+    "duration": "{{hours}} val.",
+    "custom_duration": "Individualus laikas",
+    "custom_price": "Kaina susitariant",
+    "coastal_tour": {
+      "title": "Pakrantės Pažintinė Kelionė",
+      "description": "Patirkite nuostabią pakrantę su mūsų populiariausiu vadovaujamu turu. Puikus pasirinkimas pirmą kartą lankantiems ir fotografijos mėgėjams."
+    },
+    "sunset_tour": {
+      "title": "Vakaro Saulėlydžio Kelionė",
+      "description": "Stebėkite stulbinantį saulėlydį virš vandens, mėgdamiesi jaudinančia kelione palei pakrantę."
+    },
+    "private_tour": {
+      "title": "Privatus Čarterio Turas",
+      "description": "Sukurkite savo nuotykį pagal savo pageidavimus ir interesus su individualiu turu."
+    },
+    "features": {
+      "coastal1": "Aplankykite paslėptas paplūdimio ir įlankas",
+      "coastal2": "Profesionalus gidas su vietinėmis žiniomis",
+      "coastal3": "Sustojimai nuotraukoms nuostabiose vietose",
+      "sunset1": "Vakarinis turas su nuostabiais vaizdais",
+      "sunset2": "Šampano tostas įskaičiuotas",
+      "sunset3": "Mažos grupės patirtis",
+      "private1": "Visapusiškai pritaikoma kelionės programa",
+      "private2": "Asmeninis gidas ir įranga",
+      "private3": "Lankstus kelionės pradžios laikas"
+    }
   }
 }

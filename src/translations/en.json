@@ -20,7 +20,8 @@
     "fleet": "Fleet",
     "map": "Find Us",
     "testimonials": "Testimonials",
-    "contact": "Contact"
+    "contact": "Contact",
+    "activities": "Activities"
   },
   "fleet": {
     "title": "Our Fleet",
@@ -111,5 +112,66 @@
   "language": {
     "en": "En",
     "lt": "Lt"
+  },
+  "rental": {
+    "title": "Jet Ski Rental Packages",
+    "subtitle": "Choose the perfect rental package for your water adventure. All our jet skis are well-maintained and come with safety equipment and instructions.",
+    "hour": "hour",
+    "book_now": "Book Now",
+    "standard": {
+      "title": "Standard Jet Ski",
+      "description": "Perfect for beginners and casual riders. Experience the thrill of jet skiing with our reliable standard model."
+    },
+    "premium": {
+      "title": "Premium Jet Ski",
+      "description": "For those seeking more power and speed. Our premium models offer enhanced performance and features."
+    },
+    "group": {
+      "title": "Group Package",
+      "description": "Special package for groups. Rent multiple jet skis and enjoy a day of fun on the water with friends or family."
+    },
+    "features": {
+      "standard1": "Suitable for beginners",
+      "standard2": "Basic safety instructions",
+      "standard3": "Life jacket included",
+      "premium1": "High-performance model",
+      "premium2": "Advanced safety features",
+      "premium3": "30 min training included",
+      "group1": "3+ jet skis",
+      "group2": "10% group discount",
+      "group3": "Dedicated instructor"
+    }
+  },
+  "travel": {
+    "title": "Guided Tours & Experiences",
+    "subtitle": "Discover the beauty of our coastline with our expert-guided tours. Perfect for adventure seekers and nature lovers.",
+    "book_now": "Book Tour",
+    "per_person": "per person",
+    "duration": "{{hours}} hours",
+    "custom_duration": "Custom duration",
+    "custom_price": "Price on request",
+    "coastal_tour": {
+      "title": "Coastal Explorer Tour",
+      "description": "Experience the stunning coastline with our most popular guided tour. Perfect for first-time visitors and photography enthusiasts."
+    },
+    "sunset_tour": {
+      "title": "Sunset Adventure Tour",
+      "description": "Witness a breathtaking sunset over the water while enjoying a thrilling ride along the coast."
+    },
+    "private_tour": {
+      "title": "Private Charter Tour",
+      "description": "Customize your own adventure with a private tour tailored to your preferences and interests."
+    },
+    "features": {
+      "coastal1": "Visit hidden beaches and coves",
+      "coastal2": "Professional guide with local knowledge",
+      "coastal3": "Photo stops at scenic locations",
+      "sunset1": "Evening tour with spectacular views",
+      "sunset2": "Champagne toast included",
+      "sunset3": "Small group experience",
+      "private1": "Fully customizable itinerary",
+      "private2": "Private guide and equipment",
+      "private3": "Flexible start times"
+    }
   }
 }

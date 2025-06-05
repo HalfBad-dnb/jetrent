@@ -11,25 +11,28 @@ const ContactSection = styled.section`
 `;
 
 const Container = styled.div`
-  max-width: 1200px;
+  max-width: 800px;
   margin: 0 auto;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   padding: 0 2rem;
 `;
 
 const SectionTitle = styled(motion.h2)`
-  font-size: 3rem;
+  font-size: 3.5rem;
   text-align: center;
-  margin: 0 auto 3rem;
-  color: #ffffff;
+  margin: 0 auto 2rem;
+  color: #FF9500;
   position: relative;
-  text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  display: block;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   width: 100%;
   max-width: 90%;
-  display: block;
-  left: auto;
-  transform: none;
+  font-weight: 800;
+  letter-spacing: -1px;
+  line-height: 1.2;
+  padding: 0 1rem;
   
   &::after {
     content: '';
@@ -43,16 +46,27 @@ const SectionTitle = styled(motion.h2)`
     border-radius: 3px;
   }
 
+  @media (max-width: 992px) {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+  }
+  
   @media (max-width: 768px) {
-    font-size: 2.25rem;
-    margin-bottom: 2.5rem;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
     max-width: 100%;
   }
   
+  @media (max-width: 576px) {
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    padding: 0 1rem;
+  }
+  
   @media (max-width: 480px) {
-    font-size: 1.8rem;
-    margin-bottom: 2rem;
-    padding: 0 10px;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    padding: 0 0.5rem;
     white-space: normal;
     overflow-wrap: break-word;
     word-wrap: break-word;
@@ -61,14 +75,19 @@ const SectionTitle = styled(motion.h2)`
 `;
 
 const ContactInfo = styled.div`
-  padding: 2rem;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 15px;
+  padding: 3rem 2.5rem;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
   color: white;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(10px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(12px);
+  width: 100%;
+  max-width: 700px;
+  text-align: center;
+  margin: 0 auto;
   
   &::before {
     content: '';
@@ -83,9 +102,12 @@ const ContactInfo = styled.div`
 `;
 
 const ContactInfoTitle = styled.h3`
-  font-size: 1.8rem;
+  font-size: 2rem;
   margin-bottom: 1.5rem;
+  color: #FF9500;
   position: relative;
+  font-weight: 700;
+  letter-spacing: -0.5px;
   
   @media (max-width: 768px) {
     font-size: 1.6rem;
@@ -98,10 +120,13 @@ const ContactInfoTitle = styled.h3`
 `;
 
 const ContactInfoText = styled.p`
-  font-size: 1.1rem;
-  line-height: 1.6;
-  margin-bottom: 2rem;
+  font-size: 1.25rem;
+  line-height: 1.7;
+  margin: 0 auto 2.5rem;
   position: relative;
+  max-width: 90%;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.9);
   
   @media (max-width: 768px) {
     font-size: 1rem;
@@ -119,15 +144,27 @@ const ContactDetails = styled.div`
   position: relative;
 `;
 
-const ContactItem = styled(motion.div)`
+const ContactItem = styled(motion.a)`
   display: flex;
   align-items: center;
-  gap: 1rem;
-  padding: 1.5rem;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
+  justify-content: center;
+  text-align: center;
+  gap: 1.25rem;
+  padding: 1.5rem 1rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
   transition: all 0.3s ease;
-  margin-bottom: 1rem;
+  margin: 0 auto 1.25rem;
+  max-width: 450px;
+  width: 100%;
+  text-decoration: none;
+  cursor: pointer;
+  
+  @media (max-width: 480px) {
+    padding: 1.25rem 1rem;
+    gap: 1rem;
+  }
 
   &:hover {
     background: rgba(255, 255, 255, 0.1);
@@ -136,41 +173,24 @@ const ContactItem = styled(motion.div)`
 `;
 
 const ContactItemText = styled.span`
-  font-size: 1.1rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: white;
+  word-break: break-all;
+  display: inline-block;
+  text-align: left;
   
   @media (max-width: 768px) {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
   
   @media (max-width: 480px) {
-    font-size: 0.9rem;
+    font-size: 1rem;
     word-break: break-word;
   }
 `;
 
-const SocialLinks = styled.div`
-  display: flex;
-  gap: 1rem;
-  margin-top: 2rem;
-  position: relative;
-`;
 
-const SocialLink = styled(motion.a)`
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  text-decoration: none;
-  transition: background-color 0.3s;
-  
-  &:hover {
-    background-color: #FF9500;
-  }
-`;
 
 const variants = {
   container: {
@@ -208,7 +228,7 @@ const Contact = () => {
           initial="hidden"
           animate="visible"
         >
-          <SectionTitle>{t('contact.title', 'Contact Us')}</SectionTitle>
+          <SectionTitle>{t('contact.title', 'Contact Us').toUpperCase()}</SectionTitle>
           
           <Container>
             <ContactInfo>
@@ -216,44 +236,52 @@ const Contact = () => {
               <ContactInfoText>{t('contact.infoText', 'We would love to hear from you! Whether you have questions about our services, want to make a reservation, or just want to say hello, please feel free to contact us.')}</ContactInfoText>
               
               <ContactDetails>
-                <ContactItem
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                <ContactItem 
+                  as="a"
+                  href="tel:+37061470086"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                 >
                   <FaPhone />
-                  <ContactItemText>+37061470086</ContactItemText>
+                  <ContactItemText>+370 614 70086</ContactItemText>
                 </ContactItem>
                 
                 <ContactItem
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                  as="a"
+                  href="mailto:info@jetrent.lt"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                 >
                   <FaEnvelope />
                   <ContactItemText>info@jetrent.lt</ContactItemText>
                 </ContactItem>
               </ContactDetails>
               
-              <SocialLinks>
-                <SocialLink
+              <ContactDetails>
+                <ContactItem 
+                  as="a"
                   href="https://facebook.com/tadas.rudzinskis"
                   target="_blank"
                   rel="noopener noreferrer"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                 >
                   <FaFacebook />
-                </SocialLink>
+                  <ContactItemText>T-Jet-Rent</ContactItemText>
+                </ContactItem>
                 
-                <SocialLink
+                <ContactItem
+                  as="a"
                   href="https://instagram.com/tadas_greitai?locale=en%2F"
                   target="_blank"
                   rel="noopener noreferrer"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                 >
                   <FaInstagram />
-                </SocialLink>
-              </SocialLinks>
+                  <ContactItemText>tadas_jet_rent</ContactItemText>
+                </ContactItem>
+              </ContactDetails>
             </ContactInfo>
           </Container>
         </motion.div>

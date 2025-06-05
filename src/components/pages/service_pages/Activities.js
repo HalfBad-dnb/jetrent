@@ -3,10 +3,16 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { FaWater, FaSwimmingPool, FaFish, FaUmbrellaBeach } from 'react-icons/fa';
+import BackgroundVideo from '../../BackgroundVideo';
 
 const ActivitiesContainer = styled.div`
   padding: 4rem 2rem;
-  background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%);
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+  color: white;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(5px);
   min-height: 100vh;
 `;
 
@@ -16,9 +22,10 @@ const Container = styled.div`
 `;
 
 const SectionTitle = styled.h1`
-  font-size: 2.5rem;
+  font-size: 3rem;
   text-align: center;
-  color: #2c3e50;
+  margin-bottom: 3rem;
+  color: #FF9500;
   margin-bottom: 3rem;
   position: relative;
   padding-bottom: 1rem;
@@ -72,7 +79,8 @@ const ActivityContent = styled.div`
 
 const ActivityTitle = styled.h3`
   font-size: 1.5rem;
-  color: #2c3e50;
+  margin: 1.5rem 0 1rem;
+  color: #FF9500;
   margin-bottom: 1rem;
 `;
 
@@ -141,8 +149,10 @@ const Activities = () => {
   const { t } = useTranslation();
 
   return (
-    <ActivitiesContainer>
-      <Container>
+    <>
+      <BackgroundVideo />
+      <ActivitiesContainer>
+        <Container>
         <SectionTitle>{t('activities.title')}</SectionTitle>
         <ActivitiesGrid>
           {activities.map((activity) => (
@@ -171,8 +181,9 @@ const Activities = () => {
             </ActivityCard>
           ))}
         </ActivitiesGrid>
-      </Container>
-    </ActivitiesContainer>
+        </Container>
+      </ActivitiesContainer>
+    </>
   );
 };
 

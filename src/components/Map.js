@@ -34,16 +34,17 @@ const Container = styled.div`
 `;
 
 const SectionTitle = styled(motion.h2)`
-  font-size: 3.5rem;
+  font-size: 3rem;
   text-align: center;
-  margin: 0 auto 3rem;
-  color: #ffffff;
+  margin: 0 auto 1.5rem;
+  color: #FF9500;
   position: relative;
-  text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  display: block;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   width: 100%;
   max-width: 90%;
-  display: block;
-  left: auto;
+  font-weight: 700;
+  letter-spacing: -0.5px;
   transform: none;
   font-weight: 700;
   letter-spacing: -0.5px;
@@ -144,7 +145,7 @@ const Map = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        {t('map.title')}
+        {t('map.title').toUpperCase()}
       </SectionTitle>
       
       <Container>

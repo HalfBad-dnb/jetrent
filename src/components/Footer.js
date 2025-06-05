@@ -65,8 +65,9 @@ const FooterText = styled.p`
 `;
 
 const FooterTitle = styled.h3`
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   margin-bottom: 1.5rem;
+  color: #FF9500;
   position: relative;
   padding-bottom: 0.5rem;
   
@@ -211,7 +212,7 @@ const Footer = () => {
         >
           <Logo>
             <FaWater />
-            <span>{t('hero.title')}</span>
+            <span>{t('hero.title').toUpperCase()}</span>
           </Logo>
           <FooterText>
             {t('footer.companyDescription', 'Experience the ultimate thrill on the water with our premium jet ski rentals. Established in 2010, we\'ve been providing unforgettable water adventures.')}
@@ -239,12 +240,11 @@ const Footer = () => {
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
         >
-          <FooterTitle>{t('footer.quickLinks', 'Quick Links')}</FooterTitle>
+          <FooterTitle>{t('footer.quickLinks', 'Quick Links').toUpperCase()}</FooterTitle>
           <FooterLinks>
             <FooterLink><a href="/">{t('navbar.home')}</a></FooterLink>
             <FooterLink><a href="#fleet">{t('navbar.fleet')}</a></FooterLink>
             <FooterLink><a href="#pricing">{t('footer.pricing', 'Pricing')}</a></FooterLink>
-            <FooterLink><a href="#testimonials">{t('navbar.testimonials')}</a></FooterLink>
             <FooterLink><a href="#contact">{t('navbar.contact')}</a></FooterLink>
           </FooterLinks>
         </FooterColumn>
@@ -256,7 +256,7 @@ const Footer = () => {
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
         >
-          <FooterTitle>{t('footer.services', 'Services')}</FooterTitle>
+          <FooterTitle>{t('footer.services', 'SERVICES')}</FooterTitle>
           <FooterLinks>
             <FooterLink><a href="/services/rentals">Jet Ski Rentals</a></FooterLink>
             <FooterLink><a href="/services/tours">Guided Tours</a></FooterLink>
@@ -273,7 +273,7 @@ const Footer = () => {
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
         >
-          <FooterTitle>{t('footer.contactInfo', 'Contact Info')}</FooterTitle>
+          <FooterTitle>{t('footer.contactInfo', 'CONTACT INFO')}</FooterTitle>
           <ContactInfo>
             <ContactItem>
               <FaMapMarkerAlt />

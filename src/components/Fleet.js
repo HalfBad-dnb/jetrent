@@ -22,17 +22,19 @@ const FleetSection = styled.section`
 
 const SectionTitle = styled(motion.h2)`
   font-size: 3rem;
+  margin: 0 auto 3rem;
   text-align: center;
-  margin: 0 auto 1.5rem;
-  color: #ffffff;
+  color: #FF9500;
   position: relative;
-  display: block;
-  text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
   width: 100%;
-  max-width: 90%;
-  transform: none;
-  left: auto;
-  
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
   &::after {
     content: '';
     position: absolute;
@@ -165,8 +167,8 @@ const JetSkiInfo = styled.div`
 
 const JetSkiName = styled.h3`
   font-size: 1.5rem;
-  margin-bottom: 0.5rem;
-  color: #0D47A1;
+  margin: 1rem 0 0.5rem;
+  color: #FF9500;
 `;
 
 const JetSkiSpecs = styled.div`
@@ -299,7 +301,7 @@ const Fleet = () => {
         whileInView="visible"
         viewport={{ once: true, amount: 0.1 }}
       >
-        {t('fleet.title')}
+        {t('fleet.title').toUpperCase()}
       </SectionTitle>
       
       <FleetDescription
