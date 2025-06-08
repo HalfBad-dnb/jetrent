@@ -263,7 +263,7 @@ const Contact = () => {
                 
                 <ContactItem
                   as="a"
-                  href="https://instagram.com/tadas_greitai?locale=en%2F"
+                  href="https://instagram.com/tadas_jet_rent"
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.02 }}
