@@ -11,8 +11,7 @@ const RentContainer = styled.div`
   color: white;
   position: relative;
   z-index: 1;
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(5px);
+
   min-height: 100vh;
   padding-top: 80px; // To account for fixed navbar
 `;

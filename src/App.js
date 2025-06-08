@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
 import "./i18n";
 import styled from "styled-components";
 import Navbar from "./components/Navbar";
@@ -130,15 +130,46 @@ const TravelPage = () => {
   );
 };
 
+// Component to scroll to top on route change
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
+
 function App() {
   return (
     <>
       <GlobalStyle />
       <Routes>
-        <Route path="/" element={<MainContent />} />
-        <Route path="/activities" element={<ActivitiesPage />} />
-        <Route path="/rent" element={<RentPage />} />
-        <Route path="/travel" element={<TravelPage />} />
+        <Route path="/" element={
+          <>
+            <ScrollToTop />
+            <MainContent />
+          </>
+        } />
+        <Route path="/activities" element={
+          <>
+            <ScrollToTop />
+            <ActivitiesPage />
+          </>
+        } />
+        <Route path="/rent" element={
+          <>
+            <ScrollToTop />
+            <RentPage />
+          </>
+        } />
+        <Route path="/travel" element={
+          <>
+            <ScrollToTop />
+            <TravelPage />
+          </>
+        } />
       </Routes>
     </>
   );

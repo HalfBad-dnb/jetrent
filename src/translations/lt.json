@@ -3,7 +3,6 @@
     "home": "Pradžia",
     "fleet": "Vandens motociklai",
     "map": "Mus rasite",
-    "testimonials": "Atsiliepimai",
     "contact": "Kontaktai",
     "activities": "Pramogos"
 },
@@ -90,8 +89,8 @@
   },
   "activities": {
     "title": "Vandens Pramogos",
-    "jet_ski_rental": "Vandens Motociklų Nuoma",
-    "jet_ski_rental_desc": "Patirkite nepakartojamą jausmą važiuojant bangomis mūsų galingais vandens motociklais. Puikiai tinka adrenalino ir ekstremalaus sporto mėgėjams.",
+    "jet_ski_rental": "Pripučiamas dvivietis plaustas",
+    "jet_ski_rental_desc": "Patirkite nepakartojamą jausmą skriejant bangomis ",
     "banana_boat": "Banano Valtis",
     "banana_boat_desc": "Linksmos banano valties pasivažinėjimai grupių. Laikykitės tvirtai, laukia įkvepianti kelionė su draugais ir šeima!",
     "fishing_trips": "Žvejybos Išvykos",
@@ -154,14 +153,14 @@
     "custom_price": "Kaina susitariant",
     "coastal_tour": {
       "title": "Pakrantės Pažintinė Kelionė",
-      "description": "Patirkite nuostabią pakrantę su mūsų populiariausiu vadovaujamu turu. Puikus pasirinkimas pirmą kartą lankantiems ir fotografijos mėgėjams."
+      "description": "Patirkite nuostabią pakrantę su mūsų populiariausiu vadovaujamu turu."
     },
     "sunset_tour": {
       "title": "Vakaro Saulėlydžio Kelionė",
       "description": "Stebėkite stulbinantį saulėlydį virš vandens, mėgdamiesi jaudinančia kelione palei pakrantę."
     },
     "private_tour": {
-      "title": "Privatus Čarterio Turas",
+      "title": "Privatus Turas",
       "description": "Sukurkite savo nuotykį pagal savo pageidavimus ir interesus su individualiu turu."
     },
     "features": {

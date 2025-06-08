@@ -2,6 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import './Styles/Hero.css';
 
 const HeroSection = styled.section`
   min-height: 100vh;
@@ -104,6 +105,14 @@ const HeroContent = styled.div`
 
 const Hero = () => {
   const { t } = useTranslation();
+
+  const scrollToContact = (e) => {
+    e.preventDefault();
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   // Function to scroll to the next section
   const scrollToNextSection = () => {
@@ -208,29 +217,27 @@ const Hero = () => {
           maxWidth: '500px',
           gap: '1.5rem'
         }}>
-          <motion.div
-            initial={{ opacity: 0, x: -100, filter: 'blur(10px)' }}
-            animate={{ opacity: 1, x: 0, filter: 'blur(0)' }}
-            transition={{
-              duration: 0.8,
-              delay: 0.3,
-              ease: [0.16, 1, 0.3, 1]
-            }}
+          <motion.div 
+            className="hero-subtitle"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
             style={{
-              textAlign: 'center',
-              color: 'rgba(255, 255, 255, 0.95)',
-              fontSize: '1.2rem',
-              lineHeight: 1.5,
+              width: '100%',
               maxWidth: '90%',
-              textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)',
-              fontWeight: 700,
-              textTransform: 'uppercase',
-              letterSpacing: '0.05em'
+              margin: '0 auto',
+              padding: '0 1rem',
+              boxSizing: 'border-box',
+              textAlign: 'center',
+              lineHeight: '1.5',
+              wordBreak: 'break-word',
+              hyphens: 'auto'
             }}
           >
             {t('hero.subtitle')}
           </motion.div>
           <motion.button
+            onClick={scrollToContact}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}

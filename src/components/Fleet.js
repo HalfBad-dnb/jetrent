@@ -63,30 +63,6 @@ const SectionTitle = styled(motion.h2)`
   }
 `;
 
-const FleetDescription = styled(motion.p)`
-  text-align: center;
-  max-width: 800px;
-  margin: 0 auto 3rem;
-  font-size: 1.2rem;
-  color: #e0e0e0;
-  line-height: 1.6;
-  padding: 0 1rem;
-  
-  @media (max-width: 768px) {
-    font-size: 1.1rem;
-    margin: 0 auto 2.5rem;
-    max-width: 90%;
-  }
-  
-  @media (max-width: 480px) {
-    font-size: 0.95rem;
-    margin: 0 auto 2rem;
-    line-height: 1.5;
-    max-width: 100%;
-    padding: 0 0.5rem;
-  }
-`;
-
 const JetSkiGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -198,14 +174,10 @@ const JetSkiDescription = styled.p`
 
 const JetSkiPrice = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-`;
-
-const Price = styled.span`
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: white;
+  width: 100%;
+  margin-top: 1rem;
 `;
 
 const BookButton = styled(motion.button)`
@@ -231,8 +203,7 @@ const getJetSkis = (t) => [
     horsepower: '160 HP',
     capacity: '2 Person',
     speed: '65 mph',
-    description: t('jetskis.jetski1.description', 'Perfect for beginners, the Wave Runner X1 offers a stable and fun riding experience with enough power to satisfy thrill-seekers.'),
-    price: '$90/hr'
+    description: t('jetskis.jetski1.description', 'Perfect for beginners, the Wave Runner X1 offers a stable and fun riding experience with enough power to satisfy thrill-seekers.')
   },
   {
     id: 2,
@@ -241,8 +212,7 @@ const getJetSkis = (t) => [
     horsepower: '130 HP',
     capacity: '3 Person',
     speed: '55 mph',
-    description: t('jetskis.jetski2.description', 'A family-friendly option with extra seating capacity and good balance of performance and stability for all skill levels.'),
-    price: '$110/hr'
+    description: t('jetskis.jetski2.description', 'A family-friendly option with extra seating capacity and good balance of performance and stability for all skill levels.')
   },
   {
     id: 3,
@@ -251,8 +221,7 @@ const getJetSkis = (t) => [
     horsepower: '250 HP',
     capacity: '3 Person',
     speed: '70 mph',
-    description: t('jetskis.jetski3.description', 'Our premium model with superior power and luxury features for those seeking the ultimate jet ski experience.'),
-    price: '$150/hr'
+    description: t('jetskis.jetski3.description', 'Our premium model with superior power and luxury features for those seeking the ultimate jet ski experience.')
   },
   {
     id: 4,
@@ -261,14 +230,21 @@ const getJetSkis = (t) => [
     horsepower: '250 HP',
     capacity: '3 Person',
     speed: '70 mph',
-    description: t('jetskis.jetski3.description', 'Our premium model with superior power and luxury features for those seeking the ultimate jet ski experience.'),
-    price: '$150/hr'
+    description: t('jetskis.jetski3.description', 'Our premium model with superior power and luxury features for those seeking the ultimate jet ski experience.')
   }
 ];
 
 const Fleet = () => {
   const { t } = useTranslation();
   const jetSkis = getJetSkis(t);
+
+  const scrollToContact = (e) => {
+    e.preventDefault();
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
   const cardVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: custom => ({
@@ -304,14 +280,6 @@ const Fleet = () => {
         {t('fleet.title').toUpperCase()}
       </SectionTitle>
       
-      <FleetDescription
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ delay: 0.2, duration: 0.7 }}
-        viewport={{ once: true, amount: 0.1 }}
-      >
-        {t('fleet.subtitle')}
-      </FleetDescription>
       
       <JetSkiGrid>
         {jetSkis.map((jetSki, index) => (
@@ -336,8 +304,8 @@ const Fleet = () => {
               </JetSkiSpecs>
               <JetSkiDescription>{jetSki.description}</JetSkiDescription>
               <JetSkiPrice>
-                <Price>{jetSki.price}</Price>
                 <BookButton
+                  onClick={scrollToContact}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >

@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { FaPhone, FaEnvelope, FaInstagram, FaFacebook } from 'react-icons/fa';
+import { FaPhone, FaInstagram, FaFacebook } from 'react-icons/fa';
 
 const ContactSection = styled.section`
   padding: 5rem 2rem;
@@ -246,15 +246,6 @@ const Contact = () => {
                   <ContactItemText>+370 614 70086</ContactItemText>
                 </ContactItem>
                 
-                <ContactItem
-                  as="a"
-                  href="mailto:info@jetrent.lt"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <FaEnvelope />
-                  <ContactItemText>info@jetrent.lt</ContactItemText>
-                </ContactItem>
               </ContactDetails>
               
               <ContactDetails>

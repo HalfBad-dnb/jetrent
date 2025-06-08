@@ -2,10 +2,10 @@ import { createGlobalStyle } from 'styled-components';
 
 // These would be replaced with actual images in a production environment
 export const IMAGES = {
-  jetski1: '/assets/jet/vx.webp',
-  jetski2: '/assets/jet/gp-svho-a-sp.webp',
-  jetski3: '/assets/jet/property-1gp-ho-torch-red_profile-no-speaker.webp',
-  jetski4: '/assets/jet/2014-ultra-r-model-view-q4gz5n1bs2uf58i7nhs7s5ng9ieao8rkdsqdrxk3bk.png',
+  jetski1: '/assets/jet/Yamaha waverruner vx 1100 cruiser.webp',
+  jetski2: '/assets/jet/Yamaha waverruner gp 1800 svho.webp',
+  jetski3: '/assets/jet/Yamaha waverruner fz 1800 svho.webp',
+  jetski4: '/assets/jet/Kawasaki 310R Ultra 1500.png',
   customer1: 'https://randomuser.me/api/portraits/women/44.jpg',
   customer2: 'https://randomuser.me/api/portraits/men/32.jpg',
   customer3: 'https://randomuser.me/api/portraits/women/68.jpg',

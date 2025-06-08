@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { motion as m } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from './LanguageSwitcher';
 import { FaInstagram, FaFacebookF, FaMapMarkerAlt, FaPhoneAlt } from 'react-icons/fa';
 
-const Nav = styled(m.nav)`
+const Nav = styled(motion.nav)`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -134,7 +134,7 @@ const MenuItems = styled.div`
   }
 `;
 
-const MenuItem = styled(m(Link))`
+const MenuItem = styled(motion(Link))`
   color: white;
   text-decoration: none;
   font-weight: 500;
@@ -199,7 +199,7 @@ const MobileMenuButton = styled.div`
   }
 `;
 
-const MenuLine = styled(m.div)`
+const MenuLine = styled(motion.div)`
   width: 100%;
   height: 3px;
   background-color: white;
@@ -211,7 +211,7 @@ const MenuLine = styled(m.div)`
   }
 `;
 
-const MobileMenu = styled(m.div)`
+const MobileMenu = styled(motion.div)`
   display: ${({ visible }) => visible === 'true' ? 'flex' : 'none'};
   touch-action: manipulation;
 
@@ -233,7 +233,7 @@ const MobileMenu = styled(m.div)`
   }
 `;
 
-const MobileMenuItem = styled(m.div)`
+const MobileMenuItem = styled(motion.div)`
   padding: 1rem 1.5rem;
   color: white;
   text-decoration: none;
@@ -320,7 +320,6 @@ const Navbar = () => {
     { name: t('navbar.fleet'), link: 'fleet' },
     { name: t('navbar.map'), link: 'map' },
     { name: t('navbar.contact'), link: 'contact' },
-    { name: t('navbar.activities'), link: 'activities', isRoute: true }
   ];
 
   return (
@@ -366,10 +365,10 @@ const Navbar = () => {
           </LanguageSwitcherWrapper>
 
           <SocialIcons>
-            <a href="https://facebook.com/tadas.rudzinskis" target="_blank" rel="noopener noreferrer" style={{ color: '#1877F2' }}>
+            <a href="https://facebook.com/profile.php?id=61576732776125" target="_blank" rel="noopener noreferrer" style={{ color: '#1877F2' }}>
               <FaFacebookF size={24} />
             </a>
-            <a href="https://instagram.com/tadas_greitai/?locale=en%2F" target="_blank" rel="noopener noreferrer" style={{ color: '#E1306C' }}>
+            <a href="https://instagram.com/tadas_jet_rent/?locale=en%2F" target="_blank" rel="noopener noreferrer" style={{ color: '#E1306C' }}>
               <FaInstagram size={24} />
             </a>
             <PhoneNumber href="tel:+37061470086">

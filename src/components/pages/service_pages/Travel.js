@@ -11,7 +11,6 @@ const TravelContainer = styled.div`
   color: white;
   position: relative;
   z-index: 1;
-  background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(5px);
   min-height: 100vh;
   padding-top: 80px; // To account for fixed navbar
@@ -80,48 +79,15 @@ const TourDescription = styled.p`
   line-height: 1.6;
 `;
 
-const TourFeatures = styled.ul`
-  list-style: none;
-  padding: 0;
-  margin-bottom: 1.5rem;
-  
-  li {
-    margin-bottom: 0.8rem;
-    display: flex;
-    align-items: flex-start;
-    
-    &::before {
-      content: '✓';
-      color: #4CAF50;
-      margin-right: 0.8rem;
-      font-weight: bold;
-      flex-shrink: 0;
-      margin-top: 0.2rem;
-    }
-  }
-`;
+
 
 const TourFooter = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   margin-top: 1.5rem;
   padding-top: 1.5rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-`;
-
-const Price = styled.div`
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #FF9500;
-  
-  span {
-    font-size: 1rem;
-    color: #ccc;
-    font-weight: normal;
-    display: block;
-    margin-top: 0.3rem;
-  }
 `;
 
 const BookButton = styled(motion.button)`
@@ -140,16 +106,7 @@ const BookButton = styled(motion.button)`
   }
 `;
 
-const DurationBadge = styled.span`
-  background: rgba(255, 149, 0, 0.2);
-  color: #FF9500;
-  padding: 0.3rem 0.8rem;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  display: inline-block;
-`;
+
 
 const Travel = () => {
   const { t } = useTranslation();
@@ -159,39 +116,21 @@ const Travel = () => {
       id: 1,
       title: t('travel.coastal_tour.title'),
       description: t('travel.coastal_tour.description'),
-      duration: t('travel.duration', { hours: 2 }),
-      price: '120',
-      features: [
-        t('travel.features.coastal1'),
-        t('travel.features.coastal2'),
-        t('travel.features.coastal3'),
-      ],
+
       image: '/assets/travel/coastal-tour.jpg'
     },
     {
       id: 2,
       title: t('travel.sunset_tour.title'),
       description: t('travel.sunset_tour.description'),
-      duration: t('travel.duration', { hours: 2.5 }),
-      price: '150',
-      features: [
-        t('travel.features.sunset1'),
-        t('travel.features.sunset2'),
-        t('travel.features.sunset3'),
-      ],
+
       image: '/assets/travel/sunset-tour.jpg'
     },
     {
       id: 3,
       title: t('travel.private_tour.title'),
       description: t('travel.private_tour.description'),
-      duration: t('travel.custom_duration'),
-      price: t('travel.custom_price'),
-      features: [
-        t('travel.features.private1'),
-        t('travel.features.private2'),
-        t('travel.features.private3'),
-      ],
+
       image: '/assets/travel/private-tour.jpg'
     }
   ];
@@ -219,19 +158,9 @@ const Travel = () => {
           >
             <TourImage image={tour.image} />
             <TourContent>
-              <DurationBadge>{tour.duration}</DurationBadge>
               <TourTitle>{tour.title}</TourTitle>
               <TourDescription>{tour.description}</TourDescription>
-              <TourFeatures>
-                {tour.features.map((feature, index) => (
-                  <li key={index}>{feature}</li>
-                ))}
-              </TourFeatures>
               <TourFooter>
-                <Price>
-                  {tour.price}
-                  {tour.price !== t('travel.custom_price') && <span>{t('travel.per_person')}</span>}
-                </Price>
                 <BookButton
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}

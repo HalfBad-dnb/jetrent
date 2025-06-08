@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube, FaWater, FaPhone, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaFacebookF, FaInstagram, FaYoutube, FaWater, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
 
 const FooterContainer = styled.footer`
   background-color: rgba(0, 0, 0, 0.5);
@@ -218,18 +218,21 @@ const Footer = () => {
             {t('footer.companyDescription', 'Experience the ultimate thrill on the water with our premium jet ski rentals. Established in 2010, we\'ve been providing unforgettable water adventures.')}
           </FooterText>
           <SocialLinks>
-            <SocialIcon className="facebook" whileTap={{ scale: 0.9 }}>
-              <FaFacebookF />
-            </SocialIcon>
-            <SocialIcon className="twitter" whileTap={{ scale: 0.9 }}>
-              <FaTwitter />
-            </SocialIcon>
-            <SocialIcon className="instagram" whileTap={{ scale: 0.9 }}>
-              <FaInstagram />
-            </SocialIcon>
-            <SocialIcon className="youtube" whileTap={{ scale: 0.9 }}>
-              <FaYoutube />
-            </SocialIcon>
+            <a href="https://www.facebook.com/profile.php?id=61576732776125" target="_blank" rel="noopener noreferrer">
+              <SocialIcon className="facebook" whileTap={{ scale: 0.9 }}>
+                <FaFacebookF />
+              </SocialIcon>
+            </a>
+            <a href="https://www.instagram.com/tadas_jet_rent/" target="_blank" rel="noopener noreferrer">
+              <SocialIcon className="instagram" whileTap={{ scale: 0.9 }}>
+                <FaInstagram />
+              </SocialIcon>
+            </a>
+            <a href="https://www.youtube.com/@T-Jet-Rent" target="_blank" rel="noopener noreferrer">
+              <SocialIcon className="youtube" whileTap={{ scale: 0.9 }}>
+                <FaYoutube />
+              </SocialIcon>
+            </a>
           </SocialLinks>
         </FooterColumn>
         
@@ -244,7 +247,6 @@ const Footer = () => {
           <FooterLinks>
             <FooterLink><a href="/">{t('navbar.home')}</a></FooterLink>
             <FooterLink><a href="#fleet">{t('navbar.fleet')}</a></FooterLink>
-            <FooterLink><a href="#pricing">{t('footer.pricing', 'Pricing')}</a></FooterLink>
             <FooterLink><a href="#contact">{t('navbar.contact')}</a></FooterLink>
           </FooterLinks>
         </FooterColumn>
@@ -258,11 +260,9 @@ const Footer = () => {
         >
           <FooterTitle>{t('footer.services', 'SERVICES')}</FooterTitle>
           <FooterLinks>
-            <FooterLink><a href="/services/rentals">Jet Ski Rentals</a></FooterLink>
-            <FooterLink><a href="/services/tours">Guided Tours</a></FooterLink>
-            <FooterLink><a href="/services/events">Group Events</a></FooterLink>
-            <FooterLink><a href="/services/training">Training Sessions</a></FooterLink>
-            <FooterLink><a href="/services/corporate">Corporate Packages</a></FooterLink>
+            <FooterLink><a href="/activities">Vandens pramogos</a></FooterLink>
+            <FooterLink><a href="/rent">Vandens motociklu nuoma </a></FooterLink>
+            <FooterLink><a href="/travel">Keliones su gidu</a></FooterLink>
           </FooterLinks>
         </FooterColumn>
         
@@ -281,18 +281,9 @@ const Footer = () => {
             </ContactItem>
             <ContactItem>
               <FaPhone />
-              <span>+370 600 00000</span>
-            </ContactItem>
-            <ContactItem>
-              <FaEnvelope />
-              <span>info@jetrent.lt</span>
+              <span>+370 614 70086</span>
             </ContactItem>
           </ContactInfo>
-          <FooterText>
-            <strong>{t('footer.openingHours', 'Opening Hours')}:</strong><br />
-            {t('footer.weekdayHours', 'Mon-Fri: 9:00 AM - 6:00 PM')}<br />
-            {t('footer.weekendHours', 'Weekends: 8:00 AM - 8:00 PM')}
-          </FooterText>
         </FooterColumn>
       </FooterTop>
       
