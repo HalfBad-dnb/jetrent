@@ -130,7 +130,9 @@ const SocialLinks = styled.div`
   gap: 0.8rem;
 `;
 
-const SocialIcon = styled(motion.div)`
+const SocialIcon = styled(motion.div).withConfig({
+  shouldForwardProp: (prop) => !['whileHover', 'whileTap'].includes(prop),
+})`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -140,21 +142,30 @@ const SocialIcon = styled(motion.div)`
   margin: 0 0.5rem;
   cursor: pointer;
   transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.1);
 
-  &.facebook:hover {
-    background-color: #3b5998;
+  &.facebook {
+    &:hover {
+      background-color: #3b5998;
+    }
   }
 
-  &.twitter:hover {
-    background-color: #1da1f2;
+  &.twitter {
+    &:hover {
+      background-color: #1da1f2;
+    }
   }
 
-  &.instagram:hover {
-    background-color: #e1306c;
+  &.instagram {
+    &:hover {
+      background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    }
   }
 
-  &.youtube:hover {
-    background-color: #ff0000;
+  &.youtube {
+    &:hover {
+      background-color: #ff0000;
+    }
   }
 `;
 
@@ -219,17 +230,35 @@ const Footer = () => {
           </FooterText>
           <SocialLinks>
             <a href="https://www.facebook.com/profile.php?id=61576732776125" target="_blank" rel="noopener noreferrer">
-              <SocialIcon className="facebook" whileTap={{ scale: 0.9 }}>
+              <SocialIcon 
+                className="facebook" 
+                whileHover={{ scale: 1.1, backgroundColor: '#3b5998' }}
+                whileTap={{ scale: 0.9 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+              >
                 <FaFacebookF />
               </SocialIcon>
             </a>
             <a href="https://www.instagram.com/tadas_jet_rent/" target="_blank" rel="noopener noreferrer">
-              <SocialIcon className="instagram" whileTap={{ scale: 0.9 }}>
+              <SocialIcon 
+                className="instagram" 
+                whileHover={{ 
+                  scale: 1.1, 
+                  background: 'linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)' 
+                }}
+                whileTap={{ scale: 0.9 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+              >
                 <FaInstagram />
               </SocialIcon>
             </a>
             <a href="https://www.youtube.com/@T-Jet-Rent" target="_blank" rel="noopener noreferrer">
-              <SocialIcon className="youtube" whileTap={{ scale: 0.9 }}>
+              <SocialIcon 
+                className="youtube" 
+                whileHover={{ scale: 1.1, backgroundColor: '#ff0000' }}
+                whileTap={{ scale: 0.9 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+              >
                 <FaYoutube />
               </SocialIcon>
             </a>

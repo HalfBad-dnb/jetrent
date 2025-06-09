@@ -8,7 +8,7 @@
 },
 "hero": {
   "title": "T-Jet-Rent",
-  "subtitle": "Patirkite nepakartojamą jaudulį skriejant bangomis su mūsų aukščiausios kokybės vandens motociklais.",
+  "subtitle": "Patirkite nepakartojamą jaudulį skriejant bangomis !",
   "button": "Rezervuoti Dabar",
   "scrollDown": "Slinkite Žemyn"
 },
@@ -91,6 +91,8 @@
     "title": "Vandens Pramogos",
     "jet_ski_rental": "Pripučiamas dvivietis plaustas",
     "jet_ski_rental_desc": "Patirkite nepakartojamą jausmą skriejant bangomis ",
+    "wakeboard": "Wakeboardas",
+    "wakeboard_desc": "Patirkite wakeboardo įspūdžius su mūsų profesionalia įranga ir patyrusiais instruktoriais. ",
     "banana_boat": "Banano Valtis",
     "banana_boat_desc": "Linksmos banano valties pasivažinėjimai grupių. Laikykitės tvirtai, laukia įkvepianti kelionė su draugais ir šeima!",
     "fishing_trips": "Žvejybos Išvykos",

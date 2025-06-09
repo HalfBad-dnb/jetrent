@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { FaWater } from 'react-icons/fa';
+import { GiSailboat } from 'react-icons/gi'; // For wakeboard icon
 
 const ActivitiesContainer = styled.div`
   padding: 4rem 2rem;
@@ -10,13 +11,28 @@ const ActivitiesContainer = styled.div`
   position: relative;
   z-index: 1;
   color: white;
-
-  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const Container = styled.div`
   max-width: 1200px;
   margin: 0 auto;
+  width: 100%;
+`;
+
+const ActivitiesGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const SectionTitle = styled.h1`
@@ -48,8 +64,10 @@ const ActivityCard = styled(motion.div)`
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
-  max-width: 800px;
-  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 `;
 
 const ActivityImage = styled.div`
@@ -85,15 +103,29 @@ const ActivityDescription = styled.p`
 
 
 
+
+
 const Activities = () => {
   const { t } = useTranslation();
   
-  const activity = {
-    id: 1,
-    title: 'jet_ski_rental',
-    description: 'jet_ski_rental_desc',
-    icon: <FaWater />,
-  };
+  const activities = [
+    {
+      id: 'jetSki',
+      title: 'jet_ski_rental',
+      description: 'jet_ski_rental_desc',
+      icon: <FaWater size={60} />,
+      bgColor: '#3498db',
+      video: '/assets/VideoBackround/WaterActivitiesVideoBackground.mp4'
+    },
+    {
+      id: 'wakeboard',
+      title: 'wakeboard',
+      description: 'wakeboard_desc',
+      icon: <GiSailboat size={60} />,
+      bgColor: '#2ecc71',
+      video: '/assets/VideoBackround/WaterActivitiesVideoBackground.mp4'
+    }
+  ];
 
   return (
     <>
@@ -111,26 +143,31 @@ const Activities = () => {
           left: 0
         }}
       >
-        <source src="/assets/VideoBackround/WaterActivitiesVideoBackground.mp4" type="video/mp4" />
+        <source src={activities[0].video} type="video/mp4" />
       </video>
       <ActivitiesContainer>
         <Container>
           <SectionTitle>{t('activities.title')}</SectionTitle>
-          <ActivityCard
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <ActivityImage bgColor={activity.bgColor}>
-              {activity.icon}
-            </ActivityImage>
-            <ActivityContent>
-              <ActivityTitle>{t(`activities.${activity.title}`)}</ActivityTitle>
-              <ActivityDescription>
-                {t(`activities.${activity.description}`)}
-              </ActivityDescription>
-            </ActivityContent>
-          </ActivityCard>
+          <ActivitiesGrid>
+            {activities.map((activity) => (
+              <ActivityCard
+                key={activity.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: activity.id === 'wakeboard' ? 0.1 : 0 }}
+              >
+                <ActivityImage bgColor={activity.bgColor}>
+                  {activity.icon}
+                </ActivityImage>
+                <ActivityContent>
+                  <ActivityTitle>{t(`activities.${activity.title}`)}</ActivityTitle>
+                  <ActivityDescription>
+                    {t(`activities.${activity.description}`)}
+                  </ActivityDescription>
+                </ActivityContent>
+              </ActivityCard>
+            ))}
+          </ActivitiesGrid>
         </Container>
       </ActivitiesContainer>
     </>
