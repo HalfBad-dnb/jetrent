@@ -96,19 +96,6 @@ const RentFeatures = styled.ul`
   }
 `;
 
-const Price = styled.div`
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #FF9500;
-  margin-bottom: 1.5rem;
-  
-  span {
-    font-size: 1rem;
-    color: #ccc;
-    font-weight: normal;
-  }
-`;
-
 const BookButton = styled(motion.button)`
   background: #FF9500;
   color: white;
@@ -134,8 +121,7 @@ const Rent = () => {
       id: 1,
       title: t('rental.standard.title'),
       description: t('rental.standard.description'),
-      price: '70',
-      period: t('rental.hour'),
+
       features: [
         t('rental.features.standard1'),
         t('rental.features.standard2'),
@@ -147,8 +133,7 @@ const Rent = () => {
       id: 2,
       title: t('rental.premium.title'),
       description: t('rental.premium.description'),
-      price: '100',
-      period: t('rental.hour'),
+
       features: [
         t('rental.features.premium1'),
         t('rental.features.premium2'),
@@ -160,8 +145,7 @@ const Rent = () => {
       id: 3,
       title: t('rental.group.title'),
       description: t('rental.group.description'),
-      price: '250',
-      period: t('rental.hour'),
+
       features: [
         t('rental.features.group1'),
         t('rental.features.group2'),
@@ -200,9 +184,6 @@ const Rent = () => {
                 <li key={index}>{feature}</li>
               ))}
             </RentFeatures>
-            <Price>
-              {rental.price} € <span>/{rental.period}</span>
-            </Price>
             <BookButton
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
