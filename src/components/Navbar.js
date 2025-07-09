@@ -134,7 +134,23 @@ const MenuItems = styled.div`
   }
 `;
 
-const MenuItem = styled(motion(Link))`
+const menuItemVariants = {
+  hover: { 
+    scale: 1.05,
+    transition: { duration: 0.2 }
+  },
+  tap: { 
+    scale: 0.95,
+    transition: { duration: 0.1 }
+  }
+};
+
+const MenuItem = styled(motion(Link)).attrs({
+  variants: menuItemVariants,
+  initial: 'rest',
+  whileHover: 'hover',
+  whileTap: 'tap'
+})`
   color: white;
   text-decoration: none;
   font-weight: 500;
@@ -148,10 +164,6 @@ const MenuItem = styled(motion(Link))`
   text-transform: uppercase;
   letter-spacing: 0.5px;
   ${props => props.active === 'true' ? 'color: #FF9500;' : ''}
-
-  &:hover {
-    color: #FF9500;
-  }
 
   &::after {
     content: '';
@@ -331,11 +343,8 @@ const Navbar = () => {
               item.isRoute ? (
                 <MenuItem
                   key={i}
-                  as={Link}
                   to={`/${item.link}`}
                   active={location.pathname === `/${item.link}` ? 'true' : 'false'}
-                  whileHover="hover"
-                  whileTap="tap"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {item.name}
