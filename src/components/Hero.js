@@ -98,6 +98,7 @@ const HeroContent = styled.div`
   align-items: center;
   margin-top: 0;
   gap: 1.5rem;
+  margin-top: 40px; /* Added margin to lower the content */
   
   @media (max-width: 768px) {
     max-width: 100%;

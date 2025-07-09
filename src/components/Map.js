@@ -17,10 +17,15 @@ L.Icon.Default.mergeOptions({
 });
 
 const MapSection = styled.section`
-  padding: 5rem 2rem;
+  padding: 7rem 2rem 5rem; /* Increased top padding to account for fixed navbar */
   position: relative;
   color: white;
   overflow: hidden;
+  margin-top: 0;
+  
+  @media (max-width: 768px) {
+    padding: 6rem 1.5rem 4rem;
+  }
 `;
 
 const Container = styled.div`
@@ -62,7 +67,9 @@ const SectionTitle = styled(motion.h2)`
   }
 
   @media (max-width: 768px) {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    padding-top: 1.5rem;
   }
 `;
 
@@ -74,6 +81,7 @@ const MapWrapper = styled.div`
   height: 500px;
   width: 100%;
   background: rgba(3, 150, 255, 0.1);
+  margin-top: 2rem; /* Add space between title and map */
 
   #map {
     height: 100%;
@@ -139,11 +147,17 @@ const Map = () => {
   }, []);
 
   return (
-    <MapSection>
+    <MapSection id="map">
       <SectionTitle
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
+        style={{
+          marginBottom: '2rem',
+          paddingTop: '1rem',
+          position: 'relative',
+          zIndex: 10
+        }}
       >
         {t('map.title').toUpperCase()}
       </SectionTitle>

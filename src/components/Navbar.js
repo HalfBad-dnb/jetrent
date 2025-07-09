@@ -19,6 +19,7 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('');
   const menuRef = useRef(null);
+  const scrollTimeoutRef = useRef(null);
 
   // Close menu when clicking outside
   useEffect(() => {
@@ -87,7 +88,6 @@ const Navbar = () => {
             scrollPosition < elementTop + elementHeight - scrollThreshold
           ) {
             setActiveSection(id);
-            return;
           }
         }
       }
@@ -112,26 +112,48 @@ const Navbar = () => {
 
   const scrollToSection = (sectionId) => {
     setIsMenuOpen(false);
-    if (location.pathname !== '/') {
-      navigate('/', { state: { scrollTo: sectionId } });
-    } else {
+    
+    const scrollToElement = () => {
+      clearTimeout(scrollTimeoutRef.current);
+      
       const element = document.getElementById(sectionId);
-      if (element) {
-        const headerHeight = 80; // Should match your header height
-        const elementPosition = element.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
-
-        // Add a small delay to ensure the menu is closed before scrolling
-        requestAnimationFrame(() => {
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-          });
-          
-          // Update URL without page reload
-          window.history.pushState({}, '', `#${sectionId}`);
-        });
+      if (!element) {
+        // If element not found, try again after a short delay
+        scrollTimeoutRef.current = setTimeout(() => {
+          scrollToSection(sectionId);
+        }, 100);
+        return;
       }
+      
+      // Get the header height (use the actual header height from your CSS)
+      const header = document.querySelector('header');
+      const headerHeight = header ? header.offsetHeight : 80; // Fallback to 80px if header not found
+      
+      // Calculate the position to scroll to
+      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+      const offsetPosition = elementPosition - headerHeight - 20; // Add 20px of extra space
+      
+      // Smooth scroll to the element
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+      
+      // Update URL without page reload
+      window.history.pushState({}, '', `#${sectionId}`);
+    };
+    
+    if (location.pathname !== '/') {
+      navigate('/', { 
+        state: { scrollTo: sectionId },
+        replace: true
+      });
+      
+      // Small delay to ensure the component is mounted
+      scrollTimeoutRef.current = setTimeout(scrollToElement, 100);
+    } else {
+      // Small delay to ensure the menu is closed before scrolling
+      scrollTimeoutRef.current = setTimeout(scrollToElement, 100);
     }
   };
 
@@ -218,7 +240,7 @@ const Navbar = () => {
           <a href="https://facebook.com/profile.php?id=61576732776125" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
             <FaFacebookF size={18} />
           </a>
-          <a href="https://www.instagram.com/jetrent.lt/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <a href="https://www.instagram.com/tadas_jet_rent/?locale=en%2F" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
             <FaInstagram size={18} />
           </a>
           <a href="tel:+37012345678" className="phone-number" aria-label="Phone">

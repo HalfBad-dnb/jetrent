@@ -84,8 +84,18 @@ const BackgroundVideo = ({ children }) => {
               console.error('Video error:', e);
               setVideoError(true);
             }}
+            onCanPlayThrough={() => {
+              // Try to play the video when it's ready
+              if (videoRef.current) {
+                videoRef.current.play().catch(error => {
+                  console.error('Video play failed:', error);
+                  setVideoError(true);
+                });
+              }
+            }}
           >
-            <source src="/assets/VideoBackround/background_video.mp4" type="video/mp4" />
+            <source src="/assets/VideoBackround/background_video.mp4" type="video/mp4; codecs=avc1.42E01E,mp4a.40.2" />
+            <source src="/assets/VideoBackround/background_video.webm" type="video/webm" />
             Your browser does not support the video tag.
           </VideoBackground>
         ) : (

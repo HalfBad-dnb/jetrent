@@ -6,7 +6,7 @@ import { FaWater } from 'react-icons/fa';
 import { GiSailboat } from 'react-icons/gi'; // For wakeboard icon
 
 const ActivitiesContainer = styled.div`
-  padding: 4rem 2rem;
+  padding: 6rem 2rem 4rem; /* Increased top padding to account for fixed navbar */
   min-height: 100vh;
   position: relative;
   z-index: 1;
@@ -14,6 +14,7 @@ const ActivitiesContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 0; /* Ensure no negative margins are affecting the position */
 `;
 
 const Container = styled.div`

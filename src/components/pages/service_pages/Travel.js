@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import BackgroundVideo from '../../BackgroundVideo';
 
 const TravelContainer = styled.div`
-  padding: 4rem 2rem;
+  padding: 6rem 2rem 4rem; /* Increased top padding to account for fixed navbar */
   max-width: 1200px;
   margin: 0 auto;
   color: white;
@@ -14,7 +14,7 @@ const TravelContainer = styled.div`
   z-index: 1;
   backdrop-filter: blur(5px);
   min-height: 100vh;
-  padding-top: 80px; // To account for fixed navbar
+  margin-top: 0; /* Ensure no negative margins are affecting the position */
 `;
 
 const Title = styled.h1`
