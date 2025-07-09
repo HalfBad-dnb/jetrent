@@ -97,7 +97,7 @@ const RentFeatures = styled.ul`
   }
 `;
 
-const BookButton = styled(motion.button)`
+const BookButton = styled.button`
   background: #FF9500;
   color: white;
   border: none;
@@ -107,10 +107,17 @@ const BookButton = styled(motion.button)`
   font-weight: 600;
   cursor: pointer;
   width: 100%;
-  transition: background 0.3s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   
   &:hover {
     background: #e68a00;
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  }
+  
+  &:active {
+    transform: scale(0.95);
   }
 `;
 
@@ -188,11 +195,7 @@ const Rent = () => {
                 <li key={index}>{feature}</li>
               ))}
             </RentFeatures>
-            <BookButton
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => handleBookNow(rental.title)}
-            >
+            <BookButton onClick={() => handleBookNow(rental.title)}>
               {t('rental.book_now')}
             </BookButton>
           </RentCard>

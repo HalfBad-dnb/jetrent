@@ -1,11 +1,11 @@
 {
-  "navbar": {
+  "nav": {
     "home": "Pradžia",
-    "fleet": "Vandens motociklai",
+    "fleet": "Mūsų flotilė",
     "map": "Mus rasite",
     "contact": "Kontaktai",
     "activities": "Pramogos"
-},
+  },
 "hero": {
   "title": "T-Jet-Rent",
   "subtitle": "Patirkite nepakartojamą jaudulį skriejant bangomis !",
@@ -13,7 +13,7 @@
   "scrollDown": "Slinkite Žemyn"
 },
   "services": {
-    "title": "Paslaugos",
+    "title": "Pramogos",
     "vandens_pramogos": "Vandens Pramogos",
     "vandens_pramogos_description": "Patirti vandens sporto ir pramogų jaudulį su mūsų profesionaliais instruktoriais.",
     "vandens_motociklu_nuoma": "Vandens Motociklų Nuoma",

@@ -1,0 +1,103 @@
+/* Base section styles */
+section {
+  min-height: 100vh;
+  padding: 100px 20px 60px; /* Top padding accounts for fixed header */
+  position: relative;
+  scroll-margin-top: 80px; /* Matches header height */
+}
+
+/* Home section specific */
+#home {
+  padding: 60px 20px 40px; /* Reduced top padding for mobile */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: calc(100vh - 60px); /* Adjust for header height */
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  #home {
+    padding-top: 100px; /* More padding on desktop */
+    min-height: 100vh;
+  }
+}
+
+/* Fleet section */
+#fleet {
+  background-color: #f8f9fa;
+}
+
+/* Services section */
+#services {
+  background-color: #ffffff;
+}
+
+/* Map section */
+#map {
+  min-height: 80vh; /* Slightly shorter than full viewport */
+  padding: 60px 20px;
+}
+
+/* Contact section */
+#contact {
+  background-color: #f8f9fa;
+  padding-bottom: 120px; /* Extra padding at the bottom */
+}
+
+/* Section headers */
+.section-header {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.section-header h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.section-header p {
+  font-size: 1.2rem;
+  color: #666;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  section {
+    padding: 60px 15px 40px;
+    min-height: auto;
+  }
+  
+  #home {
+    padding-top: 40px;
+    min-height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .section-header h2 {
+    font-size: 2rem;
+  }
+  
+  .section-header p {
+    font-size: 1rem;
+  }
+}
+
+/* Ensure smooth scrolling */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* Matches header height */
+}
+
+/* Fix for iOS devices */
+@supports (-webkit-touch-callout: none) {
+  section {
+    min-height: -webkit-fill-available;
+  }
+}

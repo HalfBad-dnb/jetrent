@@ -180,18 +180,28 @@ const JetSkiPrice = styled.div`
   margin-top: 1rem;
 `;
 
-const BookButton = styled(motion.button)`
+const BookButton = styled.button`
   background-color: #0396FF;
   color: white;
   border: none;
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 2rem;
   border-radius: 30px;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   
   &:hover {
     background-color: #0D47A1;
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  &:active {
+    transform: scale(0.95);
   }
 `;
 
@@ -304,11 +314,7 @@ const Fleet = () => {
               </JetSkiSpecs>
               <JetSkiDescription>{jetSki.description}</JetSkiDescription>
               <JetSkiPrice>
-                <BookButton
-                  onClick={scrollToContact}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
+                <BookButton onClick={scrollToContact}>
                   {t('hero.button')}
                 </BookButton>
               </JetSkiPrice>

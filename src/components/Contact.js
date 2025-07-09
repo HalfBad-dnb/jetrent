@@ -144,7 +144,7 @@ const ContactDetails = styled.div`
   position: relative;
 `;
 
-const ContactItem = styled(motion.a)`
+const ContactItem = styled.a`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -159,16 +159,26 @@ const ContactItem = styled(motion.a)`
   max-width: 450px;
   width: 100%;
   text-decoration: none;
+  color: white;
   cursor: pointer;
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-3px);
+  }
+  
+  &:active {
+    transform: translateY(-1px);
+  }
+  
+  svg {
+    font-size: 1.5rem;
+    color: #FF9500;
+  }
   
   @media (max-width: 480px) {
     padding: 1.25rem 1rem;
     gap: 1rem;
-  }
-
-  &:hover {
-    background: rgba(255, 255, 255, 0.1);
-    transform: translateY(-3px);
   }
 `;
 
@@ -237,10 +247,7 @@ const Contact = () => {
               
               <ContactDetails>
                 <ContactItem 
-                  as="a"
                   href="tel:+37061470086"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
                 >
                   <FaPhone />
                   <ContactItemText>+370 614 70086</ContactItemText>
@@ -250,24 +257,18 @@ const Contact = () => {
               
               <ContactDetails>
                 <ContactItem 
-                  as="a"
                   href="https://facebook.com/tadas.rudzinskis"
                   target="_blank"
                   rel="noopener noreferrer"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
                 >
                   <FaFacebook />
                   <ContactItemText>T-Jet-Rent</ContactItemText>
                 </ContactItem>
                 
                 <ContactItem
-                  as="a"
                   href="https://instagram.com/tadas_jet_rent"
                   target="_blank"
                   rel="noopener noreferrer"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
                 >
                   <FaInstagram />
                   <ContactItemText>tadas_jet_rent</ContactItemText>

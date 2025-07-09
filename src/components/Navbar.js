@@ -1,440 +1,321 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
-import { motion } from 'framer-motion';
-import { useTranslation } from 'react-i18next';
-import LanguageSwitcher from './LanguageSwitcher';
-import { FaInstagram, FaFacebookF, FaMapMarkerAlt, FaPhoneAlt } from 'react-icons/fa';
+import React, { useState, useEffect, useRef } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { FaInstagram, FaFacebookF, FaPhoneAlt, FaMapMarkerAlt } from 'react-icons/fa';
+import LanguageSwitcher from "./LanguageSwitcher";
+import "./Styles/Navbar.css";
 
-const Nav = styled(motion.nav)`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: max(1rem, env(safe-area-inset-top)) max(1.5rem, env(safe-area-inset-right)) max(1rem, env(safe-area-inset-bottom)) max(1.5rem, env(safe-area-inset-left));
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
-  background-color: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  transform: translateY(0);
-  transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), background-color 0.3s ease;
-  min-height: 60px;
-
-  @media (max-width: 768px) {
-    padding: max(0.75rem, env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right)) max(0.75rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
-  }
-
-  @media (max-width: 480px) {
-    padding: max(0.5rem, env(safe-area-inset-top)) max(0.75rem, env(safe-area-inset-right)) max(0.5rem, env(safe-area-inset-bottom)) max(0.75rem, env(safe-area-inset-left));
-  }
-
-  &.hide {
-    transform: translateY(-100%);
-  }
-`;
-
-const NavbarContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
-  height: 100%;
-  gap: 0.5rem;
-
-  @media (max-width: 768px) {
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-  }
-`;
-
-const SocialIcons = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-
-  a {
-    color: white;
-    transition: color 0.3s ease;
-
-    &:hover {
-      color: #FF9500;
-    }
-  }
-
-  @media (max-width: 768px) {
-    display: flex;
-    order: 3;
-    margin-left: auto;
-    gap: 1.25rem;
-  }
-`;
-
-const PhoneNumber = styled.a`
-  display: flex;
-  align-items: center;
-  color: white;
-  font-weight: 500;
-  text-decoration: none;
-  margin-left: 1rem;
-  transition: color 0.3s ease;
-  gap: 0.5rem;
-
-  &:hover {
-    color: #FF9500;
-  }
-`;
-
-const LocationText = styled.span`
-  font-size: 0.9rem;
-  letter-spacing: 0.5px;
-`;
-
-const LocationIndicator = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: white;
-  font-weight: 500;
-  cursor: pointer;
-  transition: color 0.3s ease;
-
-  &:hover {
-    color: #FF9500;
-  }
-`;
-
-const LocationIcon = styled(FaMapMarkerAlt)`
-  font-size: 1.5rem;
-
-  @media (max-width: 768px) {
-    font-size: 1.5rem;
-  }
-`;
-
-const LanguageSwitcherWrapper = styled.div`
-  margin-left: auto;
-
-  @media (max-width: 768px) {
-    order: 2;
-  }
-`;
-
-const MenuItems = styled.div`
-  display: flex;
-
-  @media (max-width: 768px) {
-    display: none;
-  }
-`;
-
-const menuItemVariants = {
-  hover: { 
-    scale: 1.05,
-    transition: { duration: 0.2 }
-  },
-  tap: { 
-    scale: 0.95,
-    transition: { duration: 0.1 }
-  }
-};
-
-const MenuItem = styled(motion(Link)).attrs({
-  variants: menuItemVariants,
-  initial: 'rest',
-  whileHover: 'hover',
-  whileTap: 'tap'
-})`
-  color: white;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 1.1rem;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  position: relative;
-  display: inline-block;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  ${props => props.active === 'true' ? 'color: #FF9500;' : ''}
-
-  &::after {
-    content: '';
-    position: absolute;
-    width: ${props => props.active === 'true' ? '70%' : '0'};
-    height: 2px;
-    bottom: 0;
-    left: 50%;
-    background-color: #FF9500;
-    transition: all 0.3s ease;
-    transform: translateX(-50%);
-  }
-
-  &:hover::after {
-    width: 70%;
-  }
-
-  @media (max-width: 768px) {
-    padding: 0.75rem 1rem;
-    width: 100%;
-    text-align: center;
-    border-radius: 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    ${props => props.active === 'true' ? 'background-color: rgba(255, 149, 0, 0.1);' : ''}
-
-    &::after {
-      display: none;
-    }
-  }
-`;
-
-const MobileMenuButton = styled.div`
-  display: none;
-  cursor: pointer;
-  touch-action: manipulation;
-  padding: 10px;
-
-  @media (max-width: 768px) {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 44px;
-    height: 44px;
-    margin-left: 0.5rem;
-  }
-`;
-
-const MenuLine = styled(motion.div)`
-  width: 100%;
-  height: 3px;
-  background-color: white;
-  transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
-  will-change: transform;
-
-  @media (max-width: 768px) {
-    height: 4px;
-  }
-`;
-
-const MobileMenu = styled(motion.div)`
-  display: ${({ visible }) => visible === 'true' ? 'flex' : 'none'};
-  touch-action: manipulation;
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-    position: fixed;
-    top: calc(60px + env(safe-area-inset-top));
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(255, 255, 255, 0.15);
-    z-index: 99;
-    padding: 1rem 0;
-    overflow-y: auto;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(10px);
-    transform: translateY(${({ visible }) => visible === 'true' ? '0' : '-100%'});
-    transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
-  }
-`;
-
-const MobileMenuItem = styled(motion.div)`
-  padding: 1rem 1.5rem;
-  color: white;
-  text-decoration: none;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  width: 100%;
-  box-sizing: border-box;
-
-  &:last-child {
-    border-bottom: none;
-  }
-
-  &:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-  }
-
-  @media (max-width: 480px) {
-    padding: 0.85rem 1.5rem;
-    font-size: 0.95rem;
-  }
-`;
-
-const scrollToSection = (sectionId, navigate) => {
-  if (window.location.pathname !== '/') {
-    navigate('/');
-    // Small delay to allow the home page to load
-    setTimeout(() => {
-      if (sectionId === 'home') {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else {
-        const element = document.getElementById(sectionId);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      }
-    }, 100);
-  } else {
-    if (sectionId === 'home') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-  }
-};
+// Add icons to the library
+library.add(faBars, faTimes);
 
 const Navbar = () => {
-  const { t } = useTranslation();
-  const navigate = useNavigate();
   const location = useLocation();
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [lastScrollY, setLastScrollY] = useState(0);
-  const [showNav, setShowNav] = useState(true);
+  const navigate = useNavigate();
+  const { t } = useTranslation();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
+  const menuRef = useRef(null);
 
+  // Close menu when clicking outside
+  useEffect(() => {
+    if (!isMenuOpen) return;
+
+    function handleClickOutside(event) {
+      // If click is inside the menu or on the menu button, do nothing
+      if (menuRef.current?.contains(event.target) || 
+          event.target.closest('.mobile-menu-btn')) {
+        return;
+      }
+      // If click is outside the menu, close it
+      setIsMenuOpen(false);
+    }
+
+    // Add event listeners
+    document.addEventListener('click', handleClickOutside, true);
+    
+    return () => {
+      document.removeEventListener('click', handleClickOutside, true);
+    };
+  }, [isMenuOpen]);
+
+  // Handle scroll
   useEffect(() => {
     const handleScroll = () => {
-      if (mobileMenuOpen) return; // Don't hide navbar if mobile menu is open
-      
-      const currentScrollY = window.scrollY;
-      
-      if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        setShowNav(false);
-      } else if (currentScrollY < lastScrollY) {
-        setShowNav(true);
+      const isScrolled = window.scrollY > 10;
+      if (isScrolled !== scrolled) {
+        setScrolled(isScrolled);
       }
+
+      const scrollPosition = window.scrollY + 100; // Start detection slightly below header
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
       
-      setLastScrollY(currentScrollY);
+      // At the very top of the page
+      if (scrollPosition < windowHeight * 0.3) {
+        setActiveSection('home');
+        return;
+      }
+
+      // Near the bottom of the page
+      if (window.scrollY + windowHeight >= documentHeight - 100) {
+        setActiveSection('contact');
+        return;
+      }
+
+      // Check sections with dynamic thresholds
+      const sections = [
+        { id: 'fleet', threshold: 0.4 },
+        { id: 'services', threshold: 0.4 },
+        { id: 'map', threshold: 0.3 },
+        { id: 'contact', threshold: 0.2 }
+      ];
+
+      for (const { id, threshold } of sections) {
+        const element = document.getElementById(id);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          const elementTop = rect.top + window.scrollY;
+          const elementHeight = rect.height;
+          const scrollThreshold = windowHeight * threshold;
+          
+          if (
+            scrollPosition >= elementTop - scrollThreshold &&
+            scrollPosition < elementTop + elementHeight - scrollThreshold
+          ) {
+            setActiveSection(id);
+            return;
+          }
+        }
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY, mobileMenuOpen]);
+  }, [scrolled]);
 
-  const toggleMobileMenu = () => {
-    setMobileMenuOpen(!mobileMenuOpen);
+  // Close menu when route changes and set initial active section
+  useEffect(() => {
+    setIsMenuOpen(false);
+    
+    // Set initial active section from hash if present
+    if (location.hash) {
+      const sectionId = location.hash.substring(1);
+      setActiveSection(sectionId);
+    } else if (location.pathname === '/') {
+      setActiveSection('home');
+    }
+  }, [location]);
+
+  const scrollToSection = (sectionId) => {
+    setIsMenuOpen(false);
+    if (location.pathname !== '/') {
+      navigate('/', { state: { scrollTo: sectionId } });
+    } else {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        const headerHeight = 80; // Should match your header height
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
+
+        // Add a small delay to ensure the menu is closed before scrolling
+        requestAnimationFrame(() => {
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+          
+          // Update URL without page reload
+          window.history.pushState({}, '', `#${sectionId}`);
+        });
+      }
+    }
   };
 
-  const menuItems = [
-    { name: t('navbar.home'), link: 'home' },
-    { name: t('navbar.fleet'), link: 'fleet' },
-    { name: t('navbar.map'), link: 'map' },
-    { name: t('navbar.contact'), link: 'contact' },
-  ];
+  // Handle scroll to section after navigation
+  useEffect(() => {
+    if (location.state?.scrollTo) {
+      const element = document.getElementById(location.state.scrollTo);
+      if (element) {
+        // Small timeout to ensure the page has rendered
+        const timer = setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+          // Clear the state to prevent scrolling on back/forward navigation
+          window.history.replaceState({}, document.title);
+        }, 100);
+        return () => clearTimeout(timer);
+      }
+    }
+  }, [location.state]);
 
   return (
-    <>
-      <Nav className={showNav || mobileMenuOpen ? '' : 'hide'}>
-        <NavbarContainer>
-          <MenuItems>
-            {menuItems.map((item, i) => (
-              item.isRoute ? (
-                <MenuItem
-                  key={i}
-                  to={`/${item.link}`}
-                  active={location.pathname === `/${item.link}` ? 'true' : 'false'}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {item.name}
-                </MenuItem>
-              ) : (
-                <MenuItem
-                  key={i}
-                  as={Link}
-                  to="/"
-                  active={location.pathname === '/' ? 'true' : 'false'}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    scrollToSection(item.link, navigate);
-                    setMobileMenuOpen(false);
-                  }}
-                  whileHover="hover"
-                  whileTap="tap"
-                >
-                  {item.name}
-                </MenuItem>
-              )
-            ))}
-          </MenuItems>
-
-          <LanguageSwitcherWrapper>
-            <LanguageSwitcher />
-          </LanguageSwitcherWrapper>
-
-          <SocialIcons>
-            <a href="https://facebook.com/profile.php?id=61576732776125" target="_blank" rel="noopener noreferrer" style={{ color: '#1877F2' }}>
-              <FaFacebookF size={24} />
-            </a>
-            <a href="https://instagram.com/tadas_jet_rent/?locale=en%2F" target="_blank" rel="noopener noreferrer" style={{ color: '#E1306C' }}>
-              <FaInstagram size={24} />
-            </a>
-            <PhoneNumber href="tel:+37061470086">
-              <FaPhoneAlt size={20} />
-            </PhoneNumber>
-          </SocialIcons>
-
-          <LocationIndicator onClick={() => scrollToSection('map')} style={{ order: 4 }}>
-            <LocationIcon />
-            <LocationText>{t('Klaipėda')}</LocationText>
-          </LocationIndicator>
-
-          <MobileMenuButton onClick={toggleMobileMenu}>
-            <MenuLine animate={{ rotate: mobileMenuOpen ? 45 : 0, y: mobileMenuOpen ? 9 : 0 }} />
-            <MenuLine animate={{ opacity: mobileMenuOpen ? 0 : 1 }} />
-            <MenuLine animate={{ rotate: mobileMenuOpen ? -45 : 0, y: mobileMenuOpen ? -9 : 0 }} />
-          </MobileMenuButton>
-        </NavbarContainer>
-      </Nav>
-
-      <MobileMenu 
-        visible={mobileMenuOpen.toString()}
-      >
-        {menuItems.map((item, index) => (
-          <MobileMenuItem
-            key={index}
-            className="hover"
-            as={item.isRoute ? Link : 'div'}
-            to={item.isRoute ? `/${item.link}` : '#'}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => {
-              if (item.isRoute) {
-                navigate(`/${item.link}`);
+    <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+      <div className="nav-container">
+        <div className="menu-items">
+          <a 
+            href="/" 
+            className={`nav-link ${activeSection === 'home' ? 'active' : ''}`}
+            onClick={(e) => {
+              e.preventDefault();
+              if (location.pathname === '/') {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                setActiveSection('home');
               } else {
-                scrollToSection(item.link, navigate);
+                navigate('/');
               }
-              setMobileMenuOpen(false);
             }}
           >
-            {item.name}
-          </MobileMenuItem>
-        ))}
-        <MobileMenuItem
-          className="hover"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          style={{ fontWeight: '700', color: '#FF9500' }}
-          onClick={() => {
-            scrollToSection('contact');
-            setMobileMenuOpen(false);
-          }}
-        >
-          {t('hero.button')}
-        </MobileMenuItem>
-      </MobileMenu>
-    </>
+            {t('nav.home')}
+          </a>
+          <a 
+            href="#services" 
+            className={`nav-link ${activeSection === 'services' ? 'active' : ''}`}
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection('services');
+              setActiveSection('services');
+            }}
+          >
+            {t('nav.activities')}
+          </a>
+          <a 
+            href="#fleet" 
+            className={`nav-link ${activeSection === 'fleet' ? 'active' : ''}`}
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection('fleet');
+              setActiveSection('fleet');
+            }}
+          >
+            {t('nav.fleet')}
+          </a>
+          <a 
+            href="#map" 
+            className={`nav-link ${activeSection === 'map' ? 'active' : ''}`}
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection('map');
+            }}
+          >
+            {t('nav.map')}
+          </a>
+          <a 
+            href="#contact" 
+            className={`nav-link ${activeSection === 'contact' ? 'active' : ''}`}
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection('contact');
+            }}
+          >
+            {t('nav.contact')}
+          </a>
+        </div>
+        
+        <div className="desktop-social-icons">
+          <a href="https://facebook.com/profile.php?id=61576732776125" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <FaFacebookF size={18} />
+          </a>
+          <a href="https://www.instagram.com/jetrent.lt/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <FaInstagram size={18} />
+          </a>
+          <a href="tel:+37012345678" className="phone-number" aria-label="Phone">
+            <FaPhoneAlt size={16} />
+          </a>
+          <a href="#map" className="map-icon" aria-label="Map location" onClick={(e) => {
+            e.preventDefault();
+            scrollToSection('map');
+          }}>
+            <FaMapMarkerAlt size={16} />
+          </a>
+        </div>
+        
+        <div className="header-right">
+          <div className="desktop-language-switcher">
+            <LanguageSwitcher />
+          </div>
+          <button 
+            className="mobile-menu-btn" 
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsMenuOpen(prev => !prev);
+            }}
+            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isMenuOpen}
+          >
+            <FontAwesomeIcon icon={isMenuOpen ? 'times' : 'bars'} />
+          </button>
+        </div>
+      </div>
+      
+      <div 
+        className={`mobile-menu ${isMenuOpen ? 'active' : ''}`}
+        ref={menuRef}
+      >
+        <div className="mobile-menu-content">
+          <button 
+            className="nav-link mobile-nav-button"
+            onClick={(e) => {
+              e.preventDefault();
+              if (location.pathname === '/') {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                setActiveSection('home');
+              } else {
+                navigate('/');
+              }
+              setIsMenuOpen(false);
+            }}
+          >
+            {t('nav.home')}
+          </button>
+          <button 
+            className="nav-link mobile-nav-button"
+            onClick={() => {
+              setIsMenuOpen(false);
+              scrollToSection('services');
+              setActiveSection('services');
+            }}
+          >
+            {t('nav.activities')}
+          </button>
+          <button 
+            className="nav-link mobile-nav-button"
+            onClick={() => {
+              setIsMenuOpen(false);
+              scrollToSection('fleet');
+              setActiveSection('fleet');
+            }}
+          >
+            {t('nav.fleet')}
+          </button>
+          <button 
+            className="nav-link mobile-nav-button"
+            onClick={() => {
+              setIsMenuOpen(false);
+              scrollToSection('map');
+            }}
+          >
+            {t('nav.map')}
+          </button>
+          <button 
+            className="nav-link mobile-nav-button"
+            onClick={() => {
+              setIsMenuOpen(false);
+              scrollToSection('contact');
+            }}
+          >
+            {t('nav.contact')}
+          </button>
+          
+          {/* Mobile Language Switcher */}
+          <div className="mobile-language-switcher">
+            <LanguageSwitcher />
+          </div>
+        </div>
+      </div>
+    </nav>
   );
 };
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 const VideoWrapper = styled.div`
@@ -9,41 +9,84 @@ const VideoWrapper = styled.div`
   height: 100%;
   z-index: -2;
   overflow: hidden;
+  background-color: #000;
 `;
 
 const VideoBackground = styled.video`
   position: absolute;
-  top: 50%;
-  left: 50%;
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
-  transform: translateX(-50%) translateY(-50%);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+  object-position: center;
 `;
 
 const FallbackWrapper = styled.div`
-  background: url('/assets/VideoBackround/background.jpg') center/cover no-repeat;
-  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
+  height: 100%;
+  background: url('/assets/VideoBackround/background.jpg') center/cover no-repeat;
 `;
 
 const BackgroundVideo = ({ children }) => {
   const [videoError, setVideoError] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const videoRef = useRef(null);
   
+  // Check if mobile device
+  useEffect(() => {
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    const isIOS = /iPad|iPhone|iPod/.test(userAgent) || 
+                 (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    const isAndroid = /android/i.test(userAgent);
+    const isMobileDevice = isIOS || isAndroid;
+    setIsMobile(isMobileDevice);
+    
+    // Try to play video on desktop
+    if (!isMobileDevice && videoRef.current) {
+      const playPromise = videoRef.current.play();
+      
+      // Handle autoplay promise
+      if (playPromise !== undefined) {
+        playPromise.catch(error => {
+          console.error('Video play failed:', error);
+          setVideoError(true);
+        });
+      }
+    }
+  }, []);
+  
+  // On mobile, don't load video at all
+  if (isMobile) {
+    return (
+      <>
+        <FallbackWrapper />
+        {children}
+      </>
+    );
+  }
+
   return (
     <>
       <VideoWrapper>
         {!videoError ? (
           <VideoBackground
+            ref={videoRef}
             autoPlay
             loop
             muted
             playsInline
-            onError={() => setVideoError(true)}
+            preload="auto"
+            onError={(e) => {
+              console.error('Video error:', e);
+              setVideoError(true);
+            }}
           >
-            <source src="/assets/VideoBackround/background_video.webm" type="video/webm" />
+            <source src="/assets/VideoBackround/background_video.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
           </VideoBackground>
         ) : (
           <FallbackWrapper />

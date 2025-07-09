@@ -1,13 +1,10 @@
 {
-  "services": {
-    "title": "Services",
-    "vandens_pramogos": "Water Activities",
-    "vandens_pramogos_description": "Experience the thrill of water sports and activities with our professional instructors.",
-    "vandens_motociklu_nuoma": "Water Motorcycle Rental",
-    "vandens_motociklu_nuoma_description": "Rent high-quality water motorcycles for an unforgettable experience on the water.",
-    "keliones_su_gidu": "Guided Tours",
-    "keliones_su_gidu_description": "Join our guided tours to explore the best water routes and hidden gems.",
-    "book_now": "Book Now"
+  "navbar": {
+    "home": "Home",
+    "fleet": "Jet Skis",
+    "map": "Find Us",
+    "contact": "Contact",
+    "activities": "Activities"
   },
   "hero": {
     "title": "T-Jet-Rent",
@@ -15,12 +12,15 @@
     "button": "Book Now",
     "scrollDown": "Scroll Down"
   },
-  "navbar": {
-    "home": "Home",
-    "fleet": "Fleet",
-    "map": "Find Us",
-    "contact": "Contact",
-    "activities": "Activities"
+  "services": {
+    "title": "Services",
+    "vandens_pramogos": "Water Activities",
+    "vandens_pramogos_description": "Experience the thrill of water sports and activities with our professional instructors.",
+    "vandens_motociklu_nuoma": "Jet Ski Rental",
+    "vandens_motociklu_nuoma_description": "Rent high-quality jet skis for an unforgettable experience on the water.",
+    "keliones_su_gidu": "Guided Tours",
+    "keliones_su_gidu_description": "Join our guided tours to explore the best water routes and hidden gems.",
+    "book_now": "Book Now"
   },
   "fleet": {
     "title": "Our Fleet",
@@ -46,27 +46,27 @@
       "location": "Miami, FL"
     },
     "testimonial2": {
-      "text": "Top-notch equipment and service! I rented the Yamaha FX Cruiser and it was in perfect condition. The team provided excellent safety instructions and tips.",
+      "text": "Top-notch equipment and service! Rented the Yamaha FX Cruiser and it was in perfect condition. The team provided excellent safety instructions and tips.",
       "name": "Mark Davis",
       "location": "Los Angeles, CA"
     },
     "testimonial3": {
-      "text": "Great family experience! We rented two jet skis for the day and had a blast. The pricing was reasonable and the booking process was smooth. Highly recommend!",
+      "text": "Great experience for the whole family! We rented two jet skis for the day and had an amazing time. The prices were reasonable and the booking process was smooth. Highly recommend!",
       "name": "Jennifer Williams",
       "location": "San Diego, CA"
     }
   },
   "map": {
-    "title": "Our Location",
-    "location": "Curonian Lagoon, Kuršmarės, formerly known as Prussian Sea"
+    "title": "Find Us",
+    "location": "Curonian Lagoon, Kuršmarių, formerly known as the Prussian Sea"
   },
   "contact": {
-    "title": "Contact us",
-    "subtitle": "Have questions or ready to book? Reach out to us!",
-    "description": "Reach us by phone, email, or social media. We're always ready to answer your questions.",
+    "title": "Contact Us",
+    "infoTitle": "Get In Touch",
+    "infoText": "Have questions or want to make a reservation? Contact us by phone, email, or social media. We're always happy to help with any inquiries.",
     "phone": "+370 600 00000",
     "email": "info@jetrent.lt",
-    "location": "Curonian Lagoon, Kuršmarės, formerly known as Prussian Sea",
+    "location": "Curonian Lagoon, Kuršmarių, formerly known as the Prussian Sea",
     "instagram": "Instagram",
     "facebook": "Facebook"
   },
@@ -75,17 +75,18 @@
     "terms": "Terms & Conditions",
     "privacy": "Privacy Policy",
     "faq": "FAQ",
-    "companyDescription": "Experience the ultimate thrill on the water with our premium jet ski rentals. Established in 2010, we've been providing unforgettable water adventures.",
+    "companyDescription": "Experience the ultimate thrill on the water with our premium jet ski rentals. We provide unforgettable water adventures for everyone.",
     "quickLinks": "Quick Links",
     "pricing": "Pricing",
     "services": "Services",
-    "contactInfo": "Contact Info",
-    "openingHours": "Opening Hours",
-    "weekdayHours": "Mon-Fri: 9:00 AM - 6:00 PM",
-    "weekendHours": "Weekends: 8:00 AM - 8:00 PM",
+    "contactInfo": "Contact Information",
+    "openingHours": {
+      "weekdayHours": "Mon-Fri: 9:00 AM - 6:00 PM",
+      "weekendHours": "Weekends: 8:00 AM - 8:00 PM"
+    },
     "cookies": "Cookie Policy"
   },
-  "activities": {
+    "activities": {
     "title": "Water Activities",
     "jet_ski_rental": "Jet Ski Rental",
     "jet_ski_rental_desc": "Experience the thrill of riding the waves on our powerful jet skis. Perfect for adrenaline seekers and water sports enthusiasts.",

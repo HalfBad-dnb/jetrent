@@ -22,10 +22,16 @@ const HeroContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 8rem 2rem 0; /* Increased top padding from 5rem to 8rem */
+  justify-content: center;
+  padding: 2rem 1rem;
+  margin-top: 60px; /* Height of the fixed header */
+  min-height: calc(100vh - 60px);
+  box-sizing: border-box;
   
-  @media (max-width: 768px) {
-    padding: 4rem 1rem 0;
+  @media (min-width: 768px) {
+    padding: 8rem 2rem 4rem;
+    margin-top: 0;
+    min-height: 100vh;
   }
 `;
 
@@ -241,11 +247,6 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            whileHover={{
-              scale: 1.05,
-              boxShadow: '0 0 20px rgba(255, 149, 0, 0.3)'
-            }}
-            whileTap={{ scale: 0.95 }}
             style={{
               background: 'linear-gradient(90deg, #FF9500, #FFD700)',
               color: 'white',
@@ -258,6 +259,14 @@ const Hero = () => {
               position: 'relative',
               overflow: 'hidden',
               width: '100%',
+              transition: 'all 0.3s ease',
+              '&:hover': {
+                transform: 'scale(1.05)',
+                boxShadow: '0 0 20px rgba(255, 149, 0, 0.3)'
+              },
+              '&:active': {
+                transform: 'scale(0.95)'
+              },
               boxSizing: 'border-box'
             }}
           >
