@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
+import React, { useState, useEffect, useLayoutEffect } from "react";
+import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import "./i18n";
 import styled from "styled-components";
 import Navbar from "./components/Navbar";
@@ -54,6 +54,24 @@ const AppContainer = styled.div`
 const MainContent = () => {
   const [videoError, setVideoError] = useState(false);
   const videoPath = "/assets/VideoBackround/background_video.webm";
+  const location = useLocation();
+  const navigate = useNavigate();
+  
+  // Handle scroll to section when location state contains scrollTo
+  useLayoutEffect(() => {
+    if (location.state?.scrollTo) {
+      const element = document.getElementById(location.state.scrollTo);
+      if (element) {
+        // Small timeout to ensure the component is rendered
+        const timer = setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          // Clear the state to prevent scrolling on re-renders
+          navigate(location.pathname, { replace: true, state: {} });
+        }, 100);
+        return () => clearTimeout(timer);
+      }
+    }
+  }, [location, navigate]);
   
   return (
     <>

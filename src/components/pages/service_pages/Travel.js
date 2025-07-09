@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
@@ -110,6 +111,7 @@ const BookButton = styled(motion.button)`
 
 const Travel = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   const tourPackages = [
     {
@@ -136,9 +138,11 @@ const Travel = () => {
   ];
 
   const handleBookNow = (tourTitle) => {
-    // Here you would typically open a booking modal or redirect to a booking page
-    console.log(`Booking ${tourTitle} tour`);
-    // Example: navigate(`/book-now?tour=${encodeURIComponent(tourTitle)}`);
+    // Navigate to home page and scroll to contact section with tour title
+    navigate('/', { 
+      state: { scrollTo: 'contact', interest: tourTitle },
+      replace: true
+    });
   };
 
   return (

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
@@ -115,6 +116,7 @@ const BookButton = styled(motion.button)`
 
 const Rent = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   const rentalOptions = [
     {
@@ -156,9 +158,11 @@ const Rent = () => {
   ];
 
   const handleBookNow = (rentalType) => {
-    // Here you would typically open a booking modal or redirect to a booking page
-    console.log(`Booking ${rentalType}`);
-    // Example: navigate(`/book-now?type=${rentalType}`);
+    // Navigate to home page and scroll to contact section
+    navigate('/', { 
+      state: { scrollTo: 'contact', interest: rentalType },
+      replace: true
+    });
   };
 
   return (

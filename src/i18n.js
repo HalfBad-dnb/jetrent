@@ -17,6 +17,7 @@ i18n
         translation: ltTranslation
       }
     },
+    lng: 'lt', // Set Lithuanian as default language
     fallbackLng: 'lt',
     detection: {
       order: ['localStorage', 'navigator'],
