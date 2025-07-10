@@ -190,7 +190,7 @@ const Navbar = () => {
               }
             }}
           >
-            {t('nav.home')}
+            {t('navbar.home')}
           </a>
           <a 
             href="#services" 
@@ -201,7 +201,7 @@ const Navbar = () => {
               setActiveSection('services');
             }}
           >
-            {t('nav.activities')}
+            {t('navbar.activities')}
           </a>
           <a 
             href="#fleet" 
@@ -212,7 +212,7 @@ const Navbar = () => {
               setActiveSection('fleet');
             }}
           >
-            {t('nav.fleet')}
+            {t('navbar.fleet')}
           </a>
           <a 
             href="#map" 
@@ -222,7 +222,7 @@ const Navbar = () => {
               scrollToSection('map');
             }}
           >
-            {t('nav.map')}
+            {t('navbar.map')}
           </a>
           <a 
             href="#contact" 
@@ -232,7 +232,7 @@ const Navbar = () => {
               scrollToSection('contact');
             }}
           >
-            {t('nav.contact')}
+            {t('navbar.contact')}
           </a>
         </div>
         
@@ -290,7 +290,7 @@ const Navbar = () => {
               setIsMenuOpen(false);
             }}
           >
-            {t('nav.home')}
+            {t('navbar.home')}
           </button>
           <button 
             className="nav-link mobile-nav-button"
@@ -300,7 +300,7 @@ const Navbar = () => {
               setActiveSection('services');
             }}
           >
-            {t('nav.activities')}
+            {t('navbar.activities')}
           </button>
           <button 
             className="nav-link mobile-nav-button"
@@ -310,7 +310,7 @@ const Navbar = () => {
               setActiveSection('fleet');
             }}
           >
-            {t('nav.fleet')}
+            {t('navbar.fleet')}
           </button>
           <button 
             className="nav-link mobile-nav-button"
@@ -319,7 +319,7 @@ const Navbar = () => {
               scrollToSection('map');
             }}
           >
-            {t('nav.map')}
+            {t('navbar.map')}
           </button>
           <button 
             className="nav-link mobile-nav-button"
@@ -328,7 +328,7 @@ const Navbar = () => {
               scrollToSection('contact');
             }}
           >
-            {t('nav.contact')}
+            {t('navbar.contact')}
           </button>
           
           {/* Mobile Language Switcher */}

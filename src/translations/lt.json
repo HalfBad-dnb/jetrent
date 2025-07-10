@@ -1,5 +1,5 @@
 {
-  "nav": {
+  "navbar": {
     "home": "Pradžia",
     "fleet": "Mūsų flotilė",
     "map": "Mus rasite",
@@ -73,6 +73,9 @@
     "facebook": "Facebook"
   },
   "footer": {
+    "home": "Pradžia",
+    "fleet": "Mūsų Flotilė",
+    "contact": "Susisiekite",
     "rights": "Visos Teisės Saugomos",
     "terms": "Taisyklės ir Sąlygos",
     "privacy": "Privatumo Politika",
@@ -85,7 +88,10 @@
     "openingHours": "Darbo Laikas",
     "weekdayHours": "Pirm-Penkt: 9:00 - 18:00",
     "weekendHours": "Savaitgaliais: 8:00 - 20:00",
-    "cookies": "Slapukų Politika"
+    "cookies": "Slapukų Politika",
+    "waterActivities": "Vandens Pramogos",
+    "jetSkiRental": "Vandens Motociklų Nuoma",
+    "guidedTours": "Vadovaujamos Ekskursijos"
   },
   "activities": {
     "title": "Vandens Pramogos",

@@ -181,7 +181,7 @@ const JetSkiPrice = styled.div`
 `;
 
 const BookButton = styled.button`
-  background-color: #0396FF;
+  background-color: #FF9500;
   color: white;
   border: none;
   padding: 0.75rem 2rem;
@@ -195,9 +195,9 @@ const BookButton = styled.button`
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   
   &:hover {
-    background-color: #0D47A1;
+    background-color: #e07c00;
     transform: scale(1.05);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 6px 20px rgba(255, 149, 0, 0.3);
   }
   
   &:active {

@@ -64,13 +64,16 @@
     "title": "Contact Us",
     "infoTitle": "Get In Touch",
     "infoText": "Have questions or want to make a reservation? Contact us by phone, email, or social media. We're always happy to help with any inquiries.",
-    "phone": "+370 600 00000",
+    "phone": "+370 614 70086",
     "email": "info@jetrent.lt",
     "location": "Curonian Lagoon, Kuršmarių, formerly known as the Prussian Sea",
     "instagram": "Instagram",
     "facebook": "Facebook"
   },
   "footer": {
+    "home": "Home",
+    "fleet": "Our Fleet",
+    "contact": "Contact Us",
     "rights": "All Rights Reserved",
     "terms": "Terms & Conditions",
     "privacy": "Privacy Policy",
@@ -84,7 +87,10 @@
       "weekdayHours": "Mon-Fri: 9:00 AM - 6:00 PM",
       "weekendHours": "Weekends: 8:00 AM - 8:00 PM"
     },
-    "cookies": "Cookie Policy"
+    "cookies": "Cookie Policy",
+    "waterActivities": "Water Activities",
+    "jetSkiRental": "Jet Ski Rental",
+    "guidedTours": "Guided Tours"
   },
     "activities": {
     "title": "Water Activities",

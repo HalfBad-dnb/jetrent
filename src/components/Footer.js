@@ -274,9 +274,9 @@ const Footer = () => {
         >
           <FooterTitle>{t('footer.quickLinks', 'Quick Links').toUpperCase()}</FooterTitle>
           <FooterLinks>
-            <FooterLink><a href="/">{t('navbar.home')}</a></FooterLink>
-            <FooterLink><a href="#fleet">{t('navbar.fleet')}</a></FooterLink>
-            <FooterLink><a href="#contact">{t('navbar.contact')}</a></FooterLink>
+            <FooterLink><a href="/">{t('footer.home')}</a></FooterLink>
+            <FooterLink><a href="#fleet">{t('footer.fleet')}</a></FooterLink>
+            <FooterLink><a href="#contact">{t('footer.contact')}</a></FooterLink>
           </FooterLinks>
         </FooterColumn>
         
@@ -289,9 +289,9 @@ const Footer = () => {
         >
           <FooterTitle>{t('footer.services', 'SERVICES')}</FooterTitle>
           <FooterLinks>
-            <FooterLink><a href="/activities">Vandens pramogos</a></FooterLink>
-            <FooterLink><a href="/rent">Vandens motociklu nuoma </a></FooterLink>
-            <FooterLink><a href="/travel">Keliones su gidu</a></FooterLink>
+            <FooterLink><a href="/activities">{t('footer.waterActivities')}</a></FooterLink>
+            <FooterLink><a href="/rent">{t('footer.jetSkiRental')}</a></FooterLink>
+            <FooterLink><a href="/travel">{t('footer.guidedTours')}</a></FooterLink>
           </FooterLinks>
         </FooterColumn>
         
@@ -306,11 +306,11 @@ const Footer = () => {
           <ContactInfo>
             <ContactItem>
               <FaMapMarkerAlt />
-              <span>Kuršių marios, Kuršmarės, seniau vadintos Prūsų jūra</span>
+              <span>{t('contact.location', 'Kuršių marios, Kuršmarės, seniau vadintos Prūsų jūra')}</span>
             </ContactItem>
             <ContactItem>
               <FaPhone />
-              <span>+370 614 70086</span>
+              <span>{t('contact.phone', '+370 614 70086')}</span>
             </ContactItem>
           </ContactInfo>
         </FooterColumn>
