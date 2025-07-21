@@ -3,10 +3,20 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import BackgroundVideo from '../../BackgroundVideo';
+
+const VideoBackground = styled.video`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  opacity: 0.9;
+`;
 
 const TravelContainer = styled.div`
-  padding: 6rem 2rem 4rem; /* Increased top padding to account for fixed navbar */
+  padding: 6rem 2rem 4rem;
   max-width: 1200px;
   margin: 0 auto;
   color: white;
@@ -14,7 +24,10 @@ const TravelContainer = styled.div`
   z-index: 1;
   backdrop-filter: blur(5px);
   min-height: 100vh;
-  margin-top: 0; /* Ensure no negative margins are affecting the position */
+  margin-top: 0;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 15px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 `;
 
 const Title = styled.h1`
@@ -113,6 +126,9 @@ const Travel = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
+  // Video source path
+  const videoSource = '/assets/VideoBackround/WaterActivitiesVideoBackground.mp4';
+
   const tourPackages = [
     {
       id: 1,
@@ -147,10 +163,13 @@ const Travel = () => {
 
   return (
     <>
-      <BackgroundVideo />
+      <VideoBackground autoPlay loop muted>
+        <source src={videoSource} type="video/mp4" />
+        Your browser does not support the video tag.
+      </VideoBackground>
       <TravelContainer>
-      <Title>{t('travel.title')}</Title>
-      <Subtitle>{t('travel.subtitle')}</Subtitle>
+        <Title>{t('travel.title')}</Title>
+        <Subtitle>{t('travel.subtitle')}</Subtitle>
       
       <ToursGrid>
         {tourPackages.map((tour) => (

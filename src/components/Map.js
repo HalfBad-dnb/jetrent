@@ -107,7 +107,7 @@ const Map = () => {
     container.style.width = '100%';
     container.style.height = '100%';
 
-    const companyCoordinates = [55.7048, 21.1219];
+    const companyCoordinates = [55.642851,21.151319];
     const zoomLevel = 13;
 
     // Clean up existing map if it exists

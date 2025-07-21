@@ -3,17 +3,31 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import BackgroundVideo from '../../BackgroundVideo';
+
+const VideoBackground = styled.video`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  opacity: 0.9;
+`;
 
 const RentContainer = styled.div`
-  padding: 6rem 2rem 4rem; /* Increased top padding to account for fixed navbar */
+  padding: 6rem 2rem 4rem;
   max-width: 1200px;
   margin: 0 auto;
   color: white;
   position: relative;
   z-index: 1;
+  backdrop-filter: blur(5px);
   min-height: 100vh;
-  margin-top: 0; /* Ensure no negative margins are affecting the position */
+  margin-top: 0;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 15px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 `;
 
 const Title = styled.h1`
@@ -123,6 +137,9 @@ const BookButton = styled.button`
 const Rent = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  
+  // Video source path
+  const videoSource = '/assets/VideoBackround/WaterActivitiesVideoBackground.mp4';
 
   const rentalOptions = [
     {
@@ -173,7 +190,10 @@ const Rent = () => {
 
   return (
     <>
-      <BackgroundVideo />
+      <VideoBackground autoPlay loop muted>
+        <source src={videoSource} type="video/mp4" />
+        Your browser does not support the video tag.
+      </VideoBackground>
       <RentContainer>
       <Title>{t('rental.title')}</Title>
       <Subtitle>{t('rental.subtitle')}</Subtitle>

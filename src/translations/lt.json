@@ -128,15 +128,15 @@
     "hour": "valandai",
     "book_now": "Rezervuoti Dabar",
     "standard": {
-      "title": "Standartinis Vandens Motociklas",
+      "title": "Standartinis",
       "description": "Puikus pasirinkimas pradedantiesiems ir atsitikitiniams vartotojams. Patirkite vandens motociklo važiavimo jaudulį su mūsų patikimu standartiniu modeliu."
     },
     "premium": {
-      "title": "Premium Vandens Motociklas",
+      "title": "Premium",
       "description": "Tiems, kurie ieško daugiau galios ir didesnio greičio. Mūsų aukščiausios klasės modeliai siūlo patobulintas charakteristikas ir galimybes."
     },
     "group": {
-      "title": "Grupinis Paketas",
+      "title": "Grupė",
       "description": "Ypatingas pasiūlymas grupėms. Išsinuomokite kelis vandens motociklus ir mėgaukitės vandens pramogomis su draugais ar šeima."
     },
     "features": {
