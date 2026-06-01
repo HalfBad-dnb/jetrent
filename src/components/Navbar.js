@@ -243,11 +243,7 @@ const Navbar = () => {
           <a href="https://www.instagram.com/tadas_jet_rent/?locale=en%2F" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
             <FaInstagram size={18} />
           </a>
-          <a href="tel:+37061470086" className="phone-number" aria-label="Phone" onClick={(e) => {
-            if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-              e.preventDefault();
-            }
-          }}>
+          <a href="tel:+37061470086" className="phone-number" aria-label="Phone">
             <FaPhoneAlt size={16} />
           </a>
           <a href="#map" className="map-icon" aria-label="Map location" onClick={(e) => {
